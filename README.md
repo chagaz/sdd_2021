@@ -61,3 +61,7 @@ __Emploi du temps__
   * __16h-17h30 :__ Mini-projet numérique (2)
 
 * __jeudi 1/07 9h-12h : examen écrit et rendu de projet numérique.__
+
+__Modalités d'évaluation__
+* mini-projet numérique à réaliser en majorité sur les séances de TP qui y sont dévouées (le 14/06 et le 24/06) et à rendre le 1er juillet (30%).
+* examen sur table avec documents autorisés à réaliser le 1er juillet (70%).
