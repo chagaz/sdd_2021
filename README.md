@@ -19,7 +19,8 @@ Ce repo contient un script `pre-commit.sh` qui permet de le nettoyer (supprimer 
 
 Il est possible de lancer automatiquement ce script lors d'un `git commit` grâce à un [`hook`](https://githooks.com/). Pour cela, il suffit de le copier dans le fichier `.git/hooks/pre-commit` ou d'utiliser un lien symbolique (pour conserver le contrôle de version) :
 ```bash
-    ln -s pre-commit.sh .git/hooks/pre-commit
+    cd .git/hooks/
+    ln -s ../../pre-commit.sh pre-commit
 ```
 
 __Équipe pédagogique__
