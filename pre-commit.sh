@@ -1,3 +1,5 @@
+#!/bin/sh
+
 rm poly/*.aux 
 rm poly/*.log
 rm poly/*.out
