@@ -10,7 +10,7 @@ __Organisation de ce repo__
    conda activate sdd2021
 ```
 Notez que cet environnement vous fait utiliser JupyterLab et non pas Jupyter Notebook. JupyterLab est plus moderne et plus agréable d'utilisation (voir [la documentation](https://jupyterlab.readthedocs.io/en/stable/)). En particulier, JupyterLab permet de copier des cellules entre notebooks, et l'[extension "Table of contents"](https://github.com/jupyterlab/jupyterlab-toc/blob/master/toc.gif) qui facilite la navigation dans un notebook y est native.
-* `poly/` contient tous les fichiers permettant de compiler le poly. La dernière version compilée à jour s'intitule `sdd\_2020\_poly.pdf`
+* `poly/` contient tous les fichiers permettant de compiler le poly. La dernière version compilée à jour s'intitule `sdd_2021_poly.pdf`
 * `pc/` contient un répertoire par PC
 * `projet/` contient les données et instructions relatives au projet numérique.
 
@@ -26,29 +26,6 @@ Il est possible de lancer automatiquement ce script lors d'un `git commit` grâc
 __Équipe pédagogique__
 * Responsable de cours : Chloé-Agathe Azencott
 * Chargé·e·s d'enseignement : Nicolas Desassis, Arthur Imbert, Tristan Lazard, Thibaud Martinez, et Lucia Clarotto.
-
-__Objectifs du cours__
-L'EC de sciences des données sera une introduction générale à l’analyse des données telles qu’elles peuvent apparaître dans de nombreux domaines de l’ingénierie. Il présentera des concepts d’analyse statistique des données et d’apprentissage automatique, en se concentrant sur les aspects de classification et de régression. Il vous permettra de comprendre quelques enjeux majeurs de la modélisation statistique des données : estimation, tests, apprentissage (_machine learning_), validation et bonnes pratiques. 
-
-__Compétences__
-Ce cours a pour but de vous permettre d'acquérir les compétences suivantes :
-* Choisir la famille de méthodes statistiques permettant de répondre à un problème concret avec des données réelles ;
-* Maîtriser des méthodes statistiques usuelles permettant de traiter convenablement des cas simples d’analyse de données ;
-* Maîtriser des méthodes usuelles d’exploration des données ;
-* Connaître les limites d’applications de ces méthodes ;
-* Connaître des méthodes d’apprentissage statistique (machine learning) supervisé et des méthodes d’apprentissage statistique non supervisé ;
-* Savoir valider et sélectionner un modèle d'apprentissage supervisé.
-
-__Modalités pédagogiques__
-* 9x1h30 de cours au tableau 
-* 7x1h30 de petites classes : 
-  * 2 séances de TD ;
-  * 3 séances de TP sur machine ;
-  * 2 séances de travail sur le projet numérique.
-
-__Modalités d'évaluation__
-* mini-projet numérique à réaliser en majorité sur les séances de TP qui y sont dévouées (le 14/06 et le 24/06) et à rendre le 1er juillet (30%).
-* examen sur table avec documents autorisés à réaliser le 1er juillet (70%).
 
 __Emploi du temps__
 * __lundi 31/05 :__ 
@@ -84,6 +61,3 @@ __Emploi du temps__
   * __16h-17h30 :__ Mini-projet numérique (2)
 
 * __jeudi 1/07 9h-12h : examen écrit et rendu de projet numérique.__
-
-
-
