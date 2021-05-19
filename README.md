@@ -14,15 +14,6 @@ Notez que cet environnement vous fait utiliser JupyterLab et non pas Jupyter Not
 * `pc/` contient un répertoire par PC
 * `projet/` contient les données et instructions relatives au projet numérique.
 
-__Pour contribuer à ce repo__
-Ce repo contient un script `pre-commit.sh` qui permet de le nettoyer (supprimer les fichiers auxiliaires de latex, nettoyer les notebooks avec [`nbstripout`](https://pypi.org/project/nbstripout/)).
-
-Il est possible de lancer automatiquement ce script lors d'un `git commit` grâce à un [`hook`](https://githooks.com/). Pour cela, il suffit de le copier dans le fichier `.git/hooks/pre-commit` ou d'utiliser un lien symbolique (pour conserver le contrôle de version) :
-```bash
-    cd .git/hooks/
-    ln -s ../../pre-commit.sh pre-commit
-```
-
 __Équipe pédagogique__
 * Responsable de cours : Chloé-Agathe Azencott
 * Chargé·e·s d'enseignement : Nicolas Desassis, Arthur Imbert, Tristan Lazard, Thibaud Martinez, et Lucia Clarotto.
@@ -65,3 +56,12 @@ __Emploi du temps__
 __Modalités d'évaluation__
 * mini-projet numérique à réaliser en majorité sur les séances de TP qui y sont dévouées (le 14/06 et le 24/06) et à rendre le 1er juillet (30%).
 * examen sur table avec documents autorisés à réaliser le 1er juillet (70%).
+
+__Pour contribuer à ce repo__
+Ce repo contient un script `pre-commit.sh` qui permet de le nettoyer (supprimer les fichiers auxiliaires de latex, nettoyer les notebooks avec [`nbstripout`](https://pypi.org/project/nbstripout/)).
+
+Il est possible de lancer automatiquement ce script lors d'un `git commit` grâce à un [`hook`](https://githooks.com/). Pour cela, il suffit de le copier dans le fichier `.git/hooks/pre-commit` ou d'utiliser un lien symbolique (pour conserver le contrôle de version) :
+```bash
+    cd .git/hooks/
+    ln -s ../../pre-commit.sh pre-commit
+```
