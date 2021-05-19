@@ -5,7 +5,7 @@ Cours « science des données » à Mines ParisTech (2020­–2021).
 
 __Équipe pédagogique__
 * Responsable de cours : Chloé-Agathe Azencott
-* Chargés d'enseignement : Nicolas Desassis, Arthur Imbert, Tristan Lazard, Thibaud Martinez, et Lucia Clarotto.
+* Chargé·e·s d'enseignement : Nicolas Desassis, Arthur Imbert, Tristan Lazard, Thibaud Martinez, et Lucia Clarotto.
 
 __Objectifs du cours__
 L’EC de Sciences des données sera une introduction générale à l’analyse des données telles qu’elles peuvent apparaître dans de nombreux domaines de l’ingénierie. Il présentera des concepts d’analyse statistique des données et d’apprentissage automatique, en se concentrant sur les aspects de classification et de régression. Il vous permettra de comprendre quelques enjeux majeurs de la modélisation statistique des données : estimation, tests, apprentissage (_machine learning_), validation et bonnes pratiques. 
@@ -29,7 +29,6 @@ __Modalités pédagogiques (en confinement)__
 __Modalités d'évaluation__
 * mini-projet numérique à réaliser en majorité sur les séances de TP qui y sont dévouées (le 14/06 et le 24/06) et à rendre le 1er juillet (30%).
 * examen sur table avec documents autorisés à réaliser le 1er juillet (70%).
-
 
 __Emploi du temps__
 * __lundi 31/05 :__ 
