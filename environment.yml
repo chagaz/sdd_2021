@@ -1,0 +1,14 @@
+name: sdd2021
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.9.4
+  - numpy
+  - pandas>=1.2.4
+  - matplotlib
+  - jupyterlab
+  - ipython
+  - scipy
+  - scikit-learn>=0.24.1
+  - nbstripout
