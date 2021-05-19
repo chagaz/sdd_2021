@@ -1,0 +1,324 @@
+%-*- coding: iso-latin-1 -*-
+%\PassOptionsToPackage{dvipsnames}{xcolor} % for compatibility with tikzsymbols
+\documentclass[french,11pt,openany]{book}
+\usepackage{babel}
+\DecimalMathComma
+% Emacs: to save in encoding iso-latin-1:
+% C-x C-m f
+% iso-latin-1
+
+% aspell --lang=fr --encoding='iso-8859-1' -t check selection-modele.tex
+
+% Fonts
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{gentium}
+
+% SI units
+\usepackage{siunitx}
+
+%\usepackage[gen]{eurosym}
+\usepackage{textcomp}
+
+%\usepackage{tikzsymbols}
+
+% TODO
+\usepackage[dvipsnames]{xcolor}
+\newcommand{\todo}[1]{{\color{BrickRed}{TODO~#1}}}
+\newcommand{\rewrite}[1]{{\color{RoyalBlue}{#1}}}
+\newcommand{\erratum}[1]{{\color{Red}{ERRATUM : ~#1}}}
+
+
+\usepackage{multirow}
+
+%\usepackage[sectionbib]{natbib}
+%\newcommand{\mycite}[1]{\cite{#1}\footnote{\printbibliography}}
+
+%\let\cleardoublepage\clearpage
+
+% Side-by-side figures
+\usepackage{subcaption}
+
+% Table becomes Tableau
+\usepackage{caption}
+\captionsetup{labelfont=sc}
+\def\frenchtablename{Tableau}
+
+\usepackage{graphicx}
+
+\usepackage[colorlinks=true,urlcolor=MidnightBlue,linkcolor=black,citecolor=black]{hyperref}
+
+\usepackage{endnotes}
+
+%%%% GEOMETRY AND SPACING %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[tmargin=2cm,bmargin=2cm,lmargin=3cm,footnotesep=1cm]{geometry}
+
+\usepackage{changepage}
+
+% Vertical spaces
+\parskip=1ex\relax % space between paragraphs (incl. blank lines)
+\usepackage{enumitem}
+\setlist[itemize]{itemsep=0pt,topsep=0pt}
+\setitemize{itemsep=1pt} % space between items
+
+\usepackage{titlesec}
+\titlespacing{\paragraph}{%
+  0pt}{%              left margin
+  0.5\baselineskip}{% space before (vertical)
+  1em}%               space after (horizontal)
+
+\titlespacing*{\section}{0pt}{10pt}{0pt}
+
+\titleclass{\part}{top}
+\titleformat{\part}[display]
+  {\normalfont\huge\bfseries}{\centering\partname\ \thepart}{5pt}{\Huge\centering}
+\titlespacing*{\part}{0pt}{50pt}{40pt}
+
+\titleclass{\chapter}{straight}
+\titlespacing*{\chapter}{0pt}{50pt}{30pt}
+\titleformat{\chapter}%[display]
+  {\normalfont\huge\bfseries}{\chaptertitlename\ \thechapter}{15pt}{\huge}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+  
+%%% TIKZ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{tikz}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  
+
+% Mathematical symbols
+\input{contents/notations}
+
+
+
+%%% CODE LISTINGS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{listings}
+\lstset{%
+  frame=single,                    % adds a frame around the code
+  % numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+  % numbersep=5pt,                   % how far the line-numbers are from the code
+  tabsize=2,                       % sets default tabsize to 2 spaces
+  columns=flexible,                % doesn't add spaces to make the line fit the whole column
+  basicstyle=\ttfamily,             % use monospace
+  keywordstyle=\color{MidnightBlue},
+  commentstyle=\color{Gray},
+  stringstyle=\color{BurntOrange},
+  showstringspaces=false,
+  %identifierstyle=\color{MyBlue},
+  %procnamekeys={def,class}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%% ENVIRONNEMENTS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\makeatletter
+%%% Permet de pemettre \`a coup s\^ur la d\'efinition (que l'environnement soit d\'ej\`a d\'efini ou pas)
+%
+\def\forcedefenv#1{%%
+\global\expandafter\let\csname#1\endcsname\relax
+\global\expandafter\let\csname end#1\endcsname\relax
+}
+
+% Environnement "plusloin".
+%
+\forcedefenv{plusloin}
+\newenvironment{plusloin}[1][Pour aller plus loin]{\par\medbreak
+\noindent\makebox[\textwidth]{\hrulefill\quad#1\quad\hrulefill}\par\nobreak
+\@afterheading
+\def\labelitemi{\textbullet}
+\begin{itemize}
+\setlength{\itemsep}{1ex}}{\end{itemize}\par\nobreak\noindent\makebox[\textwidth]{\hrulefill%\quad Fin  Pour aller plus loin\quad\hrulefill
+}\nobreak\par}
+
+% Environnement "attention". 
+%
+% \forcedefenv{attention}
+% \newenvironment{attention}{\par\medbreak
+% \noindent\makebox[\textwidth]{\hrulefill\quad Attention\quad\hrulefill}\par\nobreak\@afterheading
+% }{\par\nobreak\par\noindent\makebox[\textwidth]{\hrulefill%\quad Fin  Attention\quad\hrulefill
+% }\nobreak\bigbreak}
+\forcedefenv{attention}
+\newenvironment{attention}%[1][\relax]
+{\par \noindent\rule[\baselineskip]{\textwidth}{1pt}\vspace{-\baselineskip}
+{\centering{\textbf{Attention}}\par}
+}
+{\par \noindent\rule[\baselineskip]{\textwidth}{1pt}\vspace{-\baselineskip}\par}
+
+
+% Environnement "encadre". 
+%
+\forcedefenv{encadre}
+% \newenvironment{encadre}[1][\relax]{\par\medbreak
+% \noindent\makebox[\textwidth]{\hrulefill\quad Encadr\'e\quad\hrulefill}\par\nobreak
+% \ifx#1\relax\else{\centering\bfseries\large \strut#1\par\nobreak}\vspace*{3mm}\par\nobreak\fi
+% \@afterheading
+% }{\par\nobreak\par\noindent\makebox[\textwidth]{\hrulefill\quad Fin  Encadr\'e\quad\hrulefill}\nobreak\bigbreak}
+  \newenvironment{encadre}[1]{\par\medbreak
+  \noindent\fbox{\parbox{\linewidth}{
+{\ifx#1\relax\else{\strut#1\par\nobreak}\vspace*{3mm}\par\nobreak\fi}
+%\@afterheading
+    }}}%{\par\nobreak\par\noindent\nobreak\bigbreak}
+
+
+
+
+% Environnement "exemple". 
+%
+% \forcedefenv{exemple}
+% % \newenvironment{exemple}[1][Exemple~:]{\par\medbreak\textit{#1}~\ignorespaces}{\par\bigbreak}
+% \newenvironment{exemple}[1][\relax]{%\par\medbreak
+% \noindent\makebox[\textwidth]{\rule{10pt}{0.4pt} \; \textbf{Exemple} \; \hrulefill}\par\nobreak
+% %\noindent\makebox[\textwidth]{\hrulefill\quad Exemple\quad\hrulefill}\par\nobreak
+% \ifx#1\relax\else{\centering\bfseries\large \strut#1\par\nobreak} \vspace*{3mm} \par\nobreak
+% \fi
+% \@afterheading
+% }{\par\nobreak\par\noindent\makebox[\textwidth]{\hrulefill}\nobreak\bigbreak}
+
+
+
+\forcedefenv{exemple}
+\newenvironment{exemple}%[1][\relax]
+{\par 
+\begin{adjustwidth}{2em}{2em}
+\noindent\rule{10pt}{0.4pt} \; \textbf{Exemple} \; \hrulefill \par}
+{\par \noindent\rule[\baselineskip]{\textwidth-4em}{0.4pt}\vspace{-\baselineskip}\par
+\end{adjustwidth}}
+
+% \newenvironment{exemple}%
+% {
+% \centering
+% \begin{flushright}    
+% \begin{minipage}{5cm}}%
+% {
+% \end{minipage}
+% \end{flushright}}
+
+% Environnement "answer". 
+%
+% \forcedefenv{answer}
+% % \newenvironment{exemple}[1][Exemple~:]{\par\medbreak\textit{#1}~\ignorespaces}{\par\bigbreak}
+% \newenvironment{answer}[1][\relax]{\par\medbreak
+% \noindent\makebox[\textwidth]{\rule{10pt}{0.4pt} \; \textbf{Réponse} \; \hrulefill}\par\nobreak
+% \ifx#1\relax\else{\centering\bfseries\large \strut#1\par\nobreak}\vspace*{3mm}\par\nobreak\fi
+% \@afterheading
+% }{\par\nobreak\par\noindent\makebox[\textwidth]{\hrulefill}\nobreak\bigbreak}
+% %}{\makebox[\textwidth]{\hrulefill}\nobreak}
+\forcedefenv{answer}
+\newenvironment{answer}%[1][\relax]
+{\par\noindent% \rule{10pt}{0.4pt} \;
+  \textbf{Réponse} \hrulefill \par}
+{\par \noindent\rule[\baselineskip]{\textwidth}{0.4pt}\vspace{-\baselineskip}\par}
+
+
+% Environnement "remarque". 
+%
+% \forcedefenv{remarque}
+% \newenvironment{remarque}[1][Remarque~:]{\par\medbreak\textbf{#1}~\ignorespaces}{\par\bigbreak}
+\forcedefenv{remarque}
+\newenvironment{remarque}[1][\relax]{\par\medbreak
+\noindent\makebox[\textwidth]{\hrulefill\quad Remarque\quad\hrulefill}\par\nobreak
+\ifx#1\relax\else{\centering\bfseries\large \strut#1\par\nobreak}\vspace*{3mm}\par\nobreak\fi
+\@afterheading 
+}{\par\nobreak\par\noindent\makebox[\textwidth]{\hrulefill%\quad Fin Encart\quad\hrulefill
+}\nobreak\bigbreak}
+\makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+\begin{document}
+
+% Vertical spacing above/before equations
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{3pt}
+
+
+\renewcommand{\bibname}{}
+
+
+\begin{center}
+  
+  \hfill
+
+  \vfill
+  
+  \LARGE 
+  ECUE21.2 Science des données (DATA)\\ 
+  
+  \Large
+  Chloé-Agathe Azencott (CBIO) \\
+
+  Printemps 2021 -- Mines ParisTech
+
+  \vfill
+
+  \large
+  \textbf{Compétences} 
+
+
+  \begin{tabular}[h]{|p{0.025\textwidth}|p{0.975\textwidth}|}
+    \hline
+    C1 & Maîtriser des méthodes statistiques usuelles permettant de traiter convenablement des cas simples d'analyse de données \\ \hline
+    C2 & Maîtriser des méthodes usuelles d'exploration des données \\ \hline
+    C3 &  Connaître les limites d'applications des méthodes vues en cours \\ \hline
+    C4 & Pouvoir se référer à un cas d'application avec des données réelles en lien avec une discipline autre que celle de l'analyse des données \\ \hline
+    C5 & Savoir évaluer la complexité numérique de quelques algorithmes \\ \hline
+    C6 & Connaître des méthodes d'apprentissage statistique (machine learning) supervisé et des méthodes d'apprentissage statistique non supervisé \\ \hline
+    C7 & Savoir valider et sélectionner un modèle statistique \\ \hline
+  \end{tabular}
+
+  \vfill
+
+\end{center}
+\clearpage
+
+\tableofcontents
+\clearpage
+
+
+\chapter{Introduction}
+\input{contents/intro}
+
+\part{Notions de statistique}
+\chapter{Statistique descriptive}
+\input{contents/stat_descriptive}
+\clearpage 
+
+\chapter{Estimation}
+\input{contents/estimation}
+\clearpage
+
+\chapter{Tests d'hypothèse}
+\input{contents/tests}
+
+\part{Analyse exploratoire}
+\vspace{1cm}
+\chapter{Réduction de dimension}
+\input{contents/dimred}
+\clearpage 
+
+\chapter{Bonnes pratiques}
+\input{contents/pratiques}
+
+\part{Apprentissage supervisé}
+\chapter{Minimisation du risque empirique}
+\input{contents/erm}
+\clearpage 
+
+\chapter{Généralisation}
+\input{contents/generalisation}
+\clearpage 
+
+\chapter{Modèles non-linéaires}
+\input{contents/nonlin}
+\clearpage 
+
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

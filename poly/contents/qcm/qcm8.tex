@@ -1,0 +1,89 @@
+%-*- coding: iso-latin-1 -*-
+\section{QCM}
+\paragraph{Question 1.} Vous disposez d'un jeu de données contenant un millier
+d'observations. Les performances des modèles linéaires que vous avez essayés ne
+sont pas satisfaisantes. Vous décidez d'utiliser un réseau de neurones
+artificiels. Vaut-il mieux essayer
+\begin{itemize}
+\item[$\square$] un perceptron ;
+\item[$\square$] un perceptron multi-couche avec une couche intermédiaire d'une dizaine de neurones ;
+\item[$\square$] un perceptron multi-couche avec 4 couches intermédiaires d'une centaine de neurones chacune ?
+\end{itemize}
+
+\paragraph{Question 2.} La qualité du modèle appris par un réseau de neurones artificiel dépend
+\begin{itemize}
+\item[$\square$] de l'architecture de ce réseau ;
+\item[$\square$] des fonctions d'activations ;
+\item[$\square$] de la vitesse d'apprentissage (c'est-à-dire le pas de la descente de gradient) ;
+\item[$\square$] de la quantité de données utilisées. 
+\end{itemize}
+
+\paragraph{Question 3.} L'astuce du noyau s'applique
+\begin{itemize}
+\item[$\square$] à la régression ridge ;
+\item[$\square$] à la régression lasso ;
+\item[$\square$] aux arbres de décision.
+\end{itemize}
+
+\paragraph{Question 4.} Considérons un arbre de décision appris sur un jeu de
+données contenant $n$ observations décrites par $p$ variables. Sa profondeur
+est au plus
+\begin{itemize}
+\item[$\square$] $p$.
+\item[$\square$] $\log_2(p)$.
+\item[$\square$] $n$.
+\item[$\square$] $\log_2(n)$.
+\item[$\square$] $\min(n, p)$.
+\item[$\square$] $\min(\log_2(n), \log_2(p))$.
+\end{itemize}
+
+\paragraph{Question 5.} Le bagging permet de
+\begin{itemize}
+\item[$\square$] Combiner plusieurs jeux de données en un seul pour créer un meilleur modèle.
+\item[$\square$] Créer plusieurs jeux de données à partir d'un seul, en sélectionnant aléatoirement les observations.
+\item[$\square$] Créer plusieurs jeux de données à partir d'un seul, en sélectionnant aléatoirement les variables.
+\item[$\square$] Combiner plusieurs modèles simples en un meilleur modèle.
+\end{itemize}
+
+
+\newpage
+
+\section*{Solution}
+{%
+\noindent
+\rotatebox[origin=c]{180}{%
+\noindent
+\begin{minipage}[t]{\linewidth}
+\paragraph{Question 1.}  Le perceptron est un modèle linéaire, il n'aura pas
+une meilleure performance. Le perceptron multi-couche avec 4 couches
+intermédiaires d'une centaine de neurones chacune contient beaucoup de
+paramètres pour 1\,000 observations seulement et risque de surapprendre. \newline
+
+\paragraph{Question 2.} Toutes les réponses sont valides. \newline
+
+\paragraph{Question 3.} Ni le lasso (à cause de la norme $\ell_1$) ni les
+arbres de décision (non paramétriques) ne peuvent s'écrire en faisant
+apparaitre les observations uniquement au sein de produits scalaires entre
+observations. Seule la régression ridge est donc \textit{kernelizable}. \newline
+
+\paragraph{Question 4.} Dans le pire des cas, chaque niveau de l'arbre de
+décision met un seul échantillon dans la branche de gauche, et tous les autres
+dans la branche de droite. On obtient donc une profondeur de $n$. \newline
+
+\paragraph{Question 5.} Le bagging consiste à créer plusieurs jeux de données à
+partir d'un seul, en sélectionnant aléatoirement les observations, afin de
+créer autant de modèles simples combinés en un modèle robuste.
+\end{minipage}%
+}%
+
+
+
+
+
+
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../../sdd_2021_poly"
+%%% End:

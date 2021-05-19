@@ -1,0 +1,58 @@
+%-*- coding: iso-latin-1 -*-
+\section{QCM}
+\paragraph{Question 1.} Quand le nombre d'observations tend vers l'infini, 
+\begin{itemize}
+\item[$\square$] le risque empirique d'un modèle converge vers le risque de ce modèle ; 
+\item[$\square$] le risque empirique minimal converge vers le risque minimal ; 
+\item[$\square$] le minimiseur du risque empirique converge vers le minimiseur du risque.
+\end{itemize}
+
+\paragraph{Question 2.} Supposons un problème de classification en 2
+dimensions, avec $n$ observations. Nous considérons comme espace des hypothèses
+l'ensemble des unions de $K$ cercles ($K > 0$ est fixé) : les points intérieurs
+à ces cercles sont étiquetés positifs, les autres négatifs. Alors
+\begin{itemize}
+\item[$\square$] Il ne s'agit pas d'un modèle paramétrique.
+\item[$\square$] Il s'agit d'un modèle paramétrique à $K$ paramètres.
+\item[$\square$] Il s'agit d'un modèle paramétrique à $2K$ paramètres.
+\item[$\square$] Il s'agit d'un modèle paramétrique à $3K$ paramètres.
+\end{itemize}
+
+\paragraph{Question 3.} Quel algorithme préférer pour entraîner une régression
+linéaire sur un jeu de données contenant $n$ observations et $p$ variables :
+\begin{itemize}
+\item Si $n=10^5$ et $p=5$ ?
+  \begin{itemize}
+  \item[$\square$] Une inversion de matrice.
+  \item[$\square$] Un algorithme du gradient.
+  \end{itemize}
+\item Si $n=10^5$ et $p=10^5$ ?
+  \begin{itemize}
+  \item[$\square$] Une inversion de matrice.
+  \item[$\square$] Un algorithme du gradient.
+  \end{itemize}
+\end{itemize}
+
+\section*{Solution}
+{%
+\noindent
+\rotatebox[origin=c]{180}{%
+\noindent
+\begin{minipage}[t]{\linewidth}
+\paragraph{Question 1.} Seule la première proposition est vraie. \newline
+
+\paragraph{Question 2.} Il s'agit d'un modèle paramétrique et nous avons besoin
+de $3K$ paramètres pour déterminer les coordonnées de $K$ cercles (coordonnées
+du centre + rayon). \newline
+
+\paragraph{Question 3.}  Lorsque la matrice $X^\top X$ (de dimensions
+$p \times p$) est de petite taille (peu de variables), on pourra utiliser un
+algorithme d'inversion de matrice. Sinon, un algorithme du gradient sera plus
+approprié.
+\end{minipage}%
+}%
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../../sdd_2021_poly"
+%%% End:

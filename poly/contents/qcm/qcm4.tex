@@ -1,0 +1,64 @@
+%-*- coding: iso-latin-1 -*-
+\section{QCM}
+
+\paragraph{Question 1.} Dans une étude dont le but est de déterminer si la
+consommation de chocolat noir améliore les résultats scolaires, l'hypothèse
+alternative est :
+\begin{itemize}
+\item[$\square$] Les élèves qui consomment du chocolat noir obtiennent les
+  mêmes résultats que les élèves qui n'en consomment pas.
+\item[$\square$] Les élèves qui consomment du chocolat noir obtiennent de moins
+  bons résultats que les élèves qui n'en consomment pas.
+\item[$\square$] Les élèves qui consomment du chocolat noir obtiennent de
+  meilleurs résultats que les élèves qui n'en consomment pas.
+\item[$\square$] Les élèves qui consomment du chocolat noir obtiennent des
+  résultats différents des élèves qui n'en consomment pas.
+\end{itemize}
+
+\paragraph{Question 2.} La p-valeur est :
+\begin{itemize}
+\item[$\square$] La probabilité que l'hypothèse nulle soit vraie.
+\item[$\square$] La probabilité que l'hypothèse alternative soit vraie.
+\item[$\square$] La probabilité, si l'hypothèse nulle est vraie, d'obtenir une
+  situation au moins aussi surprenante que celle observée.
+\item[$\square$] La probabilité, si l'hypothèse alternative est vraie,
+  d'obtenir une situation au moins aussi surprenante que celle observée.
+\end{itemize}
+
+\section*{Solution}
+{%
+\noindent
+\rotatebox[origin=c]{180}{%
+\noindent
+\begin{minipage}[t]{\linewidth}
+\paragraph{Question 1.}
+L'hypothèse alternative est que les élèves qui consomment du chocolat noir
+obtiennent de meilleurs résultats que les élèves qui n'en consomment pas. Il
+s'agit d'un test unilatéral. Le test sera plus puissant que si on utilise
+l'hypothèse alternative bilatérale (les résultats entre les deux groupes sont
+différents). Cependant, si ce test unilatéral ne permet pas de rejeter
+l'hypothèse nulle, il sera impossible de déterminer si c'est parce qu'il n'y a
+pas de différence entre les deux groupes ou parce que l'effet est dans l'autre
+sens.
+
+Remarquons enfin que corrélation n'est pas causalité : ce test permet de
+déterminer si la différence de performance entre les élèves cacaophiles et les
+autres est significative, mais en aucun cas si elle est \textit{due} à la
+consommation de chocolat. Il est tout à fait possible que la consommation de
+chocolat noir soit liée à d'autres facteurs (en particulier sociaux) qui eux
+influent sur la réussite scolaire. \newline
+
+\paragraph{Question 2.} La p-valeur est la probabilité d'obtenir une situation
+au moins aussi surprenante que celle observée si l'hypothèse nulle est
+vraie. Il est très important de ne pas l'interpréter comme la probabilité que
+l'hypothèse nulle soit vraie : 
+\[
+  \PP(t \geq t_0 | \HH_0) \neq \PP(\HH_0 | t \geq t_0). 
+\]
+\end{minipage}%
+}%
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../../sdd_2021_poly"
+%%% End:

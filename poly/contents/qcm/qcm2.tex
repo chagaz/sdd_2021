@@ -1,0 +1,66 @@
+%-*- coding: iso-latin-1 -*-
+\section{QCM}
+
+\paragraph{Question 1.} Soit $X$ une variable aléatoire réelle suivant une loi
+de Poisson de paramètre $\lambda$. Étant donné un échantillon aléatoire
+$(X_1, X_2, \dots, X_n)$ de $X$, et une de ses réalisations
+$(x_1, x_2, \dots, x_n)$, cocher le(s) estimateur(s) non biaisé(s) de $\lambda$
+parmi les propositions ci-dessous :
+\begin{itemize}
+\item[$\square$] $L_1 = \frac1n \sum_{i=1}^n x_i.$
+\item[$\square$] $L_2 = \frac1n \sum_{i=1}^n X_i.$
+\item[$\square$] $L_3 = \frac1n \sum_{i=1}^n \left( X_i^2 - \left( \frac1n \sum_{j=1}^n X_j \right)^2 \right).$
+\item[$\square$] $L_4 = \frac1n \sum_{i=1}^n \left( x_i^2 - \left( \frac1n \sum_{j=1}^n x_j \right)^2 \right).$
+\end{itemize}
+
+
+\paragraph{Indice.}
+{%
+\noindent
+\rotatebox[origin=c]{180}{%
+\noindent
+\begin{minipage}[t]{\linewidth}
+Quelles sont l'espérance et la variance d'une loi de Poisson de paramètre $\lambda$ ?
+\end{minipage}%
+}%
+
+\paragraph{Question 2.} Un estimateur biaisé peut être plus précis qu'un estimateur non-biaisé.
+\begin{itemize}
+\item[$\square$] Vrai.
+\item[$\square$] Faux.
+\end{itemize}
+
+
+\section*{Solution}
+{%
+\noindent
+\rotatebox[origin=c]{180}{%
+\noindent
+\begin{minipage}[t]{\linewidth}
+\paragraph{Question 1.} Il y a ici tout d'abord une question de vocabulaire :
+un estimateur est une variable aléatoire, tandis qu'une estimation est sa
+réalisation. Ainsi nous ne considérons que les formules avec $X$ et non pas
+avec $x$.
+
+On rappelle que $\EE(X) = \lambda$ et $\VV(X) = \lambda.$
+
+Seul $L_2$ est un estimateur sans biais de $\EE(X) = \lambda$ : c'est la moyenne
+empirique de $X$.
+
+On peut refaire le calcul : les $X_i$ étant i.i.d. de même loi que $X,$ 
+\[
+  \text{B}(L_2) = \EE(L_2) - \lambda = \frac1n \sum_{i=1}^n \EE(X_i) - \lambda = 0.
+\]
+
+$L_3$ est la variance empirique de $X$ et $L_3$ est donc un estimateur
+biaisé de $\VV(X) = \lambda$. \newline
+
+\paragraph{Question 2.} Vrai. C'est le concept du compromis biais-variance
+(cf. section 3.4.3 du poly).
+\end{minipage}%
+}%
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../../sdd_2021_poly"
+%%% End:

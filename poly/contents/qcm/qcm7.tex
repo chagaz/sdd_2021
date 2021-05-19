@@ -1,0 +1,53 @@
+%-*- coding: iso-latin-1 -*-
+\section{QCM}
+\paragraph{Question 1.} Un modèle de régression régularisée est plus
+  susceptible de surapprendre si le paramètre de régularisation est
+\begin{itemize}
+\item[$\square$] élevé ;
+\item[$\square$] faible ;
+\item[$\square$] ça dépend des cas.
+\end{itemize}
+
+\paragraph{Question 2.}     Dans un lasso, il y a plus de coefficients nul quand le 
+    paramètre de régularisation est 
+\begin{itemize}
+\item[$\square$] élevé ;
+\item[$\square$] faible ;
+\item[$\square$] ça dépend des cas.
+\end{itemize}
+
+\paragraph{Question 3.} Par rapport à un modèle complexe, un modèle plus simple est
+\begin{itemize}
+\item[$\square$] plus rapide à entraîner ;
+\item[$\square$] plus susceptible de surapprendre ;
+\item[$\square$] plus susceptible de bien généraliser ;
+\item[$\square$] plus susceptible de minimiser le risque empirique.
+\end{itemize}
+
+
+\section*{Solution}
+{%
+\noindent
+\rotatebox[origin=c]{180}{%
+\noindent
+\begin{minipage}[t]{\linewidth}
+\paragraph{Question 1.}  Quand $\lambda$ est faible, c'est le risque empirique
+qui domine et le modèle est plus susceptible de surapprendre. \newline
+
+\paragraph{Question 2.} Quand $\lambda$ croît, le régulariseur prend plus
+d'importance et le nombre de coefficients nuls augmente. \newline
+
+\paragraph{Question 3.} Le temps d'entrainement ne dépend pas toujours de la
+complexité du modèle. Un modèle plus simple sera cependant souvent plus
+rapide à entrainer.
+
+Un modèle simple est moins susceptible de surapprendre (et plus susceptible de sousapprendre) ; généralisera mieux, sauf s'il est en sous-apprentissage ; et minimisera moins bien le risque empirique.
+\end{minipage}%
+}%
+
+
+
+
+
+
+

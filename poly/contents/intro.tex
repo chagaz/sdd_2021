@@ -1,0 +1,445 @@
+%-*- coding: iso-latin-1 -*-
+\label{chap:intro}
+
+\paragraph{Notions :} statistique descriptive, statistique inférentielle,
+apprentissage statistique, population
+
+\paragraph{Objectifs pédagogiques :}
+\begin{itemize}
+\item Donner une définition de la science des données
+\item Donner une définition de la statistique 
+\item Donner une définition de l'apprentissage statistique, ou apprentissage
+  automatique, ou encore \textit{machine learning}
+\end{itemize}
+
+
+
+\section{Qu'est-ce que la science des données ?}
+La science des données, ou \textit{data science}, est un domaine dont la
+définition dépend des personnes qui la donnent. On s'accorde néanmoins
+généralement sur l'idée qu'il s'agit d'une science interdisciplinaire, qui
+s'appuie sur les mathématiques (et notamment les probabilités, la statistique
+et l'optimisation) et l'informatique (et notamment l'algorithmique, les bases
+de données, l'architecture distribuée, et l'analyse numérique) mais aussi sur
+des connaissances spécifiques au domaine d'application, autrement dit à la
+nature des données étudiées (finance, commerce, physique, biologie, sociologie,
+etc.).
+
+C'est un domaine multiforme qui fait beaucoup parler de lui, et on se réfère
+souvent à un article du \textit{Harvard Business Review} intitulé «
+\textit{Data Scientist: the Sexiest Job of the 21st Century}
+»\footnote{\href{https://hbr.org/2012/10/data-scientist-the-sexiest-job-of-the-21st-century}{https://hbr.org/2012/10/data-scientist-the-sexiest-job-of-the-21st-century}}.
+
+La science des données permet par exemple de mieux comprendre les besoins de la
+clientèle d'une entreprise ; de dimensionner des serveurs ; d'améliorer la
+distribution de l'électricité ; d'analyser des données génomiques pour suggérer
+de nouvelles hypothèses biologiques ; d'optimiser la livraison de colis ; de
+détecter des fraudes ; de recommander des livres, films, ou autres produits
+adaptés à nos goûts ; ou de personnaliser des publicités.
+
+Dans les années à venir, la science des données, et en particulier le
+\textit{machine learning}, nous permettra vraisemblablement d'améliorer la
+sécurité routière (y compris grâce aux véhicules autonomes), la réponse
+d'urgence aux catastrophes naturelles, le développement de nouveaux
+médicaments, ou l'efficacité énergétique de nos bâtiments et industries.
+
+
+
+\section{Objectifs de ce cours}
+Ce cours se concentre sur les aspects mathématiques (statistique et
+modélisation) et informatiques (utilisation pratique) de la science des
+données. Il fait appel à des notions que vous avez découvertes en Probabilités,
+en Optimisation, et en Outils Numériques pour les Mathématiques.
+
+Le premier but de ce cours est de démystifier la science des données, le Big
+Data, l'intelligence artificielle telle qu'on en parle de nos jours et de vous
+donner les clés nécessaires à recevoir les informations sur le sujet d'un
+\oe{}il critique.
+
+Le deuxième but de ce cours est de poser les bases mathématiques et
+algorithmiques de l'exploitation de données. Les domaines de la statistique
+inférentielle et de l'apprentissage automatique sont vastes, et vous aurez, si
+vous le souhaitez, amplement l'occasion de les explorer en deuxième et troisième
+année.
+
+\paragraph{Socle minimal} 
+À l'issue de ce cours, vous devriez avoir acquis
+\textit{a minima} les compétences suivantes :
+\begin{enumerate}
+\item Interpréter une p-valeur ;
+\item Éviter les principaux écueils de visualisation de données ;
+\item Expliciter le principe de la minimisation du risque empirique, et
+  l'illustrer sur un ou deux exemples d'algorithmes d'apprentissage automatique ;
+\item Expliquer comment un algorithme d'apprentissage automatique peut
+  reproduire un biais  ;
+\item Reconnaître une situation pouvant prêter au surapprentissage ;
+\item Sélectionner et valider un modèle d'apprentissage automatique ;
+\item Décrire un réseau de neurones artificiels comme un modèle paramétrique ;
+\item Lister quelques succès et limites de l'apprentissage profond ;
+\item Donner des exemples d'algorithmes d'apprentissage automatique permettant
+  d'apprendre des modèles non linéaires ;
+\item Duiscuter de quelques uns des enjeux éthiques liés à l'intelligence
+  artificielle.
+\end{enumerate}
+
+Les sections marquées d'un $\bullet$ dans le poly sont celles qui ne font pas
+partie de ce socle minimal. Ne pensez pas cependant qu'elles soient plus
+difficiles ! Les sections marquées de $\bullet \bullet$ permettent d'aller plus
+loin et sont considérées hors programme.
+
+\paragraph{Acquisition de données}
+Aucune approche statistique ne pourra créer un bon modèle à partir de données
+qui ne sont pas pertinentes -- c'est le concept {\it garbage in, garbage out}
+qui stipule qu'un algorithme d'apprentissage auquel on fournit des données de
+mauvaise qualité ne pourra rien en faire d'autre que des prédictions de
+mauvaise qualité.
+
+Bien que ce cours soit consacré aux outils mathématiques et, dans une moindre
+mesure, informatiques de la science des données, il ne faut pas négliger qu'une
+part importante du de {\it machine learner} ou de {\it data scientist} est un
+travail d'ingénierie consistant à préparer les données afin d'éliminer les
+données aberrantes, gérer les données manquantes, choisir une représentation
+pertinente, etc.
+
+\paragraph{Big data} De plus en plus, les quantités de données disponibles
+imposent de transformer les algorithmes utilisés et de faire appel à des
+architectures de calcul et de base de données distribuées. Nous n'abordons pas
+non plus ce point dans ce cours. Le cours optionnel Large Scale Machine
+Learning, proposé en semaine bloquée au printemps, vous permettra de découvrir
+ce domaine.
+
+\section{Qu'est-ce que la statistique ?}
+
+Le terme de « statistique » est dérivé du latin « \textit{status} » (signifiant
+« état »). Historiquement, \textbf{les statistiques} concernent l'étude
+méthodique, par des procédés numériques (inventaires, recensements, etc.) des
+faits sociaux qui définissent un état. % Elles sont désormais utilisées dans tous
+% les secteurs où l'on dispose de données : sciences sociales mais aussi santé,
+% environnement, industrie, économie, recherche scientifique, etc.
+
+Par contraste, \textbf{la statistique} est un ensemble de méthodes des
+mathématiques appliquées permettant de décrire et d'analyser des phénomènes
+dont la nature rend une étude exhaustive de tous leurs facteurs impossible. Ces
+méthodes permettent d'étudier des données, ou observations, consistant en la
+mesure d'une ou plusieurs caractéristiques d'un ensemble de personnes ou objets
+équivalents.
+
+\subsection{Vocabulaire}
+
+L'ensemble de personnes ou d'objets équivalents étudiés est appelé \textbf{la
+  population.} Il peut s'agir d'une population au sens « courant » du terme
+(par exemple, l'ensemble de la population française, ou l'ensemble des
+individus d'une espèce animale sur un territoire) mais aussi plus largement
+d'un ensemble plus générique d'objets que l'on cherche à étudier (par exemple,
+l'ensemble des pièces produites par une chaîne de montage, un ensemble de
+particules en physique, etc.)
+
+Chacun des éléments de la population est appelé \textbf{individu.} 
+
+Les caractéristiques que l'on mesure pour chacun de ces individus sont appelées
+les \textbf{variables} ; les individus pour lesquels ces caractéristiques ont
+été mesurées sont appelées des \textbf{observations}. Un ensemble de $n$
+observations $(x_1, x_2, \dots, x_n)$ d'une variable est appelée \textbf{série
+  statistique.}
+
+Par exemple, si j'étudie les données climatiques pour la station météo de
+Paris-Montsouris en 2019 (cf. tableau~\ref{tab:meteo_data}), il s'agit d'une
+population de 365 individus. Cette population peut contenir 8 variables :
+températures minimale, maximale et moyenne ; vitesse maximale du vent ;
+ensoleillement ; précipitations totales ; pressions atmosphériques minimale et
+maximale.
+
+
+Lorsque la population à étudier est trop grande pour qu'il soit possible
+d'observer chacun de ses individus, on étudie alors une partie seulement de la
+population. Cette partie est appelée \textbf{échantillon}. On parle alors de
+\textbf{sondage}, par opposition à un \textbf{recensement}, qui consiste à
+étudier tous les individus d'une population. Nous reviendrons sur la notion
+d'échantillon dans le chapitre~\ref{chap:estimation}.
+
+Par exemple, la population des élèves de première année des Mines est
+composée de 125 individus. Si je recueille l'âge, le département de naissance
+et le nombre de frères et s\oe{}urs de 20 de ces élèves, j'aurai mesuré 3 variables
+sur un échantillon de 20 observations. 
+
+On distinguera plusieurs types de variables :
+\begin{itemize}
+\item les \textbf{variables quantitatives} : des caractéristiques numériques
+  qui s'expriment naturellement à l'aide de nombres réels. Ces variables
+  peuvent être \textbf{discrètes} si le nombre de valeurs qu'elles peuvent
+  prendre est fini ou dénombrable (ex : âge, nombre de frères et s\oe{}urs) ou
+  \textbf{continues} (ex : températures, taille, pression atmosphérique)
+\item les \textbf{variables qualitatives} : des caractéristiques qui, bien
+  qu'elles puissent être encodées numériquement (ex : département de
+  naissance), relèvent plutôt de catégories et sur lesquelles les opérations
+  arithmétiques de base (somme, moyenne) n'ont aucun sens. On parle de
+  variables \textbf{nominales} s'il n'y a pas d'ordre total sur l'ensemble de
+  ces catégories (ex : département de naissance) ou \textbf{ordinales} s'il y
+  en a (ex : entièrement d'accord, assez d'accord, pas vraiment d'accord, pas
+  du tout d'accord).
+\end{itemize}
+
+Remarque : seuiller des variables quantitatives permet de les transformer en
+variables qualitatives ordinales. Par exemple, une variable d'âge peut être
+transformée en catégories (< 18, 18 -- 20, 20 -- 35, etc.)
+
+Le tableau~\ref{tab:remboursement_data} montre un exemple d'un échantillon de
+20 individus d'une population de données de remboursements d'un acte biologique
+bien précis : le dosage de l'antigène tumoral 125. Ces données sont issues de
+la base de dépenses de biologie médicale en France mise à disposition par
+l'Assurance
+Maladie\footnote{\url{http://open-data-assurance-maladie.ameli.fr/biologie/index.php}}. La
+population complète, de 604 individus, est disponible dans le fichier\\
+\texttt{notebooks/data/OPEN\_BIO\_2018\_7325.csv}.
+
+Chaque individu de cette population (i.e. ligne du tableau) correspond à un
+ensemble de dosages et est décrit par 5 variables : la tranche d'âge des
+patients et patientes ; leur région ; le nombre de dosages ; et enfin les
+montants remboursés et remboursables. Dans ce tableau, l'âge est une variable
+qualitative ordinale ; la région une variable qualitative ; et les nombres et
+montants des variables quantitatives. On pourra choisir de traiter le nombre de
+remboursements comme une variable discrète ou continue.
+
+
+\subsection{Statistique descriptive} 
+La \textbf{statistique descriptive,} aussi appelée \textbf{statistique
+  exploratoire,} consiste à caractériser une population par la détermination
+d'un certain nombre de grandeurs qui la décrivent. Son objectif est de
+synthétiser l'information contenue dans un ensemble d'observations et de mettre
+en évidence des propriétés de cet ensemble. Elle permet aussi de suggérer des
+hypothèses relatives à la population dont sont issues les observations. Il
+s'agit principalement de calculer des indicateurs (par exemple des moyennes) et
+de visualiser les données par des graphiques. La visualisation peut être
+enrichie par des techniques d'apprentissage non-supervisé (cf
+section~\ref{sec:nonsup_ml}) qui permettent de réduire le nombre de variables
+ou de regrouper ensemble les individus semblables.  La statistique descriptive
+est traitée au chapitre~\ref{chap:stat_descr}.
+
+\subsection{Statistique inférentielle} 
+Aussi appelée \textbf{statistique décisionnaire,} ou encore \textbf{inférence
+  statistique,} la \textbf{statistique inférentielle} consiste à tirer des
+conclusions sur une population à partir de l'étude d'un échantillon de
+celle-ci. Les données observées sont considérées comme un échantillon d'une
+population. Il s'agit alors d'étendre des propriétés constatées sur
+l'échantillon à la population. L'inférence statistique repose beaucoup sur les
+probabilités : on considèrera les observations comme les réalisations de
+variables aléatoires, ce qui permettra d'approcher les caractéristiques
+probabilistes de ces variables aléatoires à l'aide d'indicateurs calculés sur
+l'échantillon. Les chapitres~\ref{chap:estimation} et~\ref{chap:tests} traîtent
+de statistique inférentielle.
+
+\section{Qu'est-ce que l'apprentissage statistique ?}
+Qu'est-ce qu'apprendre, comment apprend-on, et que cela signifie-t-il pour une
+machine ? La question de l'{\it apprentissage} fascine les spécialistes de
+l'informatique et des mathématiques tout autant que neurologues, pédagogues,
+philosophes ou artistes.
+
+Dans le cas d'un programme informatique, on parle d'\textbf{apprentissage
+  statistique,} ou \textbf{apprentissage automatique}, ou encore {\it machine
+  learning}, quand ce programme a la capacité d'apprendre sans que cette
+modification ne soit explicitement programmée. Cette définition est celle
+donnée par Arthur Samuel en 1959. On peut ainsi opposer un programme {\it
+  classique}, qui utilise une procédure et les données qu'il reçoit en entrée
+pour produire en sortie des réponses, à un programme {\it d'apprentissage
+  automatique}, qui utilise les données et les réponses afin de produire la
+procédure qui permet d'obtenir les secondes à partir des premières.
+
+Supposons par exemple qu'une entreprise veuille connaître le montant total
+dépensé par un client ou une cliente à partir de ses factures. Il suffit
+d'appliquer un algorithme classique, à savoir une simple addition : un
+algorithme d'apprentissage n'est pas nécessaire.
+
+Par contraste, supposons maintenant que l'on veuille utiliser ces factures pour
+déterminer quels produits le client est le plus susceptible d'acheter dans un
+mois. Bien que cela soit vraisemblablement lié, nous n'avons manifestement pas
+toutes les informations nécessaires pour ce faire. Cependant, si nous disposons
+de l'historique d'achat d'un grand nombre d'individus, il devient possible
+d'utiliser un algorithme d'apprentissage automatique pour qu'il en tire un
+modèle prédictif nous permettant d'apporter une réponse à notre question.
+
+Ce point de vue informatique sur l'apprentissage automatique justifie que l'on considère qu'il s'agisse d'un domaine différent de celui de la statistique. Cependant, nous aurons l'occasion de voir que la frontière entre inférence statistique et apprentissage est souvent mince.
+Il s'agit ici, fondamentalement, de \textbf{modéliser} un phénomène à partir de
+données considérées comme autant d'observations de celui-ci.
+\begin{attention}
+  Bien que l'usage soit souvent d'appeler les deux du même nom, il faut
+  distinguer l'\textbf{algorithme d'apprentissage} automatique du
+  \textbf{modèle appris} : le premier utilise les données pour produire le
+  second, qui peut ensuite être appliqué comme un programme classique.
+\end{attention}
+
+On distingue plusieurs types de problèmes en apprentissage automatique. Nous nous intéresserons dans ce cours à l'apprentissage supervisé et à l'apprentissage non-supervisé, en ignorant entre autres l'apprentissage par renforcement principalement utilisé en robotique.
+\subsection{Apprentissage supervisé}
+L'\textbf{apprentissage supervisé,} ou \textbf{apprentissage prédictif,} est peut-être le type de problèmes de machine
+learning le plus facile à appréhender : son but est d'apprendre à faire des
+{\it prédictions}, à partir d'une liste d'exemples \textbf{étiquetés},
+c'est-à-dire accompagnés de la valeur à prédire. Les étiquettes servent de \og
+prof \fg~et supervisent l'apprentissage de l'algorithme. Un exemple classique est celui de l'annotation d'images : il s'agit par exemple de déterminer si une image représente ou non un chat.
+
+Étant données $n$ {observations} $\{x_i\}_{i=1, \dots, n}$ appartenant à un
+espace $\XX$, et leurs {étiquettes} $\{y_i\}_{i=1, \dots, n}$ appartenant à un
+espace $\YY$, on suppose que les étiquettes peuvent être obtenues à partir des
+observations grâce à une fonction $\phi: \XX \rightarrow \YY$ fixe et inconnue
+: $y_i = \phi(x_i) + \epsilon_i$, où $\epsilon_i$ est un bruit.  Il
+s'agit alors d'utiliser les données pour déterminer une fonction
+$f: \XX \rightarrow \YY$ telle que, pour tout couple
+$(x, \phi(x)) \in \XX \times \YY$, $f(x) \approx \phi(x)$. On suppose généralement pour cela que les couples $(x_i, y_i)$ sont les réalisations d'un vecteur aléatoire $(X, Y)$ vérifiant $Y = \phi(X) + \epsilon$ et l'on cherche à déterminer $\phi$.
+
+Nous aborderons en détail l'apprentissage supervisé dans les chapitres~\ref{chap:erm} à~\ref{chap:nonlin}.
+
+\subsection{Apprentissage non supervisé}
+\label{sec:nonsup_ml}
+Dans le cadre de l'\textbf{apprentissage non supervisé}, les données ne sont
+pas étiquetées. Il s'agit alors de modéliser les observations pour mieux les
+comprendre. Ces techniques sont ainsi complémentaires de celles de la
+statistique exploratoire.
+
+Parmi les exemples d'apprentissage non supervisé, on compte notamment 
+\begin{itemize}
+\item la \textbf{réduction de dimension}, que nous aborderons au
+  chapitre~\ref{chap:dimred}, qui permet de créer un petit nombre de variables
+  qui « résument » les mesures prises sur les observations. Il s'agit en fait de trouver
+  une représentation des données dans un espace de dimension plus faible que
+  celle de l'espace dans lequel elles sont représentées initialement. Cela
+  permet de réduire les temps de calcul et l'espace mémoire nécessaire au
+  stockage les données, mais aussi souvent d'améliorer les performances d'un
+  algorithme d'apprentissage supervisé entraîné par la suite sur ces données.
+\item le \textbf{partitionnement}, ou \textbf{clustering}, qui permet de
+  réduire la taille d'un échantillon en regroupant les individus présentant des
+  caractéristiques homogènes. Nous ne traiterons pas de ce sujet dans ce
+  cours. Il sera notamment abordé dans le cours optionnel d'apprentissage
+  automatique proposé en semaine bloquée à l'automne (S1333-5).
+\end{itemize}
+
+
+\section{Et l'intelligence artificielle, dans tout ça ?}
+Le machine learning est une branche de l'intelligence
+artificielle. En effet, un système incapable d'apprendre peut difficilement
+être considéré comme intelligent. 
+L'intelligence artificielle, que l'on peut définir comme l'ensemble des techniques mises en
+{\oe}uvre afin de construire des machines capables de faire preuve d'un
+comportement que l'on peut qualifier d'intelligent, fait aussi appel aux
+sciences cognitives, à la neurobiologie, à la logique, à l'électronique, à
+l'ingénierie et bien plus encore.
+
+Le terme d'\og intelligence artificielle \fg~stimulant plus
+l'imagination, il est de plus en plus souvent employé en lieu et
+place de celui d'apprentissage automatique.
+
+\section{Bonnes pratiques}
+L'essor récent de l'intelligence artificielle, à travers notamment les
+développements en apprentissage profond que nous aborderons brièvement au
+chapitre~\ref{chap:nonlin}, suscite de vifs débats philosophiques, éthiques et
+moraux dans notre société. Sans entrer en profondeur dans ces débats, ce qui
+relèverait d'un cours d'éthique ou de philosophie et non plus d'un cours de
+mathématiques appliquées, nous en aborderons quelques points clés dans le
+chapitre~\ref{chap:pratiques}, dédiée aux bonnes pratiques en science des
+données. Il serait malhonnête dans ce cours de prétendre pouvoir
+détacher les mathématiques et l'informatique du contexte de leur utilisation.
+
+
+\section{Sources}
+Le contenu de ce poly s'appuie en partie sur des documents mis à disposition en
+ligne par Stéphane Canu, Laure Reboul, et Joseph Salmon, que je remercie
+vivement, ainsi que les ouvrages \textit{Probabilités, analyse des données et
+  Statistique} (Technip) de Gilbert Saporta et mon \textit{Introduction au
+  Machine Learning} (Dunod InfoSup). Vous trouverez une version PDF (sans les
+exercices) de ce dernier sur ma page web \href{http://cazencott.info}{http://cazencott.info}.
+
+
+\begin{plusloin}
+  \item L'article \href{https://www.tandfonline.com/doi/full/10.1080/10618600.2017.1384734}{\textit{50 Years of Data Science} de David Donaho}
+aborde les différences entre statistique, science des données, et apprentissage
+automatique et donne une vision d'ensemble de ces domaines.
+\end{plusloin}
+
+%\section{Tableaux de données}
+\begin{table}
+  \centering
+  \begin{tabular}[h]{|c|c|c|c|c|c|c|c|} \hline
+    T min & T max & T moy & Vent & Ensoleillement & Précipitations & P min & P max \\
+    \textdegree C & \textdegree C & \textdegree C & km/h & min & mm & hPa & hPa \\ \hline
+    7.6 & 9.6 & 8.4 & 22.2 & 0 & 0 & 1034 & 1036.6 \\ \hline
+    5.6 & 7.2 & 6.3 & 24.1 & 0 & 0 & 1037.3 & 1041.3 \\ \hline
+    4.1 & 6.6 & 5.4 & 16.7 & 0 & 0 & 1040.2 & 1041.8 \\ \hline
+    3.1 & 6 & 4.7 & 20.4 & 0 & 0 & 1039.5 & 1041.7 \\ \hline
+    4.2 & 5.9 & 5 & 20.4 & 0 & 0 & 1037.5 & 1039.6 \\ \hline
+    4.3 & 6.8 & 5.6 & 16.7 & 0 & 0 & 1036.5 & 1038 \\ \hline
+    6.8 & 8.6 & 7.4 & 20.4 & 0 & 0.6 & 1030.5 & 1037.2\\ \hline
+    7.4 & 9.7 & 8.5 & 24.1 & 120 & 0 & 1025.9 & 1029.7 \\ \hline
+    4 & 7.7 & 5.2 & 29.6 & 42 & 0.8 & 1024.1 & 1026.4 \\ \hline 
+    2.1 & 5.5 & 4 & 18.5 & 30 & 0 & 1026.6 & 1029.5 \\ \hline
+    4.2 & 8.3 & 6.2 & 14.8 & 0 & 1.2 & 1028.1 & 1030.5 \\ \hline
+    6.7 & 9.1 & 8 & 22.2 & 0 & 0.8 & 1021.7 & 1030.6 \\ \hline
+    8.8 & 11.9 & 10.5 & 31.5 & 30 & 0.8 & 1014 & 1021.1 \\ \hline
+    8.5 & 10.9 & 8.8 & 29.6 & 0 & 0 & 1014 & 1024.8 \\ \hline
+    6.9 & 8.6 & 7.6 & 16.7 & 0 & 0 & 1020.3 & 1025.3 \\ \hline
+    1.9 & 7.8 & 5.2 & 27.8 & 276 & 3 & 1007.9 & 1019.6 \\ \hline
+    4 & 8.5 & 5.4 & 27.8 & 0 & 0 & 1007.5 & 1019.7 \\ \hline
+    0.9 & 6.1 & 2.4 & 18.5 & 342 & 0 & 1017.2 & 1021 \\ \hline
+    -1.7 & 2.8 & 0.3 & 14.8 & 78 & 4 & 1009.7 & 1016.8 \\ \hline
+    1.9 & 3 & 2.5 & 20.4 & 0 & 0.8 & 1010.1 & 1021.8 \\ \hline
+    -2.2 & 3.6 & 0.1 & 13 & 480 & 0 & 1019.2 & 1024.9 \\ \hline
+    -2.4 & 1.7 & -0.1 & 20.4 & 0 & 7.4 & 998.4 & 1018.3 \\ \hline
+    0.6 & 2.1 & 1.3 & 24.1 & 6 & 1 & 995.6 & 1007.4 \\ \hline
+    -0.4 & 2.5 & 1.2 & 20.4 & 0 & 1 & 1008.4 & 1015.5 \\ \hline
+    1.7 & 5.5 & 3.9 & 13 & 0 & 1.2 & 1015.2 & 1018.4 \\ \hline
+    5.5 & 9.6 & 8.4 & 29.6 & 24 & 1.6 & 998.1 & 1016.9 \\ \hline
+    4.4 & 8.2 & 6.4 & 37 & 6 & 4.4 & 989.8 & 1001.4 \\ \hline
+    2.7 & 6.9 & 4.4 & 25.9 & 216 & 0 & 1001.7 & 1011.7 \\ \hline
+    -0.8 & 5.2 & 1.7 & 24.1 & 18 & 19.6 & 989.5 & 1011.7 \\ \hline
+    0.5 & 5.2 & 2.3 & 33.3 & 252 & 0.4 & 990 & 998.9 \\ \hline 
+    -1 & 2.5 & 1.3 & 25.9 & 24 & 1.2 & 983.5 & 998 \\ \hline
+  \end{tabular}
+  \caption{Exemple de 8 variables pour 31 observations (celles du mois de janvier 2019) 
+    de la population des données climatiques pour la station météo de Paris-Montsouris. Ces données sont disponibles dans le fichier \texttt{data/meteo\_data.csv}.}
+  \label{tab:meteo_data}
+\end{table}
+
+\begin{table}
+  \centering
+  \begin{tabular}{|r|r|r|r|r|r|} \hline
+    \multirow{2}{*}{Âge} & \multirow{2}{*}{Région} & Nombre & Montants & Montants  \\ 
+    & & d'actes & remboursés & remboursables \\ 
+    ans & & & (\texteuro) & (\texteuro) \\\hline 
+    $>$ 60 & 76 & 26 & 377,96 & 402,80\\  \hline
+    $>$ 60 & 75 & 1\,401 & 14\,054,37 & 21\,332,15\\  \hline
+    $>$ 60 & 44 & 5\,299 & 65\,928,93 & 80\,447,00\\  \hline
+    $>$ 60 & 32 & 1\,706 & 25\,137,65 & 26\,032,65\\  \hline
+    $>$ 60 & 32 & 2\,596 & 37\,877,02 & 39\,336,15\\  \hline
+    $>$ 60 & 27 & 14 & 159,85 & 211,35\\  \hline
+    $>$ 60 & 24 & 3\,565 & 50\,770,46 & 54\,076,15\\  \hline
+    $>$ 60 & 11 & 396 & 5\,226,55 & 6\,060,05\\  \hline
+    $>$ 60 & 5 & 260 & 4\,496,91 & 4\,676,40\\  \hline
+    $>$ 60 & 93 & 162 & 2\,303,56 & 2\,466,10\\  \hline
+    $>$ 60 & 76 & 578 & 8\,499,53 & 8\,793,10\\  \hline
+    40-59 & 76 & 13 & 172,26 & 199,80\\  \hline
+    40-59 & 44 & 102 & 1\,204,93 & 1\,557,20\\  \hline
+    40-59 & 11 & 48 & 555,39 & 733,05\\  \hline
+    40-59 & 84 & 14 & 190,21 & 217,85\\  \hline
+    40-59 & 32 & 126 & 1\,350,06 & 1\,912,15\\  \hline
+    20--39 & 32 & 749 & 7\,941,69 & 11\,362,40\\  \hline
+    20--39 & 32 & 24 & 289,35 & 365,25\\  \hline
+    20--39 & 5 & 918 & 9\,704,10 & 16\,550,40\\  \hline
+    20--39 & 11 & 106 & 1\,073,32 & 1\,618,35\\  \hline
+  \end{tabular}
+  \caption{Population de remboursements du dosage de l'antigène 125 dans le sang en 2018, 
+    composée de 20 individus décrits par 5 variables et extraite du fichier \texttt{data/OPEN\_BIO\_2018\_7325.csv}. \\
+    Région : 5 = Régions et Départements d'outre-mer. 
+    11 = Ile-de-France. 
+    24 = Centre-Val de Loire.
+    27 = Bourgogne-Franche-Comté.
+    32 = Hauts-de-France.
+    44 = Grand-Est.
+    75 = Nouvelle-Aquitaine.
+    76 = Occitanie.
+    84 = Auvergne-Rhône-Alpes.
+    93 = Provence-Alpes-Côte d'Azur et Corse.}
+  \label{tab:remboursement_data}
+\end{table}
+
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../sdd_2021_poly"
+%%% End:
