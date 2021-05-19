@@ -1,14 +1,33 @@
-# UE 21 EC Science des données
+# UE 21.2 EC Science des données
 Cours « science des données » à Mines ParisTech (2020­–2021). 
 
 [![License: CC BY-SA 4.0](https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg)](http://creativecommons.org/licenses/by-sa/4.0/)
+
+__Organisation de ce repo__
+* `environment.yml` permet de charger l'environnement conda pour les notebooks via l'interface graphique d'Anaconda ou 
+```bash
+   conda env create -f environment.yml -n sdd2021
+   conda activate sdd2021
+```
+Notez que cet environnement vous fait utiliser JupyterLab et non pas Jupyter Notebook. JupyterLab est plus moderne et plus agréable d'utilisation (voir [la documentation](https://jupyterlab.readthedocs.io/en/stable/)). En particulier, JupyterLab permet de copier des cellules entre notebooks, et l'[extension "Table of contents"](https://github.com/jupyterlab/jupyterlab-toc/blob/master/toc.gif) qui facilite la navigation dans un notebook y est native.
+* `poly/` contient tous les fichiers permettant de compiler le poly. La dernière version compilée à jour s'intitule `sdd\_2020\_poly.pdf`
+* `pc/` contient un répertoire par PC
+* `projet/` contient les données et instructions relatives au projet numérique.
+
+__Pour contribuer à ce repo__
+Ce repo contient un script `pre-commit.sh` qui permet de le nettoyer (supprimer les fichiers auxiliaires de latex, nettoyer les notebooks avec [`nbstripout`](https://pypi.org/project/nbstripout/)).
+
+Il est possible de lancer automatiquement ce script lors d'un `git commit` grâce à un [`hook`](https://githooks.com/). Pour cela, il suffit de le copier dans le fichier `.git/hooks/pre-commit` ou d'utiliser un lien symbolique (pour conserver le contrôle de version) :
+```bash
+    ln -s pre-commit.sh .git/hooks/pre-commit
+```
 
 __Équipe pédagogique__
 * Responsable de cours : Chloé-Agathe Azencott
 * Chargé·e·s d'enseignement : Nicolas Desassis, Arthur Imbert, Tristan Lazard, Thibaud Martinez, et Lucia Clarotto.
 
 __Objectifs du cours__
-L’EC de Sciences des données sera une introduction générale à l’analyse des données telles qu’elles peuvent apparaître dans de nombreux domaines de l’ingénierie. Il présentera des concepts d’analyse statistique des données et d’apprentissage automatique, en se concentrant sur les aspects de classification et de régression. Il vous permettra de comprendre quelques enjeux majeurs de la modélisation statistique des données : estimation, tests, apprentissage (_machine learning_), validation et bonnes pratiques. 
+L'EC de sciences des données sera une introduction générale à l’analyse des données telles qu’elles peuvent apparaître dans de nombreux domaines de l’ingénierie. Il présentera des concepts d’analyse statistique des données et d’apprentissage automatique, en se concentrant sur les aspects de classification et de régression. Il vous permettra de comprendre quelques enjeux majeurs de la modélisation statistique des données : estimation, tests, apprentissage (_machine learning_), validation et bonnes pratiques. 
 
 __Compétences__
 Ce cours a pour but de vous permettre d'acquérir les compétences suivantes :
@@ -19,7 +38,7 @@ Ce cours a pour but de vous permettre d'acquérir les compétences suivantes :
 * Connaître des méthodes d’apprentissage statistique (machine learning) supervisé et des méthodes d’apprentissage statistique non supervisé ;
 * Savoir valider et sélectionner un modèle d'apprentissage supervisé.
 
-__Modalités pédagogiques (en confinement)__
+__Modalités pédagogiques__
 * 9x1h30 de cours au tableau 
 * 7x1h30 de petites classes : 
   * 2 séances de TD ;
@@ -65,22 +84,5 @@ __Emploi du temps__
 
 * __jeudi 1/07 9h-12h : examen écrit et rendu de projet numérique.__
 
-__Organisation de ce repo__
-* `environment.yml` permet de charger l'environnement conda pour les notebooks via l'interface graphique d'Anaconda ou 
-```bash
-   conda env create -f environment.yml -n sdd2021
-   conda activate sdd2021
-```
-Notez que cet environnement vous fait utiliser JupyterLab et non pas Jupyter Notebook. JupyterLab est plus moderne et plus agréable d'utilisation (voir [la documentation](https://jupyterlab.readthedocs.io/en/stable/)). En particulier, JupyterLab permet de copier des cellules entre notebooks, et l'[extension "Table of contents"](https://github.com/jupyterlab/jupyterlab-toc/blob/master/toc.gif) qui facilite la navigation dans un notebook y est native.
-* `poly/` contient tous les fichiers permettant de compiler le poly. La dernière version compilée à jour s'intitule `sdd\_2020\_poly.pdf`
-* `pc/` contient un répertoire par PC
-* `projet/` contient les données et instructions relatives au projet numérique.
 
-__Pour contribuer à ce repo__
-Ce repo contient un script `pre-commit.sh` qui permet de le nettoyer (supprimer les fichiers auxiliaires de latex, nettoyer les notebooks avec [`nbstripout`](https://pypi.org/project/nbstripout/)).
-
-Il est possible de lancer automatiquement ce script lors d'un `git commit` grâce à un [`hook`](https://githooks.com/). Pour cela, il suffit de le copier dans le fichier `.git/hooks/pre-commit` ou d'utiliser un lien symbolique (pour conserver le contrôle de version) :
-```bash
-    ln -s pre-commit.sh .git/hooks/pre-commit
-```
 
