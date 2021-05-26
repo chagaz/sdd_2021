@@ -287,7 +287,7 @@ aisée.
 l'apprentissage d'un perceptron multi-couche, connu sous le nom de
 \textbf{rétropropagation} ou {\it backpropagation} (souvent raccourci en {\it
   backprop}), est connu depuis des décennies. Il repose, comme pour le
-perceptron sans couche intermédiaire, sur l'utilisation de l'algorithme du
+perceptron, sur l'utilisation de l'algorithme du
 gradient pour minimiser, à chaque nouvelle observation, le risque
 $L(f(\xx^i), y^i)$. Pour plus de détails, reportez-vous à la
 section~\ref{sec:backprop}.
@@ -310,8 +310,8 @@ apprendre les poids par un algorithme à directions de descente.
 
 L'apprentissage des poids de connexion d'un réseau de neurones profond pose des
 difficultés techniques : en effet, le problème d'optimisation à résoudre n'est
-pas convexe, et converger vers un \og bon \fg~minimum local n'est pas une tâche
-facile. Cette tâche est d'autant plus difficile que le réseau est complexe, et
+pas convexe, et il n'est pas évident de converger vers un « bon »
+minimum. Cette tâche est d'autant plus difficile que le réseau est complexe, et
 les progrès dans ce domaine ne sont possibles que grâce au développement de
 méthodes pour la rendre plus aisée.
 
@@ -447,7 +447,7 @@ valeurs sont toutes les deux faibles. Cependant, la différence de temps de calcu
 La démarche que nous avons présentée ici se généralise à
 \begin{itemize}
 \item n'importe quelle fonction $k$ de deux variables s'écrivant sous la forme
-  d'un produit scalaire d'images de ces variables dans un espace de
+  du produit scalaire des images de ces variables dans un espace de
   Hilbert\footnote{À savoir, un espace de dimension potentiellement infinie et
     muni d'un produit scalaire ; il s'agit d'une généralisation des espaces
     euclidiens. Vous pouvez considérer qu'un espace de Hilbert est $\RR^m$ ou

@@ -298,11 +298,10 @@ Ces dernières années ont cependant vu l'émergence de labels, tels que le
 
 \section{Fiabilité}
 Du diagnostic automatisé aux véhicules autonomes, nous avons de plus en plus
-envie de faire confiance à l'intelligence artificielle pour les opportunités
-qu'elle présente.
-
-Mais comment faire confiance aux modèles et algorithmes issus de la science des
-données ? Plusieurs questions se posent en plus de celle de l'équité discutée plus haut.
+envie d'utiliser l'intelligence artificielle, qui présente de nombreuses
+opportunités. Mais comment faire confiance aux modèles et algorithmes qui en
+sont issus ? Plusieurs questions se posent en plus de celle de l'équité
+discutée plus haut.
 
 \paragraph{Vérifiabilité} les systèmes d'IA ont-ils le comportement attendu ?
 Les méthodes formelles typiquement utilisées en informatique pour les
@@ -380,15 +379,16 @@ données ? Deux types de solutions techniques sont possibles.
 \paragraph{Dé-identification algorithmique} Il s'agit de s'assurer que l'on ne
 puisse pas remonter des données aux individus. Parmi ces techniques,
 l'\textbf{anonymisation} consiste à supprimer suffisamment d'informations
-identifiantes pour empêcher la réidentification. Ces informations peuvent être
+identifiantes pour empêcher la réidentification. Ces informations sont dites
 \textbf{directement identifiantes} s'il s'agit de caractéristiques personnelles
-uniques (nom, numéro de sécurité sociale, numéro de téléphone, etc.) ou
+uniques (nom, numéro de sécurité sociale, numéro de téléphone, etc.) et
 \textbf{indirectement identifiantes} si elles permettent d'identifier la
-personne de manière unique quand elles sont croisées avec d'autres données (code postal, date de naissance et lieu de travail pris ensemble
-peuvent être indirectement identifiants).  Par contraste, la
-\textbf{confidentialité différentielle}, ou \textit{differential privacy} en
-anglais cherche plutôt à garantir que les résultats d'une analyse sur une base de
-données soient presque identiques qu'un échantillon soit présent ou non.
+personne de manière unique quand elles sont croisées avec d'autres données
+(code postal, date de naissance et lieu de travail pris ensemble peuvent être
+indirectement identifiants).  Par contraste, la \textbf{confidentialité
+  différentielle}, ou \textit{differential privacy} en anglais cherche plutôt à
+garantir que les résultats d'une analyse sur une base de données soient presque
+identiques qu'un échantillon soit présent ou non.
 
 \paragraph{Sécurité des bases de données} Cet aspect inclut par exemple le
 chiffrement homomorphique permettant d'obtenir les mêmes résultats sur données
@@ -420,7 +420,7 @@ environnemental de la science des données.
 \begin{plusloin}
 \item Des ouvrages entiers ont étés écrits sur la \textit{dataviz}, par exemple \href{https://serialmentor.com/dataviz/}{\textit{Fundamentals of Data Vizualization} de Claus O. Wilke}, le travail d'\href{https://www.edwardtufte.com/tufte/}{Edward Tufte}, \href{https://informationisbeautiful.net/}{\textit{Information is Beautiful} de David McCandless}, ou encore \href{https://github.com/rougier/scientific-visualization-book}{\textit{Scientific Visualization} de Nicolas Rougier}.
 % \item \href{https://hippocrate.tech/}{Le Serment d'Hippocrate pour Data Scientist} de Data for Good.
-\item La question de la représentativité se pose dans de nombreux
+\item La représentativité est une question qui revient dans de nombreux
   domaines de l'ingénierie. Les exemples sont nombreux, des
   \href{https://www.huffingtonpost.fr/2017/08/19/ce-distributeur-automatique-ne-distribue-pas-de-savon-aux-mains\_a\_23152387/}{distributeurs
     de savon qui ne détectent que les peaux claires} à tous les

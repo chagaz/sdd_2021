@@ -18,18 +18,7 @@ vraisemblance, estimation de Bayes.
 Alors que la statistique descriptive se contente de \textit{décrire} une
 population ou un échantillon de celle-ci, l'inférence statistique cherche à
 tirer des conclusions sur une population à partir de l'étude d'un échantillon
-de celle-ci. % Pour cela, il est nécessaire de s'intéresser :
-% \begin{itemize}
-% \item aux techniques d'\textbf{échantillonnage} (cf section~\ref{sec:echantilonnage})
-%   permettant de construire des échantillons d'une population ;
-% \item à la \textbf{modélisation} permettant de supposer un modèle probabiliste
-%   sur la population ;
-% \item aux techniques d'\textbf{estimation} (cf section~\ref{sec:estimation})
-%   permettant de déterminer (approximativement) un paramètre d'une population à
-%   partir d'un échantillon de celle-ci ;
-% \item aux \textbf{tests d'hypothèse} (cf chapitre~\ref{chap:tests}) permettant de valider
-%   ou d'infirmer des hypothèses sur la population.
-% \end{itemize}
+de celle-ci. 
 
 \section{Échantillonnage}
 \label{ref:echantilonnage}
@@ -408,7 +397,8 @@ $(\Theta_n)_{n \in \NN^*},$ vers une valeur réelle, $\theta$ ; il s'agit donc
 en fait de considérer la convergence vers une variable aléatoire $\Theta$ qui
 vaut $\theta$ presque partout.
 
-On dit que l'estimateur $\Theta_n$ de $\theta$ \textbf{est convergent} s'il converge en probabilité vers $\theta:$
+On dit que l'estimateur $\Theta_n$ de $\theta$ \textbf{est convergent} s'il
+converge en probabilité vers $\theta:$
 \begin{equation}
   \label{eq:estimateur_convergent}
   (\Theta_n)_{n \in \NN^*} \cvproba \theta.
@@ -502,18 +492,6 @@ d'observer cet échantillon étant donnée la valeur estimée de $\theta$.
   plus. C'est cette notion que nous allons formaliser par la suite.
 \end{exemple}
 
-% On appelle \textbf{vraisemblance} de l'échantillon 
-% $(x_1, x_2, \dots, x_n)$ la fonction de $\theta$ définie comme :
-% \[
-%   L(x_1, x_2, \dots, x_n; \theta) = \PP_X(X_1=x_1, X_2=x_2,
-%   \dots, X_n=x_n|\theta) = \prod_{i=1}^n \PP_X(X_i=x_i|\theta),
-% \]
-% cette dernière égalité étant dûe à l'indépendance des éléments de l'échantillon
-% aléatoire.
-
-% \erratum{Voir fichier erratum\_estimation.pdf pour une définition correcte de la
-%   vraisemblance dans le cas d'une variable aléatoire à densité.}
-
 La \textbf{vraisemblance} de l'échantillon $(x_1, x_2, \dots, x_n)$ quantifie à
 quel point il est plausible d'observer cet échantillon en fonction de la valeur
 de la quantité à estimer.
@@ -532,27 +510,9 @@ fonction de $t$ définie par
   \label{eq:likelihood}
 \end{equation}
 
-Notez que la loi de l'échantillon aléatoire $(X_1, X_2, \dots, X_n)$ est donnée par
+Notez que la loi de l'échantillon aléatoire $(X_1, X_2, \dots, X_n)$ est 
 $  \PP_{X_1, X_2, \dots, X_n ; t} = \prod_{i=1}^n \PP_{X; t} $
 car les $X_i$ sont indépendantes et identiquement distribuées.
-
-% \begin{itemize}
-% \item Si $X$ est discrète, on appelle $p_\theta : \NN \rightarrow [0, 1]$ la
-%   fonction de masse de $X$ ( $\PP(X=k) = p_\theta(k)$), et la
-%   \textbf{vraisemblance} de l'échantillon $(x_1, x_2, \dots, x_n)$ est donnée
-%   par
-%   \[
-%     L(x_1, x_2, \dots, x_n; \theta) = \PP(X_1=x_1, X_2=x_2, \dots, X_n=x_n) = \prod_{i=1}^n  p_\theta(x_i).
-%   \]
-%   La décomposition en produit indexé par $i=1, \dots, n$ vient de
-%   l'indépendance des éléments de l'échantillon aléatoire.
-% \item Si $X$ est continue, on pose $f_\theta : \RR \rightarrow \RR$ sa densité,
-%   et la \textbf{vraisemblance} de l'échantillon $(x_1, x_2, \dots, x_n)$ est
-%   donnée de manière analogue par
-%   \[
-%     L(x_1, x_2, \dots, x_n; \theta) = \prod_{i=1}^n  f_\theta(x_i).
-%   \]    
-% \end{itemize}
 
 On appelle alors \textbf{estimation par maximum de vraisemblance} ({\it maximum
   likelihood estimate} ou {\it MLE} en anglais) de $\theta$ une valeur
@@ -642,10 +602,10 @@ Pour en tirer parti, nous allons utiliser une variable aléatoire réelle
 $\Theta$ à valeurs dans $\Scal$, dont la loi $\PP_{\Theta}$ est la \textbf{loi
   a priori}, c'est-à-dire définie avant d'avoir observé un échantillon. Il va
 maintenant s'agir d'utiliser la formule de Bayes pour exprimer la \textbf{loi a
-  posteriori}, c-est-à-dire conditionnellement à un échantillon aléatoire, de
+  posteriori}, c'est-à-dire conditionnellement à un échantillon aléatoire, de
 $\Theta$.
 
-En particulier, si $\Theta$ est discrète, la formule de Bayes nous permet
+Si $\Theta$ est discrète, la formule de Bayes nous permet
 d'écrire la loi de $\Theta|X_1, X_2, \dots, X_n :$
 \begin{equation}
   \label{eq:bayes_discret}
@@ -657,7 +617,7 @@ Si $\Theta$ est à densité, de densité $g_{\Theta},$ alors
 $\Theta|X_1, X_2, \dots, X_n$ est aussi à densité et la formule de Bayes nous
 permet d'écrire sa densité comme : 
 \begin{equation}
-  \label{eq:bayes_discret}
+  \label{eq:bayes_densite}
   g_{\Theta|X_1, X_2, \dots, X_n}(\Theta=t) = \frac{g_{\Theta}(t) \prod_{i=1}^n f_t(x_i)}{
     \int_{\Scal} g_{\Theta}(u) \prod_{i=1}^n f_u(x_i) du}
 \end{equation}
@@ -682,11 +642,6 @@ est ainsi définie par
   \label{eq:bayes_estimator}
   \hatbys{\theta} \in \argmin_{t \in \Scal} \EE([(\Theta|X_1=x_1, X_2=x_2, \dots, X_n=x_n) - t)]^2).
 \end{equation}
-% cette espérance étant prise sur les distributions jointes de $\Theta$ et de
-% $(X_1, X_2, \dots, X_n)$.
-% Il s'agit ici de maximiser cette espérance pour toutes les valeurs possibles de
-% l'échantillon aléatoire, donc en conditionnant par rapport à
-% $X_1, X_2, \dots, X_n$.
 
 
 \paragraph{Propriété} L'estimation de Bayes pour l'erreur quadratique moyenne

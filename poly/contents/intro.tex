@@ -257,9 +257,12 @@ de l'historique d'achat d'un grand nombre d'individus, il devient possible
 d'utiliser un algorithme d'apprentissage automatique pour qu'il en tire un
 modèle prédictif nous permettant d'apporter une réponse à notre question.
 
-Ce point de vue informatique sur l'apprentissage automatique justifie que l'on considère qu'il s'agisse d'un domaine différent de celui de la statistique. Cependant, nous aurons l'occasion de voir que la frontière entre inférence statistique et apprentissage est souvent mince.
-Il s'agit ici, fondamentalement, de \textbf{modéliser} un phénomène à partir de
-données considérées comme autant d'observations de celui-ci.
+Ce point de vue informatique sur l'apprentissage automatique justifie que l'on
+considère qu'il s'agit d'un domaine différent de celui de la
+statistique. Cependant, nous aurons l'occasion de voir que la frontière entre
+inférence statistique et apprentissage est souvent mince.  Il s'agit ici,
+fondamentalement, de \textbf{modéliser} un phénomène à partir de données
+considérées comme autant d'observations de celui-ci.
 \begin{attention}
   Bien que l'usage soit souvent d'appeler les deux du même nom, il faut
   distinguer l'\textbf{algorithme d'apprentissage} automatique du
@@ -275,8 +278,8 @@ learning le plus facile à appréhender : son but est d'apprendre à faire des
 c'est-à-dire accompagnés de la valeur à prédire. Les étiquettes servent de \og
 prof \fg~et supervisent l'apprentissage de l'algorithme. Un exemple classique est celui de l'annotation d'images : il s'agit par exemple de déterminer si une image représente ou non un chat.
 
-Étant données $n$ {observations} $\{x_i\}_{i=1, \dots, n}$ appartenant à un
-espace $\XX$, et leurs {étiquettes} $\{y_i\}_{i=1, \dots, n}$ appartenant à un
+Étant données $n$ {observations} $x_1, x_2, \ldots, x_n$ appartenant à un
+espace $\XX$, et leurs {étiquettes} $y_1,$ $y_2, \ldots, y_n$ appartenant à un
 espace $\YY$, on suppose que les étiquettes peuvent être obtenues à partir des
 observations grâce à une fonction $\phi: \XX \rightarrow \YY$ fixe et inconnue
 : $y_i = \phi(x_i) + \epsilon_i$, où $\epsilon_i$ est un bruit.  Il

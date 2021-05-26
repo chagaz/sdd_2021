@@ -2,8 +2,8 @@
 \label{chap:erm}
 
 \paragraph{Notions :} classification, régression, espace des hypothèses,
-minimisation du risque empirique, moindres carrés, modèles paramétriques
-linéaires
+minimisation du risque empirique, modèles paramétriques
+linéaires, moindres carrés
 \paragraph{Objectifs pédagogiques :} 
 \begin{itemize}      
   \setlength{\itemsep}{3pt}
@@ -14,8 +14,6 @@ linéaires
 \item Mettre en \oe{}uvre une régression linéaire.
 \end{itemize}
 
-
-
 Nous nous intéressons maintenant aux problèmes d'apprentissage \textbf{supervisé}
 : il s'agit de développer des algorithmes qui soient capables d'apprendre des
 modèles \textbf{prédictifs}. À partir d'exemples étiquetés, ces modèles seront
@@ -23,25 +21,8 @@ capables de prédire l'étiquette de nouveaux objets. Le but de ce chapitre est
 de développer les concepts généraux qui nous permettent de formaliser ce type
 de problèmes.
 
-
-
-% \paragraph{Compétences}
-
-
 \section{Formalisation d'un problème d'apprentissage supervisé}
 \label{sec:sup_learn}
-% Un problème d'\textbf{apprentissage supervisé} peut être formalisé de la façon
-% suivante : étant données $n$ \textbf{observations}
-% $\{\xx^1, \xx^2, \dots, \xx^n\}$, où chaque observation $\xx^i$ est un élément
-% de l'espace des observations $\XX$, et leurs \textbf{étiquettes}
-% $\{y^1, y^2, \dots, y^n\}$, où chaque étiquette $y^i$ appartient à l'espace des
-% étiquettes $\YY$, le but de l'apprentissage supervisé est de trouver une
-% fonction $f: \XX \rightarrow \YY$ telle que $f(\xx) \approx y,$ pour toutes les
-% paires $(\xx, y) \in \XX \times \YY$ ayant la même relation que les paires
-% observées. L'ensemble de $\DD = \{(\xx^i, y^i)\}_{i=1, \dots, n}$ forme le
-% \textbf{jeu d'apprentissage}.
-
-%\subsection{Vocabulaire}
 Nous supposons maintenant disposer non seulement d'une matrice
 $X \in \RRnp$ décrivant $n$ individus en $p$ dimensions, mais aussi
 de $n$ \textbf{étiquettes} $\{y^1, y^2, \dots, y^n\}$. Chaque étiquette $y^i$
@@ -154,53 +135,10 @@ appelée \textbf{fonction de décision} \footnote{Dans la librairie
     inversement, laisse dans sa boîte mail ou supprime sans étiqueter comme tel
     un email indésirable.
   \item Enfin, notre représentation est limitée, en particulier parce qu'elle
-    ne prend pas en compte l'ordre des mots. Nous ne disposons pas de
-    suffisamment d'information pour classifier les emails aussi efficacement
-    qu'un humain.
+    ne considère pas l'ordre des mots. Nous ne disposons pas de suffisamment
+    d'information pour classifier les emails aussi efficacement qu'un humain.
   \end{itemize}
-  % \paragraph{Nombre de vélos à une borne velib.} On peut poser la prédiction du
-  % nombre de vélos retirés d'une borne velib à un instant donné comme un
-  % problème de régression. Les individus sont des triplets (borne vélib, date,
-  % tranche horaire). Ils peuvent être représentées par un nombre $p$ de
-  % variables, incluant la position géographique de la borne, si la date est en
-  % semaine ou non, si la tranche horaire est de jour ou de nuit, etc. Étant
-  % donné un jeu de $n$ bornes ainsi étiquetées, un algorithme
-  % d'apprentissage retourne une fonction $f: \RR^p \rightarrow \RR$ qui,
-  % à toute borne velib, associe le nombre de vélos y étant retirés.
 \end{exemple}
-
-% Dans le cadre d'un problème de classification binaire, on appelle {\it fonction
-%   de décision}, ou {\it fonction discriminante}, une fonction
-% $g:\XX \mapsto \RR$ telle que $f(\xx) = 0$ si et seulement si $g(\xx) \leq 0$
-% et $f(\xx) = 1$ si et seulement si
-% $g(\xx) > 0$. \\
-
-% % Cette définition se généralise dans le cas de la classification {\it
-% %   multi-classe} : on a alors $C$ fonctions de décision $g_c:\XX \mapsto \RR$
-% % telles que $f(\xx) = \argmax_{c = 1, \dots, C} g_c(\xx).$
-
-% Le concept de fonction de décision permet de partitionner l'espace en {\it
-%   régions de décision} : \\
-% Dans le cas d'un problème de classification binaire, la fonction discriminante
-% partitionne l'espace des observations $\XX$ en deux {\it régions de décision},
-% $\Rcal_0$ et $\Rcal_1$, telles que
-% \begin{equation*}
-%   \Rcal_0 = \{\xx \in \XX | g(\xx) \leq 0\} \text{ et }
-%   \Rcal_1 = \{\xx \in \XX | g(\xx) > 0\}.
-% \end{equation*}
-% % Dans le cas multi-classe, on a alors $C$ régions de décision
-% % \begin{equation*}
-% %   \Rcal_c = \{\xx \in \XX | g_c(\xx) = \max_k g_k(\xx) \}.
-% % \end{equation*}
-
-% Les régions de décision sont séparées par des {\it frontières de décision} : \\
-% Dans le cadre d'un problème de classification, on appelle {\it frontière de
-%   décision}, ou {\it discriminant}, l'ensemble des points de $\XX$ où une
-% fonction de décision s'annule.  Dans le cas d'un problème binaire, il y a
-% une seule frontière de décision ; dans le cas d'un problème multi-classe à
-% $C$ classes, il y en a $C$.
-
-
 
 
 \paragraph{Remarque.} Les notions développées jusqu'à la fin de la
@@ -220,12 +158,9 @@ considérations pratiques sur notre capacité à trouver facilement un « bon »
 modèle dans $\FF$.
 
 Le choix de l'espace des hypothèses est fondamental.  En effet, si cet espace
-ne contient pas le \og bon \fg~modèle, % , par exemple si l'on choisit comme
-% espace des hypothèses pour les données de la figure~\ref{fig:simple_classif_pb}
-% l'ensemble des droites,
-il sera impossible de trouver une bonne fonction de
-décision.  Cependant, si l'espace est trop générique, il sera plus difficile et
-intensif en temps de calcul d'y trouver un bon modèle.
+ne contient pas le \og bon \fg~modèle, il sera impossible de trouver une bonne
+fonction de décision.  Cependant, si l'espace est trop générique, il sera plus
+difficile et intensif en temps de calcul d'y trouver un bon modèle.
   
 
 \begin{exemple}
@@ -480,21 +415,6 @@ l'équation~\eqref{eq:hypothesis_space_ellipsis} : les paramètres sont au nombre
 de $4$ et il s'agit de $\alpha$, $\beta$, $a$, et $b$. Le but de
 l'apprentissage sera de déterminer les valeurs de ces paramètres.
 
-% on utilise un algorithme
-% d'apprentissage dont le but est de trouver les valeurs optimales des paramètres
-% d'un modèle dont on a défini la forme analytique en fonction des descripteurs.
-
-% La complexité d'un modèle paramétrique grandit avec le nombre de paramètres à
-% apprendre, autrement dit avec le nombre de variables. À l'inverse, la
-% complexité d'un modèle non paramétrique aura tendance à grandir avec le nombre
-% d'observations.
-
-% Par exemple, un algorithme d'apprentissage qui permet d'apprendre les
-% coefficient $\alpha$, $\beta$, $\gamma$ dans la fonction de décision suivante :
-% $f: \xx \mapsto \alpha x_1 + \beta x_2x_4^2 + \gamma e^{x_3-x_5}$ apprend un
-% modèle paramétrique. Quel que soit le nombre d'observations, ce modèle ne
-% change pas.
-
 À l'inverse, la méthode du plus proche voisin, qui associe à $\xx$ l'étiquette
 du point du jeu d'entraînement dont il est le plus proche en distance
 euclidienne, apprend un modèle non paramétrique : il ne s'agit pas d'écrire la
@@ -537,10 +457,6 @@ Cela revient à supposer que la relation entre $X$ et $Y$ peut s'écrire comme
 
 Faisons maintenant \textbf{l'hypothèse d'un bruit gaussien centré en $0$ : } le
 terme d'erreur $\epsilon$ est normalement distribué, centré en $0$ et de variance $\sigma^2 >0$.
-% \begin{equation}
-%   \label{eq:param_error_gaussian}
-%   \epsilon \sim \Ncal(0, \; \sigma^2).
-% \end{equation}
 
 L'équation~\eqref{eq:param_error} revient alors à 
 \begin{equation}
@@ -572,26 +488,27 @@ L'équation~\eqref{eq:param_error} revient alors à
 
 \subsection{Estimation par maximum de vraisemblance $\bullet$}
 \label{sec:least_squares}
-Sous l'hypothèse~\eqref{eq:param_bayes}, nous pouvons donc estimer $\bbeta$ en
+Sous l'hypothèse~\eqref{eq:param_bayes}, nous pouvons estimer $\bbeta$ en
 maximisant la log-vraisemblance de l'échantillon
-$\left((\xx^1, y^1), (\xx^2, y^2), \dots, (\xx^n, y^n) \right), $ considéré
-comme la réalisation de l'échantillon aléatoire\\
-$\left((X_1, Y_1), (X_2, Y_2), \dots, (X_n, Y_n) \right), $ lui même constitué
-de $n$ copies i.i.d. de $(X, Y)$.
-
-En notant $g_{X,Y}$ la densité jointe de $(X, Y)$; $g_{Y|X=x}$ la densité de
-$Y|X=x$; et $g_X$ la densité de $X$, cette log-vraisemblance s'écrit 
-\begin{align*}
+$\left((\xx^1, y^1), (\xx^2, y^2), \dots, (\xx^n, y^n) \right), $ qui est la
+réalisation d'un échantillon aléatoire constitué de $n$ copies i.i.d. de
+$(X, Y)$.  En notant $g_{X,Y}$ la densité jointe de $(X, Y)$; $g_{Y|X=x}$ la
+densité de $Y|X=x$; et $g_X$ la densité de $X$, cette log-vraisemblance s'écrit
+\begin{equation*}
   \ell\left((\xx^1, y^1), (\xx^2, y^2), \dots, (\xx^n, y^n); \bbeta  \right)
-  & = \ln \prod_{i=1}^n g_{X, Y}(\xx^i, y^i) 
-                       = \ln \prod_{i=1}^n g_{Y|X=\xx^i}(y^i) + \ln \prod_{i=1}^n
-                         g_X(\xx^i) \\
-                       & = - \frac1{2\sigma^2} \sum_{i=1}^n \left(y^i -
-                         f_{\bbeta}(\xx^i) \right)^2 + \Ccal.
-\end{align*}
-Dans cette dernière équation, $\Ccal$ est une constante par rapport à $\bbeta$,
-et provient d'une part du coefficient $\frac1{\sqrt{2\pi}}$ de la distribution
-normale et d'autre part des $g_X(\xx^i)$.
+  = \ln \prod_{i=1}^n g_{X, Y}(\xx^i, y^i) 
+  = \ln \prod_{i=1}^n g_{Y|X=\xx^i}(y^i) + \ln \prod_{i=1}^n
+  g_X(\xx^i)
+\end{equation*}
+et donc    
+\begin{equation*}
+  \ell\left((\xx^1, y^1), (\xx^2, y^2), \dots, (\xx^n, y^n); \bbeta  \right)
+  = - \frac1{2\sigma^2} \sum_{i=1}^n \left(y^i -
+    f_{\bbeta}(\xx^i) \right)^2 + \Ccal,
+\end{equation*}
+avec $\Ccal$ une constante par rapport à $\bbeta$, qui provient d'une part du
+coefficient $\frac1{\sqrt{2\pi}}$ de la distribution normale et d'autre part
+des $g_X(\xx^i)$.
 
 Ainsi, maximiser la vraisemblance dans ce contexte de bruit gaussien centré
 revient à minimiser 
