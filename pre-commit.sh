@@ -3,6 +3,8 @@
 rm -f poly/*.aux 
 rm -f poly/*.log
 rm -f poly/*.out
+rm -f poly/*.ent
+rm -f poly/*.toc
 rm -f poly/*/*.log
 
 rm -f pc/pc*/*.aux 
