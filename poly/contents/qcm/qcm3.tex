@@ -2,14 +2,14 @@
 
 \section{QCM}
 \paragraph{Question 1.} Soit $(x_1, x_2, \dots, x_n)$ un échantillon d'une
-variable aléatoire $X$. On suppose que $X$ suit une loi paramétrisée
+variable aléatoire $X$ discrète. On suppose que $X$ suit une loi paramétrisée
 par $\gamma$. La vraisemblance de $(x_1, x_2, \dots, x_n)$ est donnée par
 \begin{itemize}
-\item[$\square$] $\PP(x_1, x_2, \dots, x_n, \gamma)$
-\item[$\square$] $\PP(x_1, x_2, \dots, x_n | \gamma)$
-\item[$\square$] $\PP(\gamma | x_1, x_2, \dots, x_n)$
-\item[$\square$] $\prod_{i=1}^n \PP(x_i|\gamma)$
-\item[$\square$] $\prod_{i=1}^n \PP(\gamma|x_i)$
+\item[$\square$] $\PP(X=x_1, X=x_2, \dots, X=x_n, \gamma)$
+\item[$\square$] $\PP(X=x_1, X=x_2, \dots, X=x_n | \gamma)$
+\item[$\square$] $\PP(\gamma | X=x_1, X=x_2, \dots, X=x_n)$
+\item[$\square$] $\prod_{i=1}^n \PP(X=x_i|\gamma)$
+\item[$\square$] $\prod_{i=1}^n \PP(\gamma|X=x_i)$
 \end{itemize}
 
 \paragraph{Question 2.} Soit $X$ une loi exponentielle de paramètre
@@ -39,7 +39,7 @@ l'échantillon est
 \rotatebox[origin=c]{180}{%
 \noindent
 \begin{minipage}[t]{\linewidth}
-\paragraph{Question 1.} Par définition (cf. équation~(3.7) du poly),
+\paragraph{Question 1.} Par définition (cf. équation~\ref{eq:likelihood}),
 \[
 L(x_1, x_2, \dots, x_n; \gamma) = \PP(x_1, x_2, \dots, x_n | \gamma) = \prod_{i=1}^n \PP(x_i|\gamma).
 \]
@@ -71,8 +71,14 @@ obtient \textit{l'estimateur par maximum de vraisemblance} de $\lambda$ :
 
 
 \paragraph{Question 3.} La tendance que nous avons observée sur l'exemple de la
-section 3.6 (cf. « Remarque importante ») se vérifie en général : plus on
+section~\ref{sec:bayes_est} (cf. « Remarque importante ») se vérifie en général : plus on
 observe d'échantillons, plus on s'éloigne de l'a priori pour se rapprocher d'un
 estimateur issu uniquement des données.
 \end{minipage}%
 }%
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../../sdd_2021_poly"
+%%% End:
+
