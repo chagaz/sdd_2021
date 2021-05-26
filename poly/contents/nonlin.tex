@@ -28,7 +28,7 @@ classification binaire et $\YY = \RR$ pour un problème de régression.
 \subsection{Régression polynomiale}
 \label{sec:polynomial_reg}
 Une première façon de construire des modèles non-linéaires, que nous avons
-brièvement abordée dans la PC~5, consiste à apprendre une fonction de
+brièvement abordée dans la PC~4, consiste à apprendre une fonction de
 décision de la forme suivante :
 \begin{equation}
   \label{eq:polynomial_decision}
@@ -44,7 +44,7 @@ Attention, on crée ainsi un grand nombre de variables, corrélées entre elles :
 il est alors indispensable d'utiliser un terme de régularisation pour éviter le
 surapprentissage.
 
-Le principe s'applique aussi à la régression logistique (vue dans la PC~6).
+Le principe s'applique aussi à la régression logistique (vue dans la PC~5).
 
 
 \subsection{Perceptron}
@@ -102,18 +102,20 @@ Il s'agit donc bien d'un modèle paramétrique.
 Dans le cas d'un problème de régression, on utilisera tout simplement l'identité comme fonction d'activation. Le modèle appris est donc $\xx \mapsto \innerproduct{\ww, \xx},$ comme dans le cas de la régression linéaire.
 
 Le cas de la classification binaire, utilisant un seuil comme fonction
-d'activation, est historiquement le premier à avoir été traité. Ce cas est
-détaillé dans la section~\ref{sec:perceptron_binary}.  On utilisera plutôt,
+d'activation, est historiquement le premier à avoir été traité. %Ce cas est détaillé dans la section~\ref{sec:perceptron_binary}.
+On utilisera plutôt,
 comme
 % \item Pour prédire la probabilité d'appartenir à la classe positive, comme
-dans le cas de la régression logistique (voir PC~6), une fonction logistique. Le modèle appris est donc
+dans le cas de la régression logistique (voir PC~5), une fonction logistique
+pour modéliser la probabilité d'appartenir à la classe positive. Le modèle
+appris est donc
 \begin{equation}
   \xx \mapsto \frac1{1 + e^{- o(\xx)}} = 
   \frac1{1 + \exp \left( - \innerproduct{\ww,~\xx} \right)}.
 \end{equation}
 
 
-\paragraph{Minimisation du risque empirique} Pour entraîner un perceptron, nous
+\paragraph{Apprentissage incrémental} Pour entraîner un perceptron, nous
 allons chercher, comme pour toute régresssion paramétrique, à minimiser le
 risque empirique.  Cependant, nous allons supposer que les observations
 $(\xx^i, y^i)$ ne sont pas disponibles simultanément, mais qu'elles sont
@@ -121,25 +123,26 @@ observées séquentiellement. Cette hypothèse découle de la plasticité des
 réseaux de neurones biologiques : ils s'adaptent constamment en fonction des
 signaux qu'ils reçoivent. Nous allons donc utiliser un algorithme
 d'entraînement \textbf{incrémental}, qui s'adapte à des observations arrivant
-les unes après les autres. En anglais, on parlera de \textit{online
+les unes après les autres. En anglais, on parlera d'\textit{online
   learning}. Il s'agit donc d'appliquer un algorithme à directions de descente
 itérativement, observation par observation, comme décrit dans la
-section~\ref{sec:train_perceptron}, ou vous trouverez aussi lus de détails sur
-les fonctions de pertes utilisées. 
+section~\ref{sec:train_perceptron}, ou vous trouverez aussi plus de détails sur
+les fonctions de perte utilisées. 
 C'est cela qui distingue un perceptron d'une régression linéaire (pour la
 régression) ou logistique (pour la classification).
 
-\subsection{Entrainement du perceptron $\bigstar$}
+\subsection{Entraînement du perceptron $\bullet$}
 \label{sec:train_perceptron}
 
 L'entraînement du perceptron commence par
-une initialisation aléatoire du vecteur de poids de connexion\\
-$w_0^{(0)}, w_1^{(0)}, \dots, w_p^{(0)}$, par exemple, $\ww = \vec{0}$.
+une initialisation aléatoire du vecteur de poids de connexions
+$\left( w_0^{(0)}, w_1^{(0)}, \dots, w_p^{(0)} \right)$, par exemple, $\ww = \vec{0}$.
 
 Puis, à chaque observation, on ajuste ce vecteur dans la direction opposée au
-gradient du risque empirique. En effet, ce gradient indique la direction de
-plus forte pente du risque empirique ; le redescendre nous rapproche d'un point
-où ce risque est minimal. Formellement, à une itération de l'algorithme, on
+gradient du risque empirique. % En effet, ce gradient indique la direction de
+% plus forte pente du risque empirique ; le redescendre nous rapproche d'un point
+% où ce risque est minimal.
+Formellement, à une itération de l'algorithme, on
 tire une nouvelle observation $(\xx^i, y^i)$ et on actualise, pour tout $j$,
 les poids de connexion de la façon suivante :
 \begin{equation}
@@ -149,8 +152,7 @@ les poids de connexion de la façon suivante :
 
 Il est possible (et même recommandé dans le cas où les données ne sont pas
 extrêmement volumineuses) d'itérer plusieurs fois sur l'intégralité du jeu
-de données. Typiquement, on itère jusqu'à ce que l'algorithme converge à
-$\epsilon$ près.
+de données. %Typiquement, on itère jusqu'à ce que l'algorithme converge à $\epsilon$ près.
 
 Cet algorithme a un hyperparamètre, $\eta > 0$, qui est le pas de l'algorithme
 du gradient et que l'on appelle la \textbf{vitesse d'apprentissage} (ou {\it
@@ -164,7 +166,7 @@ En pratique, on utilise souvent une vitesse d'apprentissage adaptative :
 relativement grande au début, puis de plus en plus faible au fur et à mesure
 que l'on se rapproche de la solution. Cette approche est à rapprocher
 d'algorithmes similaires développés dans le cas général de l'algorithme du
-gradient (comme par exemple la recherche linéaire par rebroussement
+gradient, comme par exemple la recherche linéaire par rebroussement
 (\textit{backtracking line search}).
 
 \paragraph{Classification probabiliste}
@@ -220,28 +222,30 @@ précédente. Il n'y a pas de retour d'une couche vers une couche qui la précède
   
 En utilisant des fonctions d'activation non linéaires, telles que la fonction
 logistique, la fonction tangente hyperbolique, ou une fonction linéaire
-seuillée, on crée ainsi un modèle paramétrique hautement non linéaire.
+seuillée (telle que ReLU, pour {\it Rectified Linear Unit}, qui dénote dans la
+communauté de l'apprentissage profond la fonction $u \mapsto \max(0, u)$), on
+crée ainsi un modèle paramétrique non linéaire.
 
 \begin{exemple}
   Prenons l'exemple d'un perceptron avec deux couches intermédiaires comme
   illustré sur la figure~\ref{fig:mlp}. Notons $w^h_{jq}$ le poids de la
-  connexion du neurone $j$ de la couche $h-1$ au neurone $q$ de la couche
+  connexion du neurone $j$ de la couche $(h-1)$ au neurone $q$ de la couche
   $h$, $a_h$ la fonction d'activation utilisée en sortie de la couche $h$,
   et $p_h$ le nombre de neurones dans la couche $h$.
   
   La sortie $z_q^1$ du $q$-ème neurone
   de la première couche cachée vaut
-  \begin{equation*}
-    z_q^1 = a_1\left(\sum_{j=0}^p w_{jq}^1 x_j \right).
-  \end{equation*}
+  % \begin{equation*}
+    $z_q^1 = a_1\left(\sum_{j=0}^p w_{jq}^1 x_j \right).$
+  % \end{equation*}
   La sortie $z_q^2$ du $q$-ème neurone de la deuxième couche cachée vaut
-  \begin{equation*}
-    z_q^2 = a_2\left(\sum_{j=1}^{p_1} w_{jq}^2 z_j^1 \right).
-  \end{equation*}
+  % \begin{equation*}
+    $z_q^2 = a_2\left(\sum_{j=1}^{p_1} w_{jq}^2 z_j^1 \right).$
+  % \end{equation*}
   Enfin, la sortie du perceptron vaut
-  \begin{equation*}
-    f(\xx) = a_3\left(\sum_{j=1}^{p_2} w_{j}^3 z_j^2 \right).
-  \end{equation*}
+  % \begin{equation*}
+    $f(\xx) = a_3\left(\sum_{j=1}^{p_2} w_{j}^3 z_j^2 \right).$
+  % \end{equation*}
   
   Ainsi, en supposant qu'on utilise une fonction logistique pour tous les
   neurones des couches cachées, la sortie du perceptron vaut 
@@ -298,7 +302,7 @@ section~\ref{sec:backprop}.
 Le domaine de l'\textbf{apprentissage profond} repose
 fondamentalement sur les principes que nous venons de voir. En effet, un
 perceptron multi-couche est profond dès lors qu'il contient suffisamment de
-couches -- la définition de \og suffisamment \fg~dépendant des auteurs.  Le
+couches -- la définition de \og suffisamment \fg~étant subjective.  Le
 domaine de l'apprentissage profond s'intéresse aussi à de nombreuses autres
 architectures comme les \textbf{réseaux récurrents} ({\it RNN}, pour {\it
   Recursive Neural Nets}), et en particulier {\it Long Short-Term Memory (LSTM)
@@ -338,43 +342,39 @@ mettre en place et n'est pas toujours la meilleure solution pour résoudre un
 problème de \textit{machine learning}, en particulier face à un petit jeu de
 données.
 
-\paragraph{Apprentissage de représentations $\bigstar$}
+\paragraph{Apprentissage de représentations $\bullet$}
 On associe souvent aux réseaux de neurones profond la notion de {\it
   representation learning}. En effet, il est possible de considérer que chacune
-des couches intermédiaires successives apprend une nouvelle représentation des
-données $(z^h_1, z^h_2, \dots, z^h_{p_h})$ à partir de la représentation de la
-couche précédente, et ce jusqu'à pouvoir appliquer entre la dernière couche
-intermédiaire et la sortie du réseau un algorithme linéaire.
+des couches intermédiaires successives apprend une nouvelle représentation
+$(z^h_1, z^h_2, \dots, z^h_{p_h})$ des données à partir de la représentation de
+la couche précédente, et ce jusqu'à pouvoir appliquer un algorithme linéaire à
+la représentation contenue dans la dernière couche intermédiaire.
 
 
 \section{Méthodes à noyaux}
 Les méthodes à noyaux permettent de construire des modèles non-linéaires de
 régression ou de classification sur le même modèle que la régression
-polynomiale, mais sans avoir à calculer explicitement les nouvelles variables.
-
+polynomiale, mais sans avoir à calculer explicitement les nouvelles variables. 
 Nous allons tout d'abord illustrer leur principe sur l'exemple de la régression ridge.
 
 \subsection{Exemple de la régression ridge quadratique}
 
-\paragraph{Réécriture de la régression ridge}
 Nous utilisons ici les mêmes notations qu'à la section~\ref{sec:ridge_regression}.
 La fonction de prédiction de la régression ridge est de la forme
-\begin{equation}
-  \label{eq:reg_ridge_pred}
-  f(\xx) = \langle \xx,  \bbeta^* \rangle,
-\end{equation}
+% \begin{equation}
+%   \label{eq:reg_ridge_pred}
+  $f: \xx \mapsto \langle \xx,  \bbeta^* \rangle,$
+% \end{equation}
 où $\bbeta^*$ est donné par l'équation~\eqref{eq:ridgereg_sol} :
 \begin{equation}
   \label{eq:reg_ridge_beta}
   \bbeta^* =  \left( \lambda I_p + X^\top X  \right)^{-1} X^\top \yy.
 \end{equation}
-% Ici $X \in \RR^{n \times p}$ est la matrice de design potentiellement
-% augmentée d'une colonne de 1 selon la transformation~\eqref{eq:added_ones}.
   
-En remplaçant $\bbeta^*$ par sa valeur, l'équation~\eqref{eq:reg_ridge_pred} peut se réécrire comme 
+En remplaçant $\bbeta^*$ par sa valeur, la fonction de prédiction peut se réécrire comme :%l'équation~\eqref{eq:reg_ridge_pred} peut se réécrire comme 
 \begin{equation}
   \label{eq:reg_ridge_2}
-  f(\xx) = \xx X^\top (\lambda I_n + XX^\top)^{-1} y.
+  f: \xx \mapsto \xx X^\top (\lambda I_n + XX^\top)^{-1} y.
 \end{equation}
 Vous en trouverez la preuve section~\ref{sec:ridge_rewrite}.
 
@@ -383,58 +383,52 @@ Nous allons maintenant traiter l'exemple de la \textbf{régression ridge
   quadratique}, c'est-à-dire d'une régression polynomiale de degré 2
 régularisée par un terme $\ell_2$. 
 Définissons l'application
-\begin{align*}
-  % \phi: \RR^p & \rightarrow \RR^{{d+p \choose p}} \\
-  % (x_1, x_2, \dots, x_p)  &  \mapsto
-  %                           (x_1, x_2, \dots, x_p,~x_1^2, x_1 x_2, \dots,
-  %                           x_p^2, \dots, x_1^d, x_1^{d-1}  x_2, \dots, x_p^d ).
-  \phi: \RR^p & \rightarrow \RR^{m} \\
-  (x_1, x_2, \dots, x_p)  &  \mapsto
-                            (1, \sqrt{2} x_1, \sqrt{2} x_2, \dots, \sqrt{2} x_p,~x_1^2, x_1 x_2, \dots,
-                            x_p^2),
-\end{align*}
+\begin{equation*}
+  \begin{split}
+    \phi: \RR^p  & \to \RR^m \\
+    (x_1, x_2, \dots, x_p) & \mapsto (1, \sqrt{2}\,x_1, \sqrt{2}\, x_2, \dots,
+    \sqrt{2}\, x_p,~x_1^2, x_1 x_2, \dots, x_p^2),
+  \end{split}
+\end{equation*}
 avec $m = 1+ p + \frac12 p(p+1)$ le nombre de monomes de $p$ variables de degré
 au plus $2$.  Les coefficients $\sqrt{2}$ sont introduits ici pour des
 facilités de calcul plus tard ; ils ne changent rien conceptuellement.
 
-La fonction de décision d'une régression quadratique est ainsi une fonction
-\textit{linéaire} en $\phi(\xx)$ : la régression polynomiale est équivalente à
-une régression linéaire sur un espace de plus grande dimension.  
+La fonction de décision d'une régression quadratique est une fonction
+\textit{linéaire} de $\phi(\xx)$ : la régression polynomiale est équivalente à
+une régression linéaire sur un espace de plus grande dimension (ici, $m$).  
+Pour entraîner une régresion ridge quadratique, nous pouvons donc entraîner une
+régression ridge sur les données $\{(\phi(\xx^1), y^1), (\phi(\xx^2), y^2), \dots, (\phi(\xx^n), y^n)\}.$
 
-Pour entraîner une régresion ridge polynomiale, nous pouvons donc entraîner une
-régression ridge sur les données $\{(\phi(\xx^1), y^1), (\phi(\xx^2), y^2), \dots, (\phi(\xx^n), y^n)\}.$ Posons donc $\Phi \in \RR^{n \times m}$ la matrice
-décrivant les images observations $(\xx^1, \xx^2, \dots, \xx^n)$ par $\phi$.
-
-L'équation~\eqref{eq:reg_ridge_2} devient alors
+Posons donc $\Phi \in \RR^{n \times m}$ la matrice
+décrivant les images des observations $(\xx^1, \xx^2, \dots, \xx^n)$ par $\phi$.
+L'équation~\eqref{eq:reg_ridge_2}, appliquée à $\phi(\xx)$, devient alors
 \begin{equation}
   \label{eq:reg_ridge_phi}
-  f_\phi(\xx) = \phi(\xx) \Phi^\top (\lambda I_n + \Phi \Phi^\top)^{-1} y.
+  f_\phi: \xx \mapsto \phi(\xx) \Phi^\top (\lambda I_n + \Phi \Phi^\top)^{-1} y.
 \end{equation}
 
 Définissons maintenant la fonction
-\begin{eqnarray*}
-  k: \RR^p \times \RR^p & \rightarrow & \mathbb{R} \\
-  \xx,~\xx' & \mapsto & \innerproduct{\phi(\xx),~\phi(\xx')}.
-\end{eqnarray*}
+\begin{equation}
+  \label{eq:kernel}
+  \begin{split}
+    k \colon \RR^p \times \RR^p & \to \RR \\
+    \xx,~\xx^\prime & \mapsto \innerproduct{\phi(\xx),~\phi(\xx^\prime)}.
+  \end{split}
+\end{equation}
 
 Construisons le vecteur $\kappa \in \RR^n$ dont la
 $i$-ème entrée est
-% \begin{equation*}
   $\kappa_i = \innerproduct{\phi(\xx),~\phi(\xx^i)} = k(\xx, \xx^i)$,
-% \end{equation*}
 et la matrice $K \in \RR^{n \times n}$ dont l'entrée $K_{il}$ est
-% \begin{equation*}
 $K_{il} = \innerproduct{\phi(\xx^i),~\phi(\xx^l)} = k(\xx^i, \xx^l).$
-% \end{equation*}
-
 Nous pouvons maintenant réécrire l'équation~\eqref{eq:reg_ridge_phi} comme
 \begin{equation}
   \label{eq:reg_ridge_k}
-  f_\phi(\xx) =  \kappa (\lambda I_n + K)^{-1} y,
+  f_\phi \xx \mapsto  \kappa (\lambda I_n + K)^{-1} y,
 \end{equation}
-dans laquelle $\phi$ n'apparait plus que dans des produits scalaires (calcul de $\kappa$
+dans laquelle $\phi$ n'apparait plus qu'à travers des produits scalaires (calcul de $\kappa$
 et $K$).
-
 Cela signifie que nous pouvons apprendre une régression ridge quadratique sans utiliser $\phi$, à condition de connaître $k$.
 
 Cette phrase peut paraître surprenante, car nous avons défini $k$ en utilisant $\phi$.
@@ -502,8 +496,9 @@ d'apprentissage dans l'espace de redescription.\\
 Cela signifie que nous n'avons pas besoin de faire de calculs dans $\HH$, qui
 est généralement de très grande dimension : c'est ce que l'on appelle
 \textbf{l'astuce du noyau.} Elle s'applique non seulement à la régression
-ridge, mais aussi à de nombreux autres algorithmes d'apprentissage, dont les
-SVM (vues dans la PC~6), ce que vous pouvez lire en plus de détails dans la section~\ref{sec:kernel_svm}.
+ridge, mais aussi à de nombreux autres algorithmes d'apprentissage, dont la SVM
+(vues dans la PC~5), ce que vous pouvez lire en plus de détails dans la
+section~\ref{sec:kernel_svm}.
 
 Quand on applique l'astuce du noyau à la régression ridge, on parle de
 \textbf{régression ridge à noyau} ou \textit{kernel ridge regression (KRR)} en
@@ -512,7 +507,7 @@ anglais.
 
 Le \textbf{noyau polynomial} de degré $d \in \NN$,
 défini sur $\RR^p \times \RR^p$ par
-$k(\xx, \xx') = \left( \langle \xx, \xx' \rangle + c\right)^d,$ où $c \in \RR$
+$k(\xx, \xx^\prime) = \left( \langle \xx, \xx^\prime \rangle + c\right)^d,$ où $c \in \RR$
 permet d'inclure des termes de degré inférieur à $d$, correspond à un espace de
 redescription $\HH$ comptant autant de dimensions qu'il existe de monômes de
 $p$ variables de degré inférieur ou égal à $d$, soit $p+d \choose d$.
@@ -557,8 +552,7 @@ pour un médecin, ou les chemins possibles dans un \og livre dont vous êtes le
 héros \fg. La figure~\ref{fig:fruit_tree} présente un tel arbre de décision.
 
 Les arbres de décision permettent de traiter naturellement des variables
-qualitatives.
-
+qualitatives. 
 Ils permettent aussi de traiter des classes
 multi-modales (comme ici pour l'étiquette \og pomme \fg, qui est affectée à un
 fruit grand et rouge ou à un fruit jaune et rond.)
@@ -580,10 +574,9 @@ L'algorithme utilisé pour entraîner un arbre de décision est appelé
 \textbf{CART}, pour {\it Classification And Regression Tree}. Il s'agit d'un
 algorithme de partitionnement de l'espace par une approche gloutonne, récursive
 et divisive.
-
 Dans cette section, nous expliquons comment entraîner un arbre de décision pour
 un problème de classification binaire sur des variables binaires : on considère
-$\YY = \{0, 1\}$ et $x_j \in \{0, 1\}$ pour tout $j=1, \dots, p$.
+$\YY = \{0, 1\}$ et $x_j \in \{0, 1\}$ pour tout $j=1, \dots, p$. 
 
 À chaque n{\oe}ud d'un arbre de décision construit par CART correspond une
 \textbf{variable séparatrice} ({\it splitting variable})
@@ -597,21 +590,20 @@ enfants du n{\oe}ud considéré :
 Au niveau de la racine de l'arbre, $R_l$ et $R_r$ partitionnent l'ensemble des
 observations. Ensuite, chaque n{\oe}ud partitionne uniquement les observations
 qui sont arrivées jusqu'à lui, autrement dit qui vérifient toutes les
-conditions dictées par ses parents.
+conditions dictées par ses parents. 
 
+% On peut alors associer, au niveau de ce n{\oe}ud, l'étiquette majoritaire de la
+% région $R_l(j)$ à tous les individus de $R_l(j)$ et l'étiquette majoritaire de
+% la région $R_r(j)$ à tous les individus de $R_r(j)$.
 
-On peut alors associer, au niveau de ce n{\oe}ud, l'étiquette majoritaire de la
-région $R_l(j)$ à tous les individus de $R_l(j)$ et l'étiquette majoritaire de
-la région $R_r(j)$ à tous les individus de $R_r(j)$.
-
-\paragraph{Exemple} Sur l'exemple de la figure~\ref{fig:fruit_tree}, il
-s'agirait par exemple au n{\oe}ud « incurvé » $R_l$ l'ensemble des fruits non
-rouge et de forme incurvée, et $R_r$ l'ensemble des fruits non rouge et de
-forme non incurvée. Si la majorité des individus de $R_l$ ne sont pas des
-pommes, on associe alors l'étiquette négative à tous les individus de $R_l$. Si
-la majorité des individus de $R_r$ sont des pommes, on associe alors
-l'étiquette positive à tous les individus de $R_r$ (malgré la présence de
-citrons dans $R_r$, qui ne seront identifiés qu'au n{\oe}ud suivant).
+\paragraph{Exemple} Sur l'exemple de la figure~\ref{fig:fruit_tree}, au
+n{\oe}ud « incurvé », $R_l$ est l'ensemble des fruits non rouge et de forme
+incurvée, et $R_r$ est l'ensemble des fruits non rouge et de forme non incurvée. Si
+la majorité des individus de $R_l$ ne sont pas des pommes, on associe alors
+l'étiquette négative à tous les individus de $R_l$. Si la majorité des
+individus de $R_r$ sont des pommes, on associe alors l'étiquette positive à
+tous les individus de $R_r$ (malgré la présence de citrons dans $R_r$, qui ne
+seront identifiés qu'au n{\oe}ud suivant).
 
 À chaque itération de CART, on itère sur toutes les valeurs possibles de $j$
 pour déterminer celle qui minimise localement l'erreur faite en attribuant à
@@ -621,7 +613,7 @@ empirique. Cependant, il s'agit d'un algorithme glouton : il n'y a aucune
 garantie que cette stratégie aboutisse à l'arbre de décision dont l'erreur sur
 le jeu d'entraînement est minimale.
 
-\paragraph{Formalisation $\bigstar$} On peut formellement noter :
+\paragraph{Formalisation $\bullet$} On peut formellement noter :
 \begin{equation}
   \argmin_{j \in \{1, \dots, p\}} \left( 
     \frac1{\abs{R_l(j)}} \sum_{i: \xx^i \in R_l(j)} L(y_l(j), y^i)  + 
@@ -634,10 +626,10 @@ avec $y_l(j)$ l'étiquette majoritaire dans $R_l(j)$, à savoir
 y_l(j) = \argmax_{c \in \{0, 1\}} \abs{\{i:\xx^i \in R_l(j) ~|~y^i=c\}},
 \end{equation*}
 et, similairement, 
-$y_r(j)$ l'étiquette majoritaire dans $R_r(j)$, à savoir
-\begin{equation*}
-y_r(j) = \argmax_{c \in \{0, 1\}} \abs{\{i:\xx^i \in R_r(j) ~|~y^i=c\}}.
-\end{equation*}
+$y_r(j)$ l'étiquette majoritaire dans $R_r(j)$.% , à savoir
+% \begin{equation*}
+% y_r(j) = \argmax_{c \in \{0, 1\}} \abs{\{i:\xx^i \in R_r(j) ~|~y^i=c\}}.
+% \end{equation*}
 
 
 La section~\ref{sec:impurity} donne plus de détail sur la fonction de perte $L$
@@ -660,100 +652,12 @@ qualifie d'\textbf{apprenants faibles} ({\it weak learners} en
 anglais). Heureusement, il est possible d'y remédier grâce aux méthodes
 ensemblistes.
 
-\subsection{Comment faire pousser un arbre de décision (cas général) $\bigstar$}
-\label{sec:grow_tree}
-Dans le cas où la variable de séparation est une variable {\it discrète}
-pouvant prendre plus de deux valeurs (ou modalités), elle s'accompagne alors
-d'un sous-ensemble de ces valeurs $\Scal \subset \text{dom}(x_j).$ Les deux
-régions sont
-\begin{equation*}
-  R_l(j, \Scal) = \{\xx~|~x_j \in \Scal\} ; \hspace{2em} 
-  R_r(j, \Scal) = \{\xx~|~x_j \notin  \Scal\}.
-\end{equation*}
-
-Dans le cas où la variable de séparation est une variable {\it réelle},
-elle s'accompagne alors d'un \textbf{point de séparation} ({\it splitting
-  point}) $s$ qui est la valeur de la variable par rapport à laquelle va se
-faire la décision. Les deux régions sont alors
-\begin{equation*}
-  R_l(j, s) = \{\xx~|~x_j < s\} ; \hspace{2em} R_r(j, s) = \{\xx~|~x_j \geq s\}.
-\end{equation*}
-Si l'on suppose les valeurs prises par la variable $j$ dans $\DD$ ordonnées :
-$x_j^1 \leq x_j^2 \leq \dots, \leq x_j^n$, alors les valeurs possibles de $s$
-sont $\frac{x^{i+1}_j - x^i_j}2$ pour toutes les valeurs de $i$ telles que
-$x^{i+1}_j \neq x^i_j.$
-
-
-À chaque itération de l'algorithme CART, on itère sur toutes les valeurs
-possibles de $j$ et, le cas échéant, toutes les valeurs possibles de $s$ ou
-$\Scal$ pour déterminer celle qui minimise localement l'erreur faite en
-attribuant à toutes les observations de la région de gauche $(R_l)$ (resp. de
-droite $(R_r)$) leur étiquette majoritaire (dans le cas d'un problème de
-classification) ou moyenne (dans le cas d'un problème de régression).
-
-
-Formellement, notons $\Ical$ l'ensemble des variables de
-séparations possibles, à savoir l'union
-\begin{itemize}
-\item des indices $j$ des variables binaires ;
-\item des couples $(j, \Scal)$ de paires de variables discrètes à plus de deux
-  modalités, et de tous les sous-ensembles $\Scal$ possible de ces modalités ;
-\item des couples $(j, s)$ de paires de variables continues et des points de
-  séparation possibles.
-\end{itemize}
-Nous noterons donc ainsi $\zeta \in \Ical$ une variable de séparation,
-accompagnée si elle est discrète d'un sous-ensemble $\Scal$ de valeurs ou si
-elle est continue d'un seuil $s$, ce qui nous permet de noter $R_l(\zeta)$ et
-$R_r(\zeta)$ les deux régions définies par $\zeta$ indépendamment de sa nature
-binaire, discrète ou continue.
-
-Notons maintenant
-\begin{equation*}
-  y_l(\zeta) =
-  \begin{cases}
-    \argmax_{c \in \{0, 1\}} \abs{\{i:\xx^i \in R_l(\zeta) ~|~y^i=c\}} & \text{ pour un problème de classification binaire } \\
-    \frac1{\abs{\{i:\xx^i \in R_l(\zeta)\}}} \sum_{i:\xx^i \in R_l(\zeta)} y^i & \text{ pour un problème de régression.}
-  \end{cases}
-\end{equation*}
-
-on généralise alors l'équation~\eqref{eq:erm_binary_tree} en :
-\begin{equation}
-  \argmin_{\zeta \in \Ical} \left( 
-    \frac1{\abs{R_l(\zeta)}} \sum_{i: \xx^i \in R_l(\zeta)} L(y_l(\zeta), y^i)  + 
-     \frac1{\abs{R_r(\zeta)}} \sum_{i: \xx^i \in R_r(\zeta)} L(y_r(\zeta), y^i)
-  \right)
-\end{equation}
-
-Dans le cas d'un problème de régression, la fonction de perte $L$ est, encore
-une fois, l'erreur quadratique moyenne. Dans le cas d'un problème de
-classification, plusieurs choix sont possibles. Ces choix sont
-détaillés dans la section~\ref{sec:impurity}.
-
-Ainsi, avec beaucoup d'échantillons et beaucoup de variables continues, un
-arbre de décision peut être long à entraîner : il faut à chaque n{\oe}ud tester
-toutes les variables et chacun de leur seuils, ce qui fait de l'ordre de $np$
-opérations par n{\oe}ud.
-
 
 \subsection{Méthodes ensemblistes}
 Les méthodes ensemblistes sont des méthodes très puissantes en pratique, qui
 reposent sur l'idée que combiner de nombreux apprenants faibles permet
 d'obtenir une performance largement supérieure aux performances individuelles
 de ces apprenants faibles, car leurs erreurs se compensent les unes les autres.
-
-Les méthodes ensemblistes sont particulièrement pertinentes lorsque les modèles
-que l'on combine ont été appris par des apprenants faibles, c'est-à-dire
-simples à entraîner et peu performants.  En pratique, si les modèles
-individuels sont déjà performants et robustes au bruit, le modèle ensembliste
-ne sera pas nécessairement meilleur. On utilise le plus souvent des arbres de
-décision comme modèles individuels.
-
-% Cette idée est similaire au concept de \textbf{sagesse des foules}, ou {\it
-%   wisdom of crowd} : si je demande à mes élèves l'année de la mort de Georges
-% Pompidou, il est probable que la moyenne de leurs réponses soit assez proche de
-% la bonne (1974) ; cependant, si je demande cette date à une seule personne au
-% hasard, je n'aurais aucun moyen de savoir a priori si cette personne connaît la
-% date ou me répond au hasard.
 
 \begin{exemple}
   La figure~\ref{fig:crowd_diagonal} illustre ce concept : il s'agit d'une
@@ -777,6 +681,21 @@ décision comme modèles individuels.
 \end{figure}
 
 
+Les méthodes ensemblistes sont particulièrement pertinentes lorsque les modèles
+que l'on combine ont été appris par des apprenants faibles, c'est-à-dire
+simples à entraîner et peu performants.  En pratique, si les modèles
+individuels sont déjà performants et robustes au bruit, le modèle ensembliste
+ne sera pas nécessairement meilleur. On utilise le plus souvent des arbres de
+décision comme modèles individuels.
+
+% Cette idée est similaire au concept de \textbf{sagesse des foules}, ou {\it
+%   wisdom of crowd} : si je demande à mes élèves l'année de la mort de Georges
+% Pompidou, il est probable que la moyenne de leurs réponses soit assez proche de
+% la bonne (1974) ; cependant, si je demande cette date à une seule personne au
+% hasard, je n'aurais aucun moyen de savoir a priori si cette personne connaît la
+% date ou me répond au hasard.
+
+
 \subsection{Bagging} Mais comment créer {\it plusieurs} arbres de décision
 différents à partir d'un unique jeu de données ? Le \textbf{bagging} est une
 méthode parallèle, basée sur le ré-échantillonnage, qui permet de créer des
@@ -785,8 +704,15 @@ arbres indépendants les uns des autres.
 Il consiste à former $B$ versions de $\DD$ par \textbf{échantillonage
   bootstrap}, autrement dit en tirant $n$ exemples de $\DD$ {\it avec
   remplacement}. Ainsi, chaque exemple peut apparaître plusieurs fois, ou pas
-du tout, dans $\DD_b$.
+du tout, dans $\DD_b$. Chaque arbre est entraîné sur un de ces échantillons
+boostrap, ce qui peut être fait en parallèle. Les $B$ prédictions sont ensuite
+combinées
+\begin{itemize}
+\item par vote de la majorité dans le cas d'un problème de classification ; 
+\item en prenant la moyenne dans le cas d'un problème de régression.
+\end{itemize}
 
+\paragraph{Taille d'un échantillon bootstrap $\bullet$}
 La probabilité que $(\xx^i, y^i)$ apparaisse dans $\DD_b$ peut être calculée
 comme le complémentaire à 1 de la probabilité que $(\xx^i, y^i)$ ne soit tiré
 aucune des $n$ fois. La probabilité de $(\xx^i, y^i)$ soit tiré une fois vaut
@@ -800,12 +726,6 @@ $\left(1 + \frac{x}{n}\right)^n$ vaut $e^x$.  Ainsi, $\DD_b$ contient environ
 deux tiers des observations de $\DD$.
 
 
-Chaque arbre est entraîné sur un de ces échantillons boostrap, ce qui peut être
-fait en parallèle. Les $B$ prédictions sont ensuite combinées
-\begin{itemize}
-\item par vote de la majorité dans le cas d'un problème de classification ; 
-\item en prenant la moyenne dans le cas d'un problème de régression.
-\end{itemize}
 
 \subsection{Forêts aléatoires}
 La puissance des méthodes ensemblistes se révèle lorsque les apprenants faibles
@@ -829,9 +749,9 @@ toujours très peu développée, bien que cette méthode ait été proposée il y a
 une vingtaine d'années.
 
 
-\section{Compléments $\bigstar$}
+\section{Compléments $\bullet \bullet$}
 
-\subsection{Classification binaire avec un perceptron}
+\subsection{Classification binaire avec un perceptron $\bullet \bullet$}
 \label{sec:perceptron_binary}
 \paragraph{Modèle}
 Dans le cas d'un problème de classification binaire, on peut aussi utiliser
@@ -853,7 +773,7 @@ directement une fonction de seuil :
   \max(0, - y^i \innerproduct{\ww,~\xx})
 \end{equation}
 Ce critère est proche de la fonction d'erreur hinge (voir section 2.2 de la
-PC~5). Quand la combinaison linéaire des entrées a le bon signe, le critère du
+PC~4). Quand la combinaison linéaire des entrées a le bon signe, le critère du
 perceptron est nul. Quand elle a le mauvais signe, le critère du perceptron est
 d'autant plus grand que cette combinaison linéaire est éloignée de 0.
 
@@ -890,14 +810,14 @@ frontière de décision de sorte à corriger cette erreur.
 
 
 
-\subsection{Approximation universelle}
+\subsection{Approximation universelle $\bullet \bullet$}
 \label{sec:universal_approx}
 \paragraph{Théorème de l'approximation universelle} 
 Soit $a: \RR \rightarrow \RR$ une fonction non constante, bornée, continue et
 croissante et $K$ un sous-ensemble compact de $\RR^P$. Étant donné
 $\epsilon > 0$ et une fonction $f$ continue sur $K$, il existe un entier $m$,
-$m$ scalaires $\{d_i\}_{i=1, \dots, m}$, $m$ scalaires
-$\{b_i\}_{i=1, \dots, m}$, et $m$ vecteurs $\{\ww_i\}_{i=1, \dots, m}$ de
+$m$ scalaires $d_1,d_2, \ldots, d_m$, $m$ scalaires
+$b_i, b_2, \ldots, b_m$, et $m$ vecteurs $\ww_1, \ww_2, \ldots, \ww_m$ de
 $\RR^p$ tels que pour tout $\xx \in K$,
 \begin{equation*}
   \lvert f(\xx) - \sum_{i=1}^m d_i \; a \left( \langle \ww_i, \xx \rangle + 
@@ -921,35 +841,38 @@ cachée sont généralement peu efficaces, et on aura souvent de meilleurs
 résultats en pratique avec plus de couches.
 
 
-\subsection{Rétropropagation}
+\subsection{Rétropropagation $\bullet \bullet$}
 \label{sec:backprop}
 Pour actualiser le poids de connexion $w^h_{jq}$ du neurone $j$ de la couche
-$h-1$ vers le neurone $q$ de la couche $h$, nous devons calculer
+$(h-1)$ vers le neurone $q$ de la couche $h$, nous devons calculer
 $\frac{\partial L(f(\xx^i, y^i))}{\partial w^h_{jq}}.$ Pour ce faire, nous
 pouvons appliquer le théorème de dérivation des fonctions composées ({\it chain
   rule} en anglais). Nous notons $o^h_j$ la combinaison linéaire des entrées du
 $j$-ème neurone de la couche $h$ ; en d'autres termes, $z^h_j =
 a_h(o^h_j)$. Par convention, nous considérerons que $z^0_j = x_j$. Ainsi,
-\begin{align}
+\begin{equation}
   \label{eq:mlp_gradient}
+  \frac{\partial L(f(\xx^i), y^i)}{\partial o^h_q} 
+  \frac{\partial o^h_q}{\partial w^h_{jq}} 
+  = \frac{\partial L(f(\xx^i), y^i)}{\partial z^h_q} 
+  \frac{\partial z^h_q}{\partial o^h_q} 
+  \frac{\partial o^h_q}{\partial w^h_{jq}}   
+\end{equation}
+et donc   
+\begin{equation}
   \begin{split}
     \frac{\partial L(f(\xx^i), y^i)}{\partial w^h_{jq}} & =
-    \frac{\partial L(f(\xx^i), y^i)}{\partial o^h_q} 
-    \frac{\partial o^h_q}{\partial w^h_{jq}} 
-    = \frac{\partial L(f(\xx^i), y^i)}{\partial z^h_q} 
-    \frac{\partial z^h_q}{\partial o^h_q} 
-    \frac{\partial o^h_q}{\partial w^h_{jq}} \\
-    & = \left(\sum_{r=1}^{p_{h+1}}  \frac{\partial L(f(\xx^i), y^i)}{\partial o^{h+1}_r}  
+    \left(\sum_{r=1}^{p_{h+1}}  \frac{\partial L(f(\xx^i), y^i)}{\partial o^{h+1}_r}  
       \frac{\partial o^{h+1}_r}{\partial z^h_q} \right)
     \frac{\partial z^h_q}{\partial o^h_q} 
     \frac{\partial o^h_q}{\partial w^h_{jq}} \\
     & = \left(\sum_{r=1}^{p_{h+1}}  \frac{\partial L(f(\xx^i), y^i)}{\partial o^{h+1}_r}  
       w^{h+1}_{qr} \right) a_h'(o^h_q) \; z^{h-1}_j.    
   \end{split}
-\end{align}
+\end{equation}
 
-Ainsi, le gradient nécessaire à l'actualisation des poids de la couche $h$ se
-calcule en fonction des gradients
+Le gradient nécessaire à l'actualisation des poids de la couche $h$ se
+calcule donc en fonction des gradients
 $\frac{\partial L(f(\xx^i, y^i))}{\partial o^{h+1}_r}$ nécessaires pour
 actualiser les poids de la couche $(h+1)$.
 
@@ -963,7 +886,7 @@ $(\xx^i, y^i)$ traitée, une phase de \textbf{propagation avant} qui permet de
 calculer les sorties de chaque neurone, et une phase de
 \textbf{rétropropagation des erreurs} dans laquelle on actualise les poids en
 partant de ceux allant de la dernière couche intermédiaire vers l'unité de
-sortie et en \og remontant \fg le réseau vers les poids allant de l'entrée vers
+sortie et en \og remontant \fg~le réseau vers les poids allant de l'entrée vers
 la première couche intermédiaire.
 
 \begin{exemple}
@@ -1044,7 +967,7 @@ Il est bien sûr possible d'ajouter une unité de biais à chaque couche intermédia
 ; les dérivations se font alors sur le même principe.
 
 
-\subsection{Réécriture de la régression ridge}
+\subsection{Réécriture de la régression ridge $\bullet \bullet$}
 \label{sec:ridge_rewrite}
 
 L'expression~\eqref{eq:reg_ridge_beta} peut se réécrire en multipliant à gauche
@@ -1058,14 +981,14 @@ Ainsi $\lambda \aalpha = y - X X^\top \aalpha$ et donc
   \aalpha = \left(\lambda I_n + X X^\top \right)^{-1} y.
 \end{equation*}
 
-L'équation~\ref{eq:reg_ridge_pred} peut donc s'écrire
+Ainsi, 
 \begin{equation*}
-  f(\xx) = \xx X^\top \aalpha = \xx X^\top (\lambda I_n + XX^\top)^{-1} y.
+  \langle \xx,  \bbeta^* \rangle = \xx X^\top \aalpha = \xx X^\top (\lambda I_n + XX^\top)^{-1} y.
 \end{equation*}
 
 
 
-\subsection{Noyau radial gaussien}
+\subsection{Noyau radial gaussien $\bullet \bullet$}
 \label{sec:rbf_kernel}
 Soit $k$ le noyau radial gaussien de bande passante $\sigma > 0$ sur $\RR^p$ :
 \begin{eqnarray*}
@@ -1088,7 +1011,7 @@ $\psi: \RR^p \rightarrow \RR, \quad \xx \mapsto \exp\left( -\frac{||\xx||^2}{2
     \sigma^2} \right).$ Cela explique pourquoi l'espace de redescription
 correspondant à ce noyau est de dimension infinie.
 
-\subsection{Noyaux pour chaînes de caractères}
+\subsection{Noyaux pour chaînes de caractères $\bullet \bullet$}
 \label{sec:more_kernels}
 L'astuce du noyau nous permet aussi de travailler sur des données complexes
 sans avoir à les exprimer tout d'abord en une représentation vectorielle de
@@ -1108,36 +1031,27 @@ $\phi: x \mapsto (\psi_u(x))_{u \in \Acal^k},$ où $\psi_u(x)$ est le nombre
 d'occurrences de $u$ dans $x$. $\psi$ peut être modifiée pour permettre les
 alignements inexacts, ou autoriser en les pénalisant les « trous » (ou {\it
   gaps}.)
-
 On peut alors définir le noyau pour chaînes de caractères suivant :
 \begin{eqnarray*}
-  k: \Acal^* \times \Acal^* & \rightarrow & \RR \\
-  x, x' & \mapsto & \sum_{u \in \Acal^k} \psi_u(x) \psi_u(x').
+  k \colon \Acal^* \times \Acal^* & \to & \RR \\
+  x, x^\prime & \mapsto & \sum_{u \in \Acal^k} \psi_u(x) \psi_u(x^\prime).
 \end{eqnarray*}
 
 Formellement, ce noyau nécessite de calculer une somme sur $|\Acal^k|$ =
 $|\Acal|^k$ termes. Cependant, il peut être calculé de manière bien plus
 efficace en itérant uniquement sur les $(|x|+1-k)$ chaînes de longueur $k$
 présentes dans $x$, les autres termes de la somme valant nécessairement 0. Il
-s'agit alors d'un calcul en $\mathcal{O}(|x| +|x'|)$.
+s'agit alors d'un calcul en $\mathcal{O}(|x| +|x^\prime|)$.
 
+Dans le cas des protéines humaines, si l'on choisit $k=8,$ on remplace
+ainsi un calcul dans un espace de redescription de dimension supérieure à
+37 milliards ($21^8$) par une somme sur moins de 500 termes (la longueur
+moyenne d'une protéine humaine étant de 485 acides aminés.)
 
-  Dans le cas des protéines humaines, si l'on choisit $k=8,$ on remplace
-  ainsi un calcul dans un espace de redescription de dimension supérieure à
-  37 milliards ($21^8$) par une somme sur moins de 500 termes (la longueur
-  moyenne d'une protéine humaine étant de 485 acides aminés.)
-
-
-% Ces idées peuvent aussi être appliquées à la définition de {\it noyaux pour
-%   graphes}, en remplaçant les sous-chaînes de caractères par des
-% sous-graphes. Cependant, le problème de l'isomorphisme de sous-graphes est
-% NP-complet dans le cas général, ce qui limite le type de sous-graphes que l'on
-% peut considérer.
-
-\subsection{SVM à noyau}
+\subsection{SVM à noyau $\bullet \bullet$}
 \label{sec:kernel_svm}
 Reprenons la formulation duale de la SVM à marge souple (à savoir la
-formulation donnée à la question 2 de la section 2.2 de la PC~5) :
+formulation donnée à la question 2 de la section 2.2 de la PC~4) :
 \begin{align}
   \label{eq:soft-margin-dual-pb}
   \max_{\aalpha \in \RR^n} & 
@@ -1151,7 +1065,7 @@ Posons $k: \RR^p \times \RR^p \rightarrow \RR$ un noyau, $\HH$ l'espace de
 redescription correspondant, et $\phi: \RR^p \rightarrow \HH$ l'application
 telle que pour tout $(\xx, \xx^\prime) \in \RR^p \times \RR^p$, $k(\xx, \xx^\prime) = \innerproduct{\phi(\xx),~\phi(\xx^\prime)}_\HH.$
 
-Apprendre une SVM dans l'espace de redescription $\HH$ (et non pas dnas $\RR^p$) revient à résoudre 
+Apprendre une SVM dans l'espace de redescription $\HH$ (et non pas dans $\RR^p$) revient à résoudre 
 \begin{align}
   \label{eq:soft-margin-dual-pb-featspace}
   \max_{\aalpha \in \RR^n} & 
@@ -1184,7 +1098,7 @@ peut être réécrite comme
   f: \xx \mapsto \sum_{i=1}^n \alpha_i^* y^i \innerproduct{\xx^i, \xx} + b,
 \end{equation*}
 d'après la correspondance entre $\ww$ et $\alpha$ donnée dans cette même
-question 2 de la partie 2.2 de la PC~5, à savoir
+question 2 de la partie 2.2 de la PC~4, à savoir
 % \begin{equation*}
 $\ww^* = \sum_{i=1}^n \alpha_i^* y^i \xx^i.$
 % \end{equation*}
@@ -1194,9 +1108,80 @@ Dans le cas à noyau, la fonction de décision est donc donnée par
   f: \xx \mapsto \sum_{i=1}^n \alpha_i^* y^i k(\xx^i, \xx) + b.
 \end{equation*}
 
+\subsection{Comment faire pousser un arbre de décision (cas général) $\bullet \bullet$}
+\label{sec:grow_tree}
+Dans le cas où la variable de séparation est une variable {\it discrète}
+pouvant prendre plus de deux valeurs (ou modalités), elle s'accompagne alors
+d'un sous-ensemble de ces valeurs $\Scal \subset \text{dom}(x_j).$ Les deux
+régions sont
+\begin{equation*}
+  R_l(j, \Scal) = \{\xx~|~x_j \in \Scal\} ; \hspace{2em} 
+  R_r(j, \Scal) = \{\xx~|~x_j \notin  \Scal\}.
+\end{equation*}
+
+Dans le cas où la variable de séparation est une variable {\it réelle},
+elle s'accompagne alors d'un \textbf{point de séparation} ({\it splitting
+  point}) $s$ qui est la valeur de la variable par rapport à laquelle va se
+faire la décision. Les deux régions sont alors
+\begin{equation*}
+  R_l(j, s) = \{\xx~|~x_j < s\} ; \hspace{2em} R_r(j, s) = \{\xx~|~x_j \geq s\}.
+\end{equation*}
+Si l'on suppose les valeurs prises par la variable $j$ dans $\DD$ ordonnées :
+$x_j^1 \leq x_j^2 \leq \dots, \leq x_j^n$, alors les valeurs possibles de $s$
+sont $\frac{x^{i+1}_j - x^i_j}2$ pour toutes les valeurs de $i$ telles que
+$x^{i+1}_j \neq x^i_j.$
 
 
-\subsection{Critères d'impureté pour les arbres de décision}
+À chaque itération de l'algorithme CART, on itère sur toutes les valeurs
+possibles de $j$ et, le cas échéant, toutes les valeurs possibles de $s$ ou
+$\Scal$ pour déterminer celle qui minimise localement l'erreur faite en
+attribuant à toutes les observations de la région de gauche $(R_l)$ (resp. de
+droite $(R_r)$) leur étiquette majoritaire (dans le cas d'un problème de
+classification) ou moyenne (dans le cas d'un problème de régression).
+
+
+Formellement, notons $\Ical$ l'ensemble des variables de
+séparations possibles, à savoir l'union
+\begin{itemize}
+\item des indices $j$ des variables binaires ;
+\item des couples $(j, \Scal)$ de paires de variables discrètes à plus de deux
+  modalités, et de tous les sous-ensembles $\Scal$ possible de ces modalités ;
+\item des couples $(j, s)$ de paires de variables continues et des points de
+  séparation possibles.
+\end{itemize}
+Nous noterons donc ainsi $\zeta \in \Ical$ une variable de séparation,
+accompagnée si elle est discrète d'un sous-ensemble $\Scal$ de valeurs ou si
+elle est continue d'un seuil $s$, ce qui nous permet de noter $R_l(\zeta)$ et
+$R_r(\zeta)$ les deux régions définies par $\zeta$ indépendamment de sa nature
+binaire, discrète ou continue.
+
+Notons maintenant
+\begin{equation*}
+  y_l(\zeta) =
+  \begin{cases}
+    \argmax_{c \in \{0, 1\}} \abs{\{i:\xx^i \in R_l(\zeta) ~|~y^i=c\}} & \text{ pour un problème de classification binaire } \\
+    \frac1{\abs{\{i:\xx^i \in R_l(\zeta)\}}} \sum_{i:\xx^i \in R_l(\zeta)} y^i & \text{ pour un problème de régression.}
+  \end{cases}
+\end{equation*}
+
+on généralise alors l'équation~\eqref{eq:erm_binary_tree} en :
+\begin{equation}
+  \argmin_{\zeta \in \Ical} \left( 
+    \frac1{\abs{R_l(\zeta)}} \sum_{i: \xx^i \in R_l(\zeta)} L(y_l(\zeta), y^i)  + 
+     \frac1{\abs{R_r(\zeta)}} \sum_{i: \xx^i \in R_r(\zeta)} L(y_r(\zeta), y^i)
+  \right)
+\end{equation}
+
+Dans le cas d'un problème de régression, la fonction de perte $L$ est, encore
+une fois, l'erreur quadratique moyenne. Voir la section~\ref{sec:impurity} pour
+les problèmes de classification.
+
+Ainsi, avec beaucoup d'échantillons et beaucoup de variables continues, un
+arbre de décision peut être long à entraîner : il faut à chaque n{\oe}ud tester
+toutes les variables et chacun de leur seuils, ce qui fait de l'ordre de $np$
+opérations par n{\oe}ud.
+
+\subsection{Critères d'impureté pour les arbres de décision $\bullet \bullet$}
 \label{sec:impurity}
 Dans le cas d'un problème de classification, on appelle la fonction de perte
 utilisée pour apprendre un arbre de décision son \textbf{critère d'impureté} :
