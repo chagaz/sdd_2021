@@ -102,13 +102,10 @@ Il s'agit donc bien d'un modèle paramétrique.
 Dans le cas d'un problème de régression, on utilisera tout simplement l'identité comme fonction d'activation. Le modèle appris est donc $\xx \mapsto \innerproduct{\ww, \xx},$ comme dans le cas de la régression linéaire.
 
 Le cas de la classification binaire, utilisant un seuil comme fonction
-d'activation, est historiquement le premier à avoir été traité. %Ce cas est détaillé dans la section~\ref{sec:perceptron_binary}.
-On utilisera plutôt,
-comme
-% \item Pour prédire la probabilité d'appartenir à la classe positive, comme
-dans le cas de la régression logistique (voir PC~5), une fonction logistique
-pour modéliser la probabilité d'appartenir à la classe positive. Le modèle
-appris est donc
+d'activation, est historiquement le premier à avoir été traité.  On utilisera
+plutôt, comme dans le cas de la régression logistique (voir PC~5), une fonction
+logistique pour modéliser la probabilité d'appartenir à la classe positive. Le
+modèle appris est donc
 \begin{equation}
   \xx \mapsto \frac1{1 + e^{- o(\xx)}} = 
   \frac1{1 + \exp \left( - \innerproduct{\ww,~\xx} \right)}.
@@ -139,11 +136,8 @@ une initialisation aléatoire du vecteur de poids de connexions
 $\left( w_0^{(0)}, w_1^{(0)}, \dots, w_p^{(0)} \right)$, par exemple, $\ww = \vec{0}$.
 
 Puis, à chaque observation, on ajuste ce vecteur dans la direction opposée au
-gradient du risque empirique. % En effet, ce gradient indique la direction de
-% plus forte pente du risque empirique ; le redescendre nous rapproche d'un point
-% où ce risque est minimal.
-Formellement, à une itération de l'algorithme, on
-tire une nouvelle observation $(\xx^i, y^i)$ et on actualise, pour tout $j$,
+gradient du risque empirique. Formellement, à une itération de l'algorithme,
+on tire une nouvelle observation $(\xx^i, y^i)$ et on actualise, pour tout $j$,
 les poids de connexion de la façon suivante :
 \begin{equation}
   \label{eq:update_rule}
@@ -371,7 +365,7 @@ où $\bbeta^*$ est donné par l'équation~\eqref{eq:ridgereg_sol} :
   \bbeta^* =  \left( \lambda I_p + X^\top X  \right)^{-1} X^\top \yy.
 \end{equation}
   
-En remplaçant $\bbeta^*$ par sa valeur, la fonction de prédiction peut se réécrire comme :%l'équation~\eqref{eq:reg_ridge_pred} peut se réécrire comme 
+En remplaçant $\bbeta^*$ par sa valeur, la fonction de prédiction peut se réécrire comme :
 \begin{equation}
   \label{eq:reg_ridge_2}
   f: \xx \mapsto \xx X^\top (\lambda I_n + XX^\top)^{-1} y.
@@ -449,12 +443,6 @@ $\innerproduct{\xx,~\xx^\prime}$ puis ajouter 1 et élever le tout au carré
 requiert $p+2$ opérations : la deuxième option est moins coûteuse. Évidemment,
 pour une régression quadratique et un faible nombre de variables, ces deux
 valeurs sont toutes les deux faibles. Cependant, la différence de temps de calcul entre les deux approches va augmenter avec le nombre de variables et le degré de polynôme considéré.
-% Cependant, vous pouvez imaginer étendre
-% cette approche à n'importe quel degré $d$, en définissant
-% $k(\xx,~\xx^\prime) = \left(\innerproduct{\xx,~\xx^\prime} + 1 \right)^d$, ce
-% qui correspond à une fonction $\phi$ calculant les ${d+p \choose p}$ monomes de
-% $p$ variables de degré au plus $d$. La différence de temps de calcul entre les
-% deux approches va se creuser quand $p$ et $d$ augmentent.
 
 La démarche que nous avons présentée ici se généralise à
 \begin{itemize}
@@ -592,10 +580,6 @@ observations. Ensuite, chaque n{\oe}ud partitionne uniquement les observations
 qui sont arrivées jusqu'à lui, autrement dit qui vérifient toutes les
 conditions dictées par ses parents. 
 
-% On peut alors associer, au niveau de ce n{\oe}ud, l'étiquette majoritaire de la
-% région $R_l(j)$ à tous les individus de $R_l(j)$ et l'étiquette majoritaire de
-% la région $R_r(j)$ à tous les individus de $R_r(j)$.
-
 \paragraph{Exemple} Sur l'exemple de la figure~\ref{fig:fruit_tree}, au
 n{\oe}ud « incurvé », $R_l$ est l'ensemble des fruits non rouge et de forme
 incurvée, et $R_r$ est l'ensemble des fruits non rouge et de forme non incurvée. Si
@@ -626,11 +610,7 @@ avec $y_l(j)$ l'étiquette majoritaire dans $R_l(j)$, à savoir
 y_l(j) = \argmax_{c \in \{0, 1\}} \abs{\{i:\xx^i \in R_l(j) ~|~y^i=c\}},
 \end{equation*}
 et, similairement, 
-$y_r(j)$ l'étiquette majoritaire dans $R_r(j)$.% , à savoir
-% \begin{equation*}
-% y_r(j) = \argmax_{c \in \{0, 1\}} \abs{\{i:\xx^i \in R_r(j) ~|~y^i=c\}}.
-% \end{equation*}
-
+$y_r(j)$ l'étiquette majoritaire dans $R_r(j)$.
 
 La section~\ref{sec:impurity} donne plus de détail sur la fonction de perte $L$
 utilisée dans le cas des arbres de décision. Vous pouvez considérer qu'on
@@ -640,7 +620,8 @@ La section~\ref{sec:grow_tree} montre comment étendre ce principe à des
 problèmes de régression et à des variables discrètes (de plus de deux
 modalités) ou continues. Il s'agit
 \begin{itemize}
-\item pour traiter les variables non-binaires, de les binariser (pour une variable continue, il s'agira de les comparer à un seuil) ;
+\item pour traiter les variables non-binaires, de les binariser (pour une
+  variable continue, il s'agira de les comparer à un seuil) ;
 \item pour traiter la régression, de remplacer le vote de la majorité par une
   moyenne.
 \end{itemize}
@@ -687,14 +668,6 @@ simples à entraîner et peu performants.  En pratique, si les modèles
 individuels sont déjà performants et robustes au bruit, le modèle ensembliste
 ne sera pas nécessairement meilleur. On utilise le plus souvent des arbres de
 décision comme modèles individuels.
-
-% Cette idée est similaire au concept de \textbf{sagesse des foules}, ou {\it
-%   wisdom of crowd} : si je demande à mes élèves l'année de la mort de Georges
-% Pompidou, il est probable que la moyenne de leurs réponses soit assez proche de
-% la bonne (1974) ; cependant, si je demande cette date à une seule personne au
-% hasard, je n'aurais aucun moyen de savoir a priori si cette personne connaît la
-% date ou me répond au hasard.
-
 
 \subsection{Bagging} Mais comment créer {\it plusieurs} arbres de décision
 différents à partir d'un unique jeu de données ? Le \textbf{bagging} est une
@@ -765,8 +738,8 @@ directement une fonction de seuil :
   \end{cases}
 \end{equation}
 
-\paragraph{Fonction de coût} On utilise alors une fonction de coût connue sous le nom de \textbf{critère du
-  perceptron} :
+\paragraph{Fonction de coût} On utilise alors une fonction de coût connue sous
+le nom de \textbf{critère du perceptron} :
 \begin{equation}
   \label{eq:perceptron}
   L(f(\xx^i), y^i) = \max(0, - y^i o(\xx^i)) = 
@@ -789,26 +762,6 @@ devient :
 \end{equation*}
 Ainsi, quand le perceptron fait une erreur de prédiction, il déplace la
 frontière de décision de sorte à corriger cette erreur.
-
-% Le \textbf{théorème de convergence du perceptron}\footnote{\textit{On
-%     convergence proofs on perceptrons}, A.  B. J. Novikoff.  Symposium on the
-%   Mathematical Theory of Automata, 615--622 (1962).} énonce que étant donné un
-% jeu de $n$ observations étiquetées $\DD = \{(\xx^i, y^i)_{i=1, \dots, n}\}$ et
-% $D, \gamma \in \RR_+^*$, si :
-% \begin{itemize}
-% \item $\forall i=1, \dots, n$, \; $\ltwonorm{\xx^i} \leq D$
-% \item il existe $\uu \in \RR^{p+1}$ tel que 
-%   \begin{itemize}
-%   \item $\ltwonorm{\uu}=1$ et
-%   \item $\forall i=1, \dots, n$, \;
-%     $y^i \langle \uu, \xx \rangle \geq \gamma$
-%   \end{itemize}
-% \end{itemize}
-% alors l'algorithme du perceptron converge en au plus
-% $\left(\frac{D}{\gamma}\right)^2$ étapes.
-
-
-
 
 \subsection{Approximation universelle $\bullet \bullet$}
 \label{sec:universal_approx}
@@ -1187,14 +1140,7 @@ Dans le cas d'un problème de classification, on appelle la fonction de perte
 utilisée pour apprendre un arbre de décision son \textbf{critère d'impureté} :
 il quantifie à quel point la région considérée est \og polluée \fg~par des
 éléments des classes qui n'y sont pas
-majoritaires. % En notant Imp ce critère, on choisit
-% donc la variable et le point de séparation comme
-% \begin{equation*}
-%   \argmin_{\zeta} \left( 
-%     \frac{\lvert  R_l(\zeta) \rvert}{n} \text{Imp}(R_l(\zeta)) +
-%     \frac{\lvert  R_r(\zeta) \rvert}{n} \text{Imp}(R_r(\zeta)).
-%   \right)
-% \end{equation*}
+majoritaires.
 
 Il existe plusieurs critères d'impureté, que nous détaillons dans cette section
 : l'\textbf{erreur de classification}, l'\textbf{entropie croisée} et
