@@ -17,10 +17,8 @@
 % SI units
 \usepackage{siunitx}
 
-%\usepackage[gen]{eurosym}
 \usepackage{textcomp}
 
-%\usepackage{tikzsymbols}
 
 % TODO
 \usepackage[dvipsnames]{xcolor}
@@ -29,26 +27,20 @@
 \newcommand{\erratum}[1]{{\color{Red}{ERRATUM : ~#1}}}
 
 
+
+%%%% TABLES & FIGURES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{graphicx}
+\usepackage{subcaption} % Side-by-side figures
+\usepackage{tikz}
+
 \usepackage{multirow}
-
-%\usepackage[sectionbib]{natbib}
-%\newcommand{\mycite}[1]{\cite{#1}\footnote{\printbibliography}}
-
-%\let\cleardoublepage\clearpage
-
-% Side-by-side figures
-\usepackage{subcaption}
-
 % Table becomes Tableau
 \usepackage{caption}
 \captionsetup{labelfont=sc}
 \def\frenchtablename{Tableau}
-
-\usepackage{graphicx}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \usepackage[colorlinks=true,urlcolor=MidnightBlue,linkcolor=black,citecolor=black]{hyperref}
-
-\usepackage{endnotes}
 
 %%%% GEOMETRY AND SPACING %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage[tmargin=2cm,bmargin=2cm,lmargin=3cm,footnotesep=1cm]{geometry}
@@ -77,13 +69,11 @@
 \titleclass{\chapter}{straight}
 \titlespacing*{\chapter}{0pt}{50pt}{30pt}
 \titleformat{\chapter}%[display]
-  {\normalfont\huge\bfseries}{\chaptertitlename\ \thechapter}{15pt}{\huge}
+{\normalfont\huge\bfseries}{\chaptertitlename\ \thechapter}{15pt}{\huge}
+
+\usepackage[all]{nowidow}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-  
-%%% TIKZ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\usepackage{tikz}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   
 
 % Mathematical symbols
@@ -113,8 +103,6 @@
 
 %%% ENVIRONNEMENTS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \makeatletter
-%%% Permet de pemettre \`a coup s\^ur la d\'efinition (que l'environnement soit d\'ej\`a d\'efini ou pas)
-%
 \def\forcedefenv#1{%%
 \global\expandafter\let\csname#1\endcsname\relax
 \global\expandafter\let\csname end#1\endcsname\relax
@@ -128,18 +116,12 @@
 \@afterheading
 \def\labelitemi{\textbullet}
 \begin{itemize}
-\setlength{\itemsep}{1ex}}{\end{itemize}\par\nobreak\noindent\makebox[\textwidth]{\hrulefill%\quad Fin  Pour aller plus loin\quad\hrulefill
-}\nobreak\par}
+\setlength{\itemsep}{1ex}}{\end{itemize}\par\nobreak\noindent\makebox[\textwidth]{\hrulefill}\nobreak\par}
 
 % Environnement "attention". 
 %
-% \forcedefenv{attention}
-% \newenvironment{attention}{\par\medbreak
-% \noindent\makebox[\textwidth]{\hrulefill\quad Attention\quad\hrulefill}\par\nobreak\@afterheading
-% }{\par\nobreak\par\noindent\makebox[\textwidth]{\hrulefill%\quad Fin  Attention\quad\hrulefill
-% }\nobreak\bigbreak}
 \forcedefenv{attention}
-\newenvironment{attention}%[1][\relax]
+\newenvironment{attention}
 {\par \noindent\rule[\baselineskip]{\textwidth}{1pt}\vspace{-\baselineskip}
 {\centering{\textbf{Attention}}\par}
 }
@@ -149,72 +131,27 @@
 % Environnement "encadre". 
 %
 \forcedefenv{encadre}
-% \newenvironment{encadre}[1][\relax]{\par\medbreak
-% \noindent\makebox[\textwidth]{\hrulefill\quad Encadr\'e\quad\hrulefill}\par\nobreak
-% \ifx#1\relax\else{\centering\bfseries\large \strut#1\par\nobreak}\vspace*{3mm}\par\nobreak\fi
-% \@afterheading
-% }{\par\nobreak\par\noindent\makebox[\textwidth]{\hrulefill\quad Fin  Encadr\'e\quad\hrulefill}\nobreak\bigbreak}
   \newenvironment{encadre}[1]{\par\medbreak
   \noindent\fbox{\parbox{\linewidth}{
 {\ifx#1\relax\else{\strut#1\par\nobreak}\vspace*{3mm}\par\nobreak\fi}
-%\@afterheading
-    }}}%{\par\nobreak\par\noindent\nobreak\bigbreak}
-
-
-
-
-% Environnement "exemple". 
-%
-% \forcedefenv{exemple}
-% % \newenvironment{exemple}[1][Exemple~:]{\par\medbreak\textit{#1}~\ignorespaces}{\par\bigbreak}
-% \newenvironment{exemple}[1][\relax]{%\par\medbreak
-% \noindent\makebox[\textwidth]{\rule{10pt}{0.4pt} \; \textbf{Exemple} \; \hrulefill}\par\nobreak
-% %\noindent\makebox[\textwidth]{\hrulefill\quad Exemple\quad\hrulefill}\par\nobreak
-% \ifx#1\relax\else{\centering\bfseries\large \strut#1\par\nobreak} \vspace*{3mm} \par\nobreak
-% \fi
-% \@afterheading
-% }{\par\nobreak\par\noindent\makebox[\textwidth]{\hrulefill}\nobreak\bigbreak}
-
-
+    }}}
 
 \forcedefenv{exemple}
-\newenvironment{exemple}%[1][\relax]
+\newenvironment{exemple}
 {\par 
 \begin{adjustwidth}{2em}{2em}
 \noindent\rule{10pt}{0.4pt} \; \textbf{Exemple} \; \hrulefill \par}
 {\par \noindent\rule[\baselineskip]{\textwidth-4em}{0.4pt}\vspace{-\baselineskip}\par
 \end{adjustwidth}}
 
-% \newenvironment{exemple}%
-% {
-% \centering
-% \begin{flushright}    
-% \begin{minipage}{5cm}}%
-% {
-% \end{minipage}
-% \end{flushright}}
-
-% Environnement "answer". 
-%
-% \forcedefenv{answer}
-% % \newenvironment{exemple}[1][Exemple~:]{\par\medbreak\textit{#1}~\ignorespaces}{\par\bigbreak}
-% \newenvironment{answer}[1][\relax]{\par\medbreak
-% \noindent\makebox[\textwidth]{\rule{10pt}{0.4pt} \; \textbf{Réponse} \; \hrulefill}\par\nobreak
-% \ifx#1\relax\else{\centering\bfseries\large \strut#1\par\nobreak}\vspace*{3mm}\par\nobreak\fi
-% \@afterheading
-% }{\par\nobreak\par\noindent\makebox[\textwidth]{\hrulefill}\nobreak\bigbreak}
-% %}{\makebox[\textwidth]{\hrulefill}\nobreak}
 \forcedefenv{answer}
-\newenvironment{answer}%[1][\relax]
-{\par\noindent% \rule{10pt}{0.4pt} \;
+\newenvironment{answer}
+{\par\noindent
   \textbf{Réponse} \hrulefill \par}
 {\par \noindent\rule[\baselineskip]{\textwidth}{0.4pt}\vspace{-\baselineskip}\par}
 
 
 % Environnement "remarque". 
-%
-% \forcedefenv{remarque}
-% \newenvironment{remarque}[1][Remarque~:]{\par\medbreak\textbf{#1}~\ignorespaces}{\par\bigbreak}
 \forcedefenv{remarque}
 \newenvironment{remarque}[1][\relax]{\par\medbreak
 \noindent\makebox[\textwidth]{\hrulefill\quad Remarque\quad\hrulefill}\par\nobreak
