@@ -1,7 +1,5 @@
 # UE 21.2 EC Science des données
-Cours « science des données » à Mines ParisTech (2020­–2021). 
-
-[![License: CC BY-SA 4.0](https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg)](http://creativecommons.org/licenses/by-sa/4.0/)
+Cours « science des données » à Mines ParisTech (2020­–2021). [![License: CC BY-SA 4.0](https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg)](http://creativecommons.org/licenses/by-sa/4.0/)
 
 __Organisation de ce repo__
 * `environment.yml` permet de charger l'environnement conda pour les notebooks via l'interface graphique d'Anaconda ou 
