@@ -137,7 +137,7 @@ aléatoire $(X_1, X_2, \dots, X_n),$ c'est à dire une variable aléatoire
 fonction de $(X_1, X_2, \dots, X_n) :$ un estimateur $\Theta_n$ de $\theta$
 peut être défini par 
 \[
-  \Theta_n = g(X_1, X_2, \dots, X_n), \qquad g: E \rightarrow \RR.
+  \Theta_n = g(X_1, X_2, \dots, X_n), \qquad g: E^n \rightarrow \RR.
 \]
 
 Étant donné un échantillon $(x_1, x_2, \dots, x_n)$ de $X$, on appelle
@@ -236,6 +236,7 @@ $\theta + \epsilon$.
 \end{figure}
 
 \subsection{Exemple : Estimation non-biaisée de la variance}
+\label{sec:unbiased_variance_estimation}
 Considérons $X$ est de carré intégrable ($X \in \Lcal^2$), d'espérance $m$ et
 de variance $\sigma^2$.
 
@@ -282,7 +283,8 @@ estimateur moins biaisé mais avec une plus grande variance.
 C'est pourquoi on utilise pour quantifier la précision d'un estimateur ponctuel générique son
 \textbf{erreur quadratique moyenne,} définie comme
 \begin{equation}
-  \text{EQM}(\Theta_n) = \EE((\Theta_n - \theta)^2) = \VV(\Theta_n) + \text{B}(\Theta_n)^2.
+  \text{EQM}(\Theta_n) = \EE((\Theta_n - \theta)^2) = \VV(\Theta_n - \theta) + \EE((\Theta_n - \theta))^2
+  = \VV(\Theta_n) + \text{B}(\Theta_n)^2.
 \label{eq:eqm}
 \end{equation}
 
@@ -408,7 +410,7 @@ Si de plus la convergence est presque sûre,
 $(\Theta_n)_{n \in \NN^*} \cvps \theta,$ on dit alors que $\Theta_n$ est un
 estimateur \textbf{fortement convergent} de $\theta$.
 
-\paragraph{Propriété} Un estimateur sans biais et de variance
+\paragraph{Proposition} Un estimateur sans biais et de variance
 asymptotiquement nulle est convergent.
 
 \paragraph{Preuve} La preuve en a été faite dans l'exercice « Convergence vers
@@ -416,9 +418,7 @@ une constante » de Probabilité IV. Pour rappel, posons $\Theta_n$ un estimateur
 non biaisé et de variance asymptotiquement nulle de $\theta \in \RR$,
 c'est-à-dire que $\EE(\Theta_n) = \theta$ et $\VV(\Theta_n) \cvn 0.$ $\Theta_n$
 est donc d'espérance et de variance bornées et ainsi dans $\Lcal^2.$ Enfin,
-\[
-  \EE((\Theta_n - \theta)^2) = \VV(\Theta_n - \theta) + [\EE(\Theta_n) - \theta]^2,
-\]
+$  \EE((\Theta_n - \theta)^2) = \VV(\Theta_n) + B(\Theta_n)^2,$
 et donc $\EE((\Theta_n - \theta)^2) \cvn 0,$ ce qui signifie que
 $\Theta_n \cvltwo \theta$ et donc $\Theta_n \cvproba \theta. \hfill \square$
 
@@ -757,9 +757,10 @@ Posons $M_n = \frac1n \sum_{i=1}^n X_i.$
    = \EE\left(\left(\frac1n \sum_{i=1}^n X_i\right)^2\right) - m^2 
    = \frac1{n^2} \EE\left( \sum_{i=1}^n X_i \sum_{j=1}^n X_j\right) - m^2 \\
   & = \frac1{n^2} \EE\left( \sum_{i=1}^n \left(X_i^2 + \sum_{j \neq i }^n X_i X_j \right) \right) - m^2 
-   = \frac1{n} \left(\EE(X^2) + \sum_{j \neq i }^n \EE(X)^2 \right) - m^2, \\
+   = \frac1{n} \left(\EE(X^2) + \sum_{j \neq i }^n \EE(X)^2 \right) - m^2, 
 \end{align*}
-Et donc 
+par linéarité de l'espérance et car, pour $i \neq j$, $X_i$ et $X_j$ sont indépendantes et donc $\EE(X_iX_j) = \EE(X_i) \EE(X_j) = \EE(X)^2.$
+Ainsi,
 \[
   \VV(M_n) = \frac1{n} \left(\underbrace{\sigma^2 + m^2}_{\EE(X^2)} + (n-1) \, \underbrace{m^2}_{\EE(X)^2}  \right) - m^2 = \frac{\sigma^2}{n}.
 \]
@@ -777,9 +778,8 @@ Posons $M_n = \frac1n \sum_{i=1}^n X_i$ et $S_n = \frac1n \sum_{i=1}^n (X_i - M_
     \frac1n \sum_{i=1}^n \left( \EE(X_i^2) +  \EE(M_n^2) - 2 \EE(X_i M_n) \right)  \\
   & = \EE(X^2) + \EE(M_n^2) - \frac2n \sum_{i=1}^n \EE(X_i M_n).
 \end{align*}
-Nous avons montré lors du calcul de la variance de la moyenne empirique que
+Nous avons montré lors du calcul de la variance de la moyenne empirique (section~\ref{sec:variance_moyenne_empirique}) que
 $\EE(X^2) = \sigma^2 + m^2$ et que $\EE(M_n^2) = m^2 + \frac{\sigma^2}{n}.$
-
 De plus, par linéarité de l'espérance,
 \[
   \EE(M_n^2) = \EE\left( \left(\frac1n \sum_{i=1}^n X_i \right) M_n \right) = \frac1n \sum_{i=1}^n \EE(X_i M_n),
