@@ -539,23 +539,23 @@ directement la vraisemblance mais son logarithme :
   
   L'estimation par maximum de vraisemblance de $p$ est
   \begin{align*}
-    \hatmle{p} & = \argmax_{p \in [0, 1]} \sum_{i=1}^n \ln \PP_{X; p}(X=x_i)
-                          = \argmax_{p \in [0, 1]} \sum_{i=1}^n \ln 
-                          \left( p^{x_i} (1-p)^{1-x_i}  \right) \\
-                        & = \argmax_{p \in [0, 1]} \sum_{i=1}^n x_i \ln p + 
-                          \left( n - \sum_{i=1}^n x_i \right) \ln (1-p).
+    \hatmle{p} & = \argmax_{t \in [0, 1]} \sum_{i=1}^n \ln \PP_{X; t}(X=x_i)
+                          = \argmax_{t \in [0, 1]} \sum_{i=1}^n \ln 
+                          \left( t^{x_i} (1-t)^{1-x_i}  \right) \\
+                        & = \argmax_{t \in [0, 1]} \sum_{i=1}^n x_i \ln t + 
+                          \left( n - \sum_{i=1}^n x_i \right) \ln (1-t).
   \end{align*}
   La fonction
-  $L: p \mapsto \sum_{i=1}^n x_i \ln p + \left( n - \sum_{i=1}^n x_i \right)
-  \ln (1-p)$
+  $\ell: t \mapsto \sum_{i=1}^n x_i \ln t + \left( n - \sum_{i=1}^n x_i \right)
+  \ln (1-t)$
   est concave, nous pouvons donc la maximiser en annulant sa dérivée :
   \begin{equation*}
-    \frac{d L}{d p} = \sum_{i=1}^n x_i \frac{1}{p} - 
-    \left( n - \sum_{i=1}^n x_i \right) \frac{1}{1-p},
+    \frac{d \ell}{d t} = \sum_{i=1}^n x_i \frac1t - 
+    \left( n - \sum_{i=1}^n x_i \right) \frac1{1-t},
   \end{equation*}
   ce qui nous donne
   \begin{equation*}
-    (1 - \hatmle{p}) \sum_{i=1}^n x_i - \hatmle{p} \left( n - 
+    (1 - \hatmle{p}) \left( \sum_{i=1}^n x_i \right) - \hatmle{p} \left( n - 
       \sum_{i=1}^n x_i \right) = 0
   \end{equation*}
   et donc
@@ -566,6 +566,8 @@ directement la vraisemblance mais son logarithme :
   
   L'estimateur par maximum de vraisemblance de $p$ est ainsi tout simplement la
   moyenne empirique de l'échantillon. Dans notre exemple, $p=450/500=90\%.$
+
+  Remarque : en toute rigueur, on traitera séparément les cas particuliers où $\sum_{i=1}^n x_i=n$ ou $\sum_{i=1}^n x_i=0$.
 \end{exemple}
 
 
@@ -579,7 +581,7 @@ que la log-vraisemblance divisée par $n$.
 \label{sec:rayleigh_exo}
 Soit $X$ une variable aléatoire réelle dont la densité de probabilité est donnée par 
 \[
-  f(x; \sigma^2) = \frac{x}{\sigma^2} \exp \left( - \frac{x^2}{2 \sigma^2} \right).
+  f(x; \sigma^2) = \frac{x}{\sigma^2} \exp \left( - \frac{x^2}{2 \sigma^2} \right) \text{ pour } x \in [0, +\infty[.
 \]
 On pourra vérifier\footnote{Par exemple sur \href{https://fr.wikipedia.org/wiki/Loi_de_Rayleigh}{https://fr.wikipedia.org/wiki/Loi\_de\_Rayleigh}.} qu'il s'agit d'une loi de Rayleigh de paramètre d'échelle
 $\lambda = \sqrt{2} \sigma$. Ainsi son espérance et sa variance sont données par 
@@ -847,9 +849,9 @@ Ainsi, l'estimation par maximum de vraisemblance de $\sigma^2$ est donnée par :
   \hatmle{\sigma^2} \in \argmax_{s \in \RR_+} \left(-n \ln(s) + \sum_{i=1}^n \ln(x_i) - 
 \frac{1}{2s} \sum_{i=1}^n x_i^2\right).
 \]
-La fonction de $\RR_+$ dans $\RR$ qui à $s$ associe
-$-n \ln(s) + \sum_{i=1}^n \ln(x_i) - \frac{1}{2s} \sum_{i=1}^n x_i^2$ est une
-fonction concave en $s$. On obtient donc son maximum en annulant sa dérivée, qui vaut :
+On obtient un point critique de la fonction de $\RR_+$ dans $\RR$ qui à $s$
+associe $-n \ln(s) + \sum_{i=1}^n \ln(x_i) - \frac{1}{2s} \sum_{i=1}^n x_i^2$
+en annulant sa dérivée, qui vaut :
 \[
   s \mapsto - \frac{n}{s} + \frac12 \sum_{i=1}^n x_i^2 \frac{1}{s^2},
 \]
@@ -857,6 +859,7 @@ et donc
 \[
   \hatmle{\sigma^2} = \frac{1}{2n} \sum_{i=1}^n x_i^2.
 \]
+(On vérifiera que ce point critique est bien un maximum.)
 Ainsi, étant donné un échantillon aléatoire $(X_1, X_2, \dots, X_n)$ de $X$,
 l'estimateur par maximum de vraisemblance de $\sigma^2$ est donné par
 \[
