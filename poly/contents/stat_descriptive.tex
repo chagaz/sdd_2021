@@ -1,315 +1,315 @@
 %-*- coding: iso-latin-1 -*-
 \label{chap:stat_descr}
-\paragraph{Notions :} individu, population, fréquences, indicateurs de tendance
+\paragraph{Notions :} individu, population, frÃ©quences, indicateurs de tendance
 centrale, indicateurs de liaison, table de contingence.
 
-\paragraph{Objectif pédagogique :}
-Caractériser une variable statistique, ou la relation entre deux variables
-statistiques, à travers des représentations graphiques et le calcul
-d'indicateurs numériques.\\
+\paragraph{Objectif pÃ©dagogique :}
+CaractÃ©riser une variable statistique, ou la relation entre deux variables
+statistiques, Ã  travers des reprÃ©sentations graphiques et le calcul
+d'indicateurs numÃ©riques.\\
 
-Le rôle de la statistique descriptive est de caractériser une population par la
-détermination d'un certain nombre de grandeurs qui la décrivent. Ce chapitre
-présente quelques unes des visualisations et des indicateurs numériques les
-plus fréquemments utilisés pour décrire une unique variable statistique, ou la
+Le rÃ´le de la statistique descriptive est de caractÃ©riser une population par la
+dÃ©termination d'un certain nombre de grandeurs qui la dÃ©crivent. Ce chapitre
+prÃ©sente quelques unes des visualisations et des indicateurs numÃ©riques les
+plus frÃ©quemments utilisÃ©s pour dÃ©crire une unique variable statistique, ou la
 relation entre deux variables statistiques.
 
-Il s'agit ici uniquement de \textit{décrire} les données. La statistique
-descriptive ne nous permet pas de faire de l'\textit{inférerence}, c'est-à-dire
-de tirer des conclusions sur ces données. Elle nous permet par contre de faire
-des hypothèses, comme par exemple :
+Il s'agit ici uniquement de \textit{dÃ©crire} les donnÃ©es. La statistique
+descriptive ne nous permet pas de faire de l'\textit{infÃ©rence}, c'est-Ã -dire
+de tirer des conclusions sur ces donnÃ©es. Elle nous permet par contre de faire
+des hypothÃ¨ses, comme par exemple :
 \begin{itemize}
 \item Telle variable semble suivre une distribution uniforme sur un intervalle ;
-\item Telle variable semble dépendre de telle autre ;
-\item Telle variable semble prendre une valeur plus élevée dans un segment de
+\item Telle variable semble dÃ©pendre de telle autre ;
+\item Telle variable semble prendre une valeur plus Ã©levÃ©e dans un segment de
   la population que dans un autre.
 \end{itemize}
 
-\paragraph{Exercice :} En découvrant les exemples de ce chapitre, demandez-vous
-quelles hypothèses les valeurs d'indicateurs et les visualisations graphiques
-vous suggèrent.  Quand vous rencontrez des indicateurs numériques ou des
-visualisations de données dans d'autres matières ou projets, ou dans les media
+\paragraph{Exercice :} En dÃ©couvrant les exemples de ce chapitre, demandez-vous
+quelles hypothÃ¨ses les valeurs d'indicateurs et les visualisations graphiques
+vous suggÃ¨rent.  Quand vous rencontrez des indicateurs numÃ©riques ou des
+visualisations de donnÃ©es dans d'autres matiÃ¨res ou projets, ou dans les media
 d'information, demandez-vous dans quelle section de ce chapitre elles entrent ;
-quelle est la taille de la population et/ou de l'échantillon ; quelle est la
-nature des variables mesurées ; quelles hypothèses elles vous permettent de
+quelle est la taille de la population et/ou de l'Ã©chantillon ; quelle est la
+nature des variables mesurÃ©es ; quelles hypothÃ¨ses elles vous permettent de
 formuler.
 
 \section{Statistique descriptive unidimensionelle}
-Il s'agit ici de mettre en évidence les principales caractéristiques d'une
-unique variable statistique $x$ observée sur $n$ individus, à travers la série
+Il s'agit ici de mettre en Ã©vidence les principales caractÃ©ristiques d'une
+unique variable statistique $x$ observÃ©e sur $n$ individus, Ã  travers la sÃ©rie
 statistique $(x_1, x_2, \dots, x_n).$
 
-\subsection{Fréquences}
-L'étude d'une série statistique passe par la construction d'une \textbf{table
-  des fréquences,} soit des valeurs elles-mêmes dans le cas d'une variable
-qualitative ou discrète, soit d'intervalles de ces valeurs. La construction de
-ces intervalles permet de transformer la série statistique en \textbf{série
-  classée.}
+\subsection{FrÃ©quences}
+L'Ã©tude d'une sÃ©rie statistique passe par la construction d'une \textbf{table
+  des frÃ©quences,} soit des valeurs elles-mÃªmes dans le cas d'une variable
+qualitative ou discrÃ¨te, soit d'intervalles de ces valeurs. La construction de
+ces intervalles permet de transformer la sÃ©rie statistique en \textbf{sÃ©rie
+  classÃ©e.}
 
 \begin{exemple}
-  Prenons l'exemple des données dans
+  Prenons l'exemple des donnÃ©es dans
   \texttt{data/OPEN\_BIO\_2018\_7325.csv} dont sont extraits les 20 individus
-  du tableau~\ref{tab:remboursement_data}. La \textbf{table des fréquences}
-des âges est donnée dans le tableau ci-dessous : \par
+  du tableau~\ref{tab:remboursement_data}. La \textbf{table des frÃ©quences}
+des Ã¢ges est donnÃ©e dans le tableau ci-dessous : \par
 %~\ref{tab:remboursement_age_freq}.
   % \begin{table}[h]
   %   \centering
-  %   \begin{tabular}[h]{|l|c|c|c|c|c|} \hline Tranche d'âge (ans) & 20 -- 39 &
-  %     40 -- 59 & $>$ 60 \\ \hline Fréquence & 20\% & 25\% & 55\% \\ \hline
+  %   \begin{tabular}[h]{|l|c|c|c|c|c|} \hline Tranche d'Ã¢ge (ans) & 20 -- 39 &
+  %     40 -- 59 & $>$ 60 \\ \hline FrÃ©quence & 20\% & 25\% & 55\% \\ \hline
   %   \end{tabular}
-  %   \caption{Table des fréquences des âges parmi les 20 individus du
+  %   \caption{Table des frÃ©quences des Ã¢ges parmi les 20 individus du
   %   tableau~\ref{tab:remboursement_data}.}
   %   \label{tab:remboursement_age_freq_set}
   % \end{table}
   % \begin{table}[h]
     \centering
     \begin{tabular}[h]{|l|c|c|c|c|} \hline 
-      Tranche d'âge (ans)   & 0 -- 19 & 20 -- 39  & 40 -- 59  & $>$ 60    \\ \hline     
-      Fréquence             & 7\%     & 18\%      & 31\%      & 43\%      \\ \hline
+      Tranche d'Ã¢ge (ans)   & 0 -- 19 & 20 -- 39  & 40 -- 59  & $>$ 60    \\ \hline     
+      FrÃ©quence             & 7\%     & 18\%      & 31\%      & 43\%      \\ \hline
     \end{tabular}    
 
-    % \caption{Table des fréquences des âges parmi les 604 individus de \texttt{data/OPEN\_BIO\_2018\_7325.csv} 
+    % \caption{Table des frÃ©quences des Ã¢ges parmi les 604 individus de \texttt{data/OPEN\_BIO\_2018\_7325.csv} 
     %   dont sont extraits les 20 individus du tableau~\ref{tab:remboursement_data}.}
     % \label{tab:remboursement_age_freq}
   % \end{table}
 \end{exemple}
 
-Pour une variable qualitative, la table de fréquences peut aussi être
-visualisée grâce à un \textbf{diagramme en bâtons,} comme illustré sur la
+Pour une variable qualitative, la table de frÃ©quences peut aussi Ãªtre
+visualisÃ©e grÃ¢ce Ã  un \textbf{diagramme en bÃ¢tons,} comme illustrÃ© sur la
 figure~\ref{fig:remboursement_age_bars}.
 % \begin{figure}[h]
 %   \centering
 %     \includegraphics[width=.5\textwidth]{figures/stats/remboursement_age_bars}
-%   \caption{Diagramme en bâtons de la fréquence des tranches d'âges dans les
-%     données du tableau~\ref{tab:remboursement_data}.}
+%   \caption{Diagramme en bÃ¢tons de la frÃ©quence des tranches d'Ã¢ges dans les
+%     donnÃ©es du tableau~\ref{tab:remboursement_data}.}
 %   \label{fig:remboursement_age_bars}
 % \end{figure}
 \begin{figure}[h]
   \centering
     \includegraphics[width=.5\textwidth]{figures/stats/remboursement_age_bars}
-  \caption{Diagramme en bâtons de la fréquence des tranches d'âges dans les
-    données de remboursement.}
+  \caption{Diagramme en bÃ¢tons de la frÃ©quence des tranches d'Ã¢ges dans les
+    donnÃ©es de remboursement.}
   \label{fig:remboursement_age_bars}
 \end{figure}
 
 Dans le cas d'une variable continue, la constitution des classes de valeurs
-d'une série statistique est une étape importante. La \textbf{règle de Sturges}
-propose de découper les valeurs observées en $k = \lfloor 1 + \log_2(n)\rfloor$
-intervalles de même taille $\frac{\max(x_i) - \min(x_i)}{k}$. Cependant, cette
-règle suppose que la variable analysée suive une distribution gaussienne ; elle
-n'est pas appropriée, par exemple, si les valeurs s'étalent sur plusieurs
-échelles de grandeur, auquel cas une transformation logarithmique s'imposera.
+d'une sÃ©rie statistique est une Ã©tape importante. La \textbf{rÃ¨gle de Sturges}
+propose de dÃ©couper les valeurs observÃ©es en $k = \lfloor 1 + \log_2(n)\rfloor$
+intervalles de mÃªme taille $\frac{\max(x_i) - \min(x_i)}{k}$. Cependant, cette
+rÃ¨gle suppose que la variable analysÃ©e suive une distribution gaussienne ; elle
+n'est pas appropriÃ©e, par exemple, si les valeurs s'Ã©talent sur plusieurs
+Ã©chelles de grandeur, auquel cas une transformation logarithmique s'imposera.
 
-% Cela nous permet ensuite de construire une \textbf{table des fréquences} qui
-% associe à chaque classe de valeurs la fréquence de cette valeur dans la
-% population observée.
+% Cela nous permet ensuite de construire une \textbf{table des frÃ©quences} qui
+% associe Ã  chaque classe de valeurs la frÃ©quence de cette valeur dans la
+% population observÃ©e.
 
 \begin{exemple}
-  Prenons par exemple, 31 observations de la température minimale (en
-  \si{\celsius}) pour la station météo de Paris-Montsouris, telles que relevées
-  dans la première colonne de la table~\ref{tab:meteo_data}.
+  Prenons par exemple, 31 observations de la tempÃ©rature minimale (en
+  \si{\celsius}) pour la station mÃ©tÃ©o de Paris-Montsouris, telles que relevÃ©es
+  dans la premiÃ¨re colonne de la table~\ref{tab:meteo_data}.
 
-  Nous disposons de $n=31$ observations, qu'il s'agit, en appliquant la règle de
+  Nous disposons de $n=31$ observations, qu'il s'agit, en appliquant la rÃ¨gle de
   Sturges, de grouper en 5 intervalles d'amplitude 2,24\si{\celsius}. La table
-  des fréquences des températures minimales est donnée dans le
+  des frÃ©quences des tempÃ©ratures minimales est donnÃ©e dans le
   tableau ci-dessous : \par % ~\ref{tab:meteo_tmin_freq}.
   % \begin{table}[h]
 
     \centering
     \begin{tabular}[h]{|l|c|c|c|c|c|} \hline 
       T min (\si{\celsius}) & < -0,16 & -0,16 -- 2,08 & 2,08 -- 4,32 & 4,32 -- 6,56 & > 6,56 \\ \hline 
-      Fréquence & 0,19 & 0,19 & 0,29 & 0,10 & 0,23 \\ \hline
+      FrÃ©quence & 0,19 & 0,19 & 0,29 & 0,10 & 0,23 \\ \hline
     \end{tabular}
 
-  %   \caption{Table des fréquences des températures minimales du tableau~\ref{tab:meteo_data}.}
+  %   \caption{Table des frÃ©quences des tempÃ©ratures minimales du tableau~\ref{tab:meteo_data}.}
   %   \label{tab:meteo_tmin_freq}
   % \end{table}
 \end{exemple}
 
-Pour une variable continue, la table des fréquences peut être traduite en
-\textbf{histogramme,} comme illustré sur la figure~\ref{fig:meteo_tmin_hist}.
+Pour une variable continue, la table des frÃ©quences peut Ãªtre traduite en
+\textbf{histogramme,} comme illustrÃ© sur la figure~\ref{fig:meteo_tmin_hist}.
 
-Utiliser des fréquences plutôt que des comptes permet de comparer des
-populations de taille différente. De plus, la distribution des fréquences
-d'une série statistique de la variable $x$, représentée visuellement par un
-histogramme, peut être considérée comme une approximation de la distribution de
-la probabilité de cette variable dans la population.
+Utiliser des frÃ©quences plutÃ´t que des comptes permet de comparer des
+populations de taille diffÃ©rente. De plus, la distribution des frÃ©quences
+d'une sÃ©rie statistique de la variable $x$, reprÃ©sentÃ©e visuellement par un
+histogramme, peut Ãªtre considÃ©rÃ©e comme une approximation de la distribution de
+la probabilitÃ© de cette variable dans la population.
 
 \begin{figure}[h]
   \centering
   \includegraphics[width=.5\textwidth]{figures/stats/meteo_tmin_hist}
-  \caption{Histogramme des températures minimales dans le
+  \caption{Histogramme des tempÃ©ratures minimales dans le
     tableau~\ref{tab:meteo_data}.}
   \label{fig:meteo_tmin_hist}
 \end{figure}
 
 
-\paragraph{Fréquences cumulées} 
-On peut aussi choisir de représenter plutôt les \textbf{fréquences cumulées.} 
+\paragraph{FrÃ©quences cumulÃ©es} 
+On peut aussi choisir de reprÃ©senter plutÃ´t les \textbf{frÃ©quences cumulÃ©es.} 
 
 \begin{exemple}
-  Pour notre série de températures minimales, la table des fréquences cumulées
-  est donnée dans le tableau ci-dessous : \par % ~\ref{tab:meteo_tmin_cumul_freq}.
+  Pour notre sÃ©rie de tempÃ©ratures minimales, la table des frÃ©quences cumulÃ©es
+  est donnÃ©e dans le tableau ci-dessous : \par % ~\ref{tab:meteo_tmin_cumul_freq}.
   % \begin{table}[h]
 
     \centering
     \begin{tabular}[h]{|l|c|c|c|c|c|} \hline 
       T min (\si{\celsius}) & < -0,16 & < 2,08 & < 4,32 & < 6,56 & < 8,80 \\ \hline 
-      Fréquence & 0,19 & 0,38 & 0,67 & 0,77 & 1,0 \\ \hline
+      FrÃ©quence & 0,19 & 0,38 & 0,67 & 0,77 & 1,0 \\ \hline
       T min (\si{\celsius}) & > -2,40 & > -0,16 & > 2,08 & > 4,32 & > 6,56 \\ \hline 
-      Fréquence & 1,0 & 0,81 & 0,62 & 0,33 & 0,23 \\ \hline
+      FrÃ©quence & 1,0 & 0,81 & 0,62 & 0,33 & 0,23 \\ \hline
     \end{tabular}
 
-  %   \caption{Table des fréquences cumulées pour les températures minimales 
+  %   \caption{Table des frÃ©quences cumulÃ©es pour les tempÃ©ratures minimales 
   %     du tableau~\ref{tab:meteo_data}.}
   %   \label{tab:meteo_tmin_cumul_freq}
   % \end{table}
 \end{exemple}
 
-Une table des fréquences cumulées croissantes et décroissantes peut
-directement être traduite en \textbf{courbes des fréquences cumulées,} comme
-illustré sur la figure~\ref{fig:meteo_tmin_cumul_freq}.
+Une table des frÃ©quences cumulÃ©es croissantes et dÃ©croissantes peut
+directement Ãªtre traduite en \textbf{courbes des frÃ©quences cumulÃ©es,} comme
+illustrÃ© sur la figure~\ref{fig:meteo_tmin_cumul_freq}.
 \begin{figure}[h]
   \centering
   \includegraphics[width=.8\textwidth]{figures/stats/meteo_tmin_cumul_freq}
-  \caption{Courbes des fréquences cumulées pour les températures minimales du
+  \caption{Courbes des frÃ©quences cumulÃ©es pour les tempÃ©ratures minimales du
     tableau~\ref{tab:meteo_data}.}
   \label{fig:meteo_tmin_cumul_freq}
 \end{figure}
 
-\subsection{Indicateurs numériques}
-Enfin, des \textbf{indicateurs numériques} permettent de compléter cette
+\subsection{Indicateurs numÃ©riques}
+Enfin, des \textbf{indicateurs numÃ©riques} permettent de complÃ©ter cette
 description. On distinguera les \textbf{indicateurs de tendance centrale} qui
-indiquent l'ordre de grandeur des valeurs de la série statistique et où ces
+indiquent l'ordre de grandeur des valeurs de la sÃ©rie statistique et oÃ¹ ces
 valeurs se rassemblent, des \textbf{indicateurs de dispersion} qui indiquent
-l'étalement de ces valeurs.
+l'Ã©talement de ces valeurs.
 
 \paragraph{Indicateurs de tendance centrale} Les indicateurs de tendance centrale comportent :
 \begin{itemize}
-\item la \textbf{moyenne arithmétique} 
+\item la \textbf{moyenne arithmÃ©tique} 
 \[\bar x = \frac1n \sum_{i=1}^n x_i,\]
-La  moyenne arithmétique peut être très sensible à la présence de valeurs aberrantes.
-\item la \textbf{médiane,} qui correspond à une fréquence cumulée de 50\%, 
-\item le \textbf{mode,} qui est la valeur la plus fréquente dans la série
-  statistique. Le mode n'a réellement de sens que pour une variable discrète ;
-  dans le cas d'une variable continue, on parlera plutôt, lorsque la série est
-  classée, de \textbf{classe modale} qui est la classe la plus fréquente.
+La  moyenne arithmÃ©tique peut Ãªtre trÃ¨s sensible Ã  la prÃ©sence de valeurs aberrantes.
+\item la \textbf{mÃ©diane,} qui correspond Ã  une frÃ©quence cumulÃ©e de 50\%, 
+\item le \textbf{mode,} qui est la valeur la plus frÃ©quente dans la sÃ©rie
+  statistique. Le mode n'a rÃ©ellement de sens que pour une variable discrÃ¨te ;
+  dans le cas d'une variable continue, on parlera plutÃ´t, lorsque la sÃ©rie est
+  classÃ©e, de \textbf{classe modale} qui est la classe la plus frÃ©quente.
 \end{itemize}
 
 \begin{exemple}
-  Pour notre série de températures minimales,
+  Pour notre sÃ©rie de tempÃ©ratures minimales,
   \begin{itemize}
-  \item la moyenne arithmétique vaut $3,2 \si{\celsius}$ ;
-  \item la médiane vaut $4 \si{\celsius}$ ;
+  \item la moyenne arithmÃ©tique vaut $3,2 \si{\celsius}$ ;
+  \item la mÃ©diane vaut $4 \si{\celsius}$ ;
   \item la classe modale est $2,1$ -- $4,4 \si{\celsius}$.
   \end{itemize}
 \end{exemple}
 
 \paragraph{Indicateurs de dispersion} Les indicateurs de dispersion comportent : 
 \begin{itemize}
-\item la \textbf{variance de la série statistique} 
+\item la \textbf{variance de la sÃ©rie statistique} 
 \[ \text{var}(x_1, x_2, \dots, x_n) = \frac1n \sum_{i=1}^n (x_i - \bar x)^2,\]
-\item la \textbf{variance d'échantillonnage} 
+\item la \textbf{variance d'Ã©chantillonnage} 
   \[ \text{var}^*(x_1, x_2, \dots, x_n) = \frac1{n-1} \sum_{i=1}^n (x_i - \bar
     x)^2,\]
-  La variance d'échantillonnage est d'autant plus proche de la variance que le
+  La variance d'Ã©chantillonnage est d'autant plus proche de la variance que le
   nombre d'observations est grand. Nous verrons dans la
   section~\ref{sec:unbiased_variance_estimation} qu'il s'agit d'une estimation
-  \textbf{non-biaisée} de la variance de la population.
-\item l'\textbf{écart-type} qui est la racine carrée de la variance, 
+  \textbf{non-biaisÃ©e} de la variance de la population.
+\item l'\textbf{Ã©cart-type} qui est la racine carrÃ©e de la variance, 
 \item le \textbf{coefficient de variation} 
   \[ \text{CV}(x_1, x_2, \dots, x_n) = \frac{\text{var}(x_1, x_2, \dots, x_n)}{\bar
       x}\]
-  Le coefficient de variation permet d'apprécier la variabilité d'une variable
-  en fonction de sa valeur moyenne, et n'a de sens que pour une variable donnée
-  sur une échelle dotée d'un zéro absolu, c'est-à-dire dans laquelle une valeur
-  de $2z$ peut effectivement être considérée comme deux fois plus qu'une valeur
-  de $z$ (ce n'est pas le cas pour une température en degrés Celsius :
-  10\si{\celsius} n'est pas « deux fois plus chaud » que 5 \si{\celsius}). De
-  plus, il est numériquement instable quand $\bar x$ est proche de 0.
+  Le coefficient de variation permet d'apprÃ©cier la variabilitÃ© d'une variable
+  en fonction de sa valeur moyenne, et n'a de sens que pour une variable donnÃ©e
+  sur une Ã©chelle dotÃ©e d'un zÃ©ro absolu, c'est-Ã -dire dans laquelle une valeur
+  de $2z$ peut effectivement Ãªtre considÃ©rÃ©e comme deux fois plus qu'une valeur
+  de $z$ (ce n'est pas le cas pour une tempÃ©rature en degrÃ©s Celsius :
+  10\si{\celsius} n'est pas Â« deux fois plus chaud Â» que 5 \si{\celsius}). De
+  plus, il est numÃ©riquement instable quand $\bar x$ est proche de 0.
 \end{itemize}
 \pagebreak
 \begin{exemple}
-  La variance de notre série de températures minimales vaut $10,02 \si{\celsius^2}$,
-  tandis que la variance d'échantillonage vaut $10,36 \si{\celsius^2}$. Les
-  écarts-types correspondants valent tous les deux $3,2 \si{\celsius}$.  Le
-  coefficient de variation n'a pas de sens en degrés Celsius.
+  La variance de notre sÃ©rie de tempÃ©ratures minimales vaut $10,02 \si{\celsius^2}$,
+  tandis que la variance d'Ã©chantillonage vaut $10,36 \si{\celsius^2}$. Les
+  Ã©carts-types correspondants valent tous les deux $3,2 \si{\celsius}$.  Le
+  coefficient de variation n'a pas de sens en degrÃ©s Celsius.
 \end{exemple}
 \paragraph{Remarques}
 \begin{itemize}
-\item L'écart-type d'une variable, qui s'exprime dans la même unité que la
-  variable, est beaucoup plus facile à interpréter que la variance. On donne
-  plus facilement un sens à $3,2 \si{\celsius}$ qu'à $10,02 \si{\celsius^2}$.
-\item L'écart-type est utilisé pour définir une erreur de mesure. Imaginons que
-  l'on prenne 10 fois la même mesure, obtenant ainsi une population de 10
-  mesures, de moyenne arithmétique $m$ et d'écart-type $\sigma$ ; on rapporte
-  alors une valeur de $m \pm \sigma$. Cette remarque est une brève incursion
-  dans le domaine de la \textit{métrologie}.
+\item L'Ã©cart-type d'une variable, qui s'exprime dans la mÃªme unitÃ© que la
+  variable, est beaucoup plus facile Ã  interprÃ©ter que la variance. On donne
+  plus facilement un sens Ã  $3,2 \si{\celsius}$ qu'Ã  $10,02 \si{\celsius^2}$.
+\item L'Ã©cart-type est utilisÃ© pour dÃ©finir une erreur de mesure. Imaginons que
+  l'on prenne 10 fois la mÃªme mesure, obtenant ainsi une population de 10
+  mesures, de moyenne arithmÃ©tique $m$ et d'Ã©cart-type $\sigma$ ; on rapporte
+  alors une valeur de $m \pm \sigma$. Cette remarque est une brÃ¨ve incursion
+  dans le domaine de la \textit{mÃ©trologie}.
 \end{itemize}
 
-Enfin, les \textbf{quantiles} permettent aussi de déterminer la dispersion
+Enfin, les \textbf{quantiles} permettent aussi de dÃ©terminer la dispersion
 d'une variable. Les $q$-quantiles divisent les valeurs prises par la variable
-en $q$ intervalles de mêmes fréquences. Le $p$-ème $q$-quantile de
-$(x_1, x_2, \dots, x_n)$ est défini comme la valeur $Q_p^q$ telle que 
+en $q$ intervalles de mÃªmes frÃ©quences. Le $p$-Ã¨me $q$-quantile de
+$(x_1, x_2, \dots, x_n)$ est dÃ©fini comme la valeur $Q_p^q$ telle que 
 \[\text{Freq}(x \leq Q_p) = \frac{p}{q}.\]
 
 Lorsque $q=4,$ on parle de \textbf{quartiles.} Lorsque $q=10,$ on parle de
-\textbf{déciles.}
+\textbf{dÃ©ciles.}
 
 \begin{exemple}
-  Les trois quartiles de notre série de températures minimales sont
+  Les trois quartiles de notre sÃ©rie de tempÃ©ratures minimales sont
   $0,8 \si{\celsius}$, $4,0 \si{\celsius}$ et $5,6 \si{\celsius}$ : 25\% des
-  valeurs observées sont inférieures à $0,8 \si{\celsius}$, 50\% sont inférieures
-  à 4,0 \si{\celsius} et 75\% sont inférieures à $5,6 \si{\celsius}$. Le deuxième
-  quartile correspond bien à la médiane.
+  valeurs observÃ©es sont infÃ©rieures Ã  $0,8 \si{\celsius}$, 50\% sont infÃ©rieures
+  Ã  4,0 \si{\celsius} et 75\% sont infÃ©rieures Ã  $5,6 \si{\celsius}$. Le deuxiÃ¨me
+  quartile correspond bien Ã  la mÃ©diane.
 \end{exemple}
 
-Une \textbf{boîte à moustaches} (ou \textit{boxplot}) permet de résumer
-visuellement ces indicateurs, comme illustré sur la
-figure~\ref{fig:meteo_tmin_boxplot}. La boîte à moustaches est composée d'un
-rectangle, d'une largeur arbitraire et délimité en bas par la valeur du premier
-quartile et en haut par la valeur du troisième quartile ; d'une barre
-horizontale au niveau de la médiane ; et de deux segments joignant chacun les
-extrémités du rectangle aux valeurs les plus extrêmes. Représenter les valeurs
-prises par la variable par un nuage de points superposé à ce rectangle permet
-d'en faciliter l'interprétation.
+Une \textbf{boÃ®te Ã  moustaches} (ou \textit{boxplot}) permet de rÃ©sumer
+visuellement ces indicateurs, comme illustrÃ© sur la
+figure~\ref{fig:meteo_tmin_boxplot}. La boÃ®te Ã  moustaches est composÃ©e d'un
+rectangle, d'une largeur arbitraire et dÃ©limitÃ© en bas par la valeur du premier
+quartile et en haut par la valeur du troisiÃ¨me quartile ; d'une barre
+horizontale au niveau de la mÃ©diane ; et de deux segments joignant chacun les
+extrÃ©mitÃ©s du rectangle aux valeurs les plus extrÃªmes. ReprÃ©senter les valeurs
+prises par la variable par un nuage de points superposÃ© Ã  ce rectangle permet
+d'en faciliter l'interprÃ©tation.
 
 \begin{figure}[h]
   \centering
   \includegraphics[width=.5\textwidth]{figures/stats/meteo_tmin_boxplot}
-  \caption{Boîte à moustaches des températures minimales du
+  \caption{BoÃ®te Ã  moustaches des tempÃ©ratures minimales du
     tableau~\ref{tab:meteo_data}.}
   \label{fig:meteo_tmin_boxplot}
 \end{figure}
 
 \section{Statistique descriptive bidimensionelle}
-Il s'agit ici de mettre en évidence une éventuelle \textbf{liaison,}
-c'est-à-dire une variabilité simultanée, entre deux variables statistiques $x$
-et $y$, observées sur $n$ individus, à travers les séries statistiques
+Il s'agit ici de mettre en Ã©vidence une Ã©ventuelle \textbf{liaison,}
+c'est-Ã -dire une variabilitÃ© simultanÃ©e, entre deux variables statistiques $x$
+et $y$, observÃ©es sur $n$ individus, Ã  travers les sÃ©ries statistiques
 $(x_1, x_2, \dots, x_n)$ et $(y_1, y_2, \dots, y_n).$
 
-Cette liaison peut être causale ou non. Mettre en évidence une causalité est
-délicat, et dépasse le cadre de ce cours.
+Cette liaison peut Ãªtre causale ou non. Mettre en Ã©vidence une causalitÃ© est
+dÃ©licat, et dÃ©passe le cadre de ce cours.
 
 Comprendre la liaison entre deux variables nous permet de comprendre 
 \begin{itemize}
-\item Si une variable peut dépendre d'une autre : la température minimale
-  dépend-elle de l'ensoleillement ?
-\item Si une variable peut permettre de prédire une autre : la température
-  minimale permet-elle de prédire la température maximale ?
-\item Si une variable peut être remplacée par une autre : ai-je besoin de
-  prendre en compte et la température minimale et la température maximale, ou
-  la température moyenne suffit-elle ?
+\item Si une variable peut dÃ©pendre d'une autre : la tempÃ©rature minimale
+  dÃ©pend-elle de l'ensoleillement ?
+\item Si une variable peut permettre de prÃ©dire une autre : la tempÃ©rature
+  minimale permet-elle de prÃ©dire la tempÃ©rature maximale ?
+\item Si une variable peut Ãªtre remplacÃ©e par une autre : ai-je besoin de
+  prendre en compte et la tempÃ©rature minimale et la tempÃ©rature maximale, ou
+  la tempÃ©rature moyenne suffit-elle ?
 \end{itemize}
 
 \subsection{Liaison entre deux variables quantitatives}
 
 \paragraph{Nuage de points}
 Pour visualiser la liaison entre deux variables quantitatives, on utilise
-généralement un \textbf{nuage de points}. Si $x$ et $y$ sont homogènes,
-c'est-à-dire exprimées dans la même unité, on utilisera la même échelle sur les
-deux axes, comme sur la figure~\ref{fig:meteo_tmin_tmax}. Sinon, on préfèrera
-généralement centrer et réduire les variables au préalable, comme sur la
+gÃ©nÃ©ralement un \textbf{nuage de points}. Si $x$ et $y$ sont homogÃ¨nes,
+c'est-Ã -dire exprimÃ©es dans la mÃªme unitÃ©, on utilisera la mÃªme Ã©chelle sur les
+deux axes, comme sur la figure~\ref{fig:meteo_tmin_tmax}. Sinon, on prÃ©fÃ¨rera
+gÃ©nÃ©ralement centrer et rÃ©duire les variables au prÃ©alable, comme sur la
 figure~\ref{fig:meteo_tmin_vent} : 
 \[
   x_i \leftarrow \frac{x_i - \bar x}{\sigma_x} \qquad \text{avec } \bar x = \frac{1}{n} \sum_{i=1}^n x_i 
@@ -321,13 +321,13 @@ figure~\ref{fig:meteo_tmin_vent} :
   \begin{subfigure}[t]{0.49\textwidth}
     \centering
     \includegraphics[width=.7\textwidth]{figures/stats/meteo_tmin_tmax}
-    \caption{Températures maximales vs minimales.}
+    \caption{TempÃ©ratures maximales vs minimales.}
     \label{fig:meteo_tmin_tmax}
   \end{subfigure} \hfill
   \begin{subfigure}[t]{0.49\textwidth}
     \centering
     \includegraphics[width=.7\textwidth]{figures/stats/meteo_tmin_vent}
-    \caption{Vent vs températures minimales.}
+    \caption{Vent vs tempÃ©ratures minimales.}
     \label{fig:meteo_tmin_vent}
   \end{subfigure}
   \caption{Nuages de points pour des paires de variables du
@@ -341,24 +341,24 @@ principalement
 \begin{itemize}
 \item \textbf{la covariance}
 \[\text{cov}(x, y) = \frac1n \sum_{i=1}^n (x_i - \bar x) (y_i - \bar y).\]
-\item \textbf{le coefficient de corrélation de Pearson,} qui est égal à la
-  covariance entre les variables centrées réduites, et compris entre $-1$ et $1$ :
+\item \textbf{le coefficient de corrÃ©lation de Pearson,} qui est Ã©gal Ã  la
+  covariance entre les variables centrÃ©es rÃ©duites, et compris entre $-1$ et $1$ :
 \[r(x, y) = \frac1n \frac{\sum_{i=1}^n (x_i - \bar x) (y_i - \bar y)}{\sigma_x \sigma_y}.\]
 \end{itemize}
 
-À noter que la covariance et le coefficient de corrélation de Pearson mesurent
-des liaisons \textit{linéaires} entre deux variables. Une corrélation de
-Pearson proche de 1 ou de -1 indique une relation linéaire ; une corrélation de
-Pearson proche de 0 indique une absence de corrélation. D'autres mesures, comme
+Ã€ noter que la covariance et le coefficient de corrÃ©lation de Pearson mesurent
+des liaisons \textit{linÃ©aires} entre deux variables. Une corrÃ©lation de
+Pearson proche de 1 ou de -1 indique une relation linÃ©aire ; une corrÃ©lation de
+Pearson proche de 0 indique une absence de corrÃ©lation. D'autres mesures, comme
 l'information mutuelle (hors cadre de ce cours), permettent de mesurer des
-liaisons \textit{non-linéaires}. 
+liaisons \textit{non-linÃ©aires}. 
 
 \begin{exemple}
-  Pour les données du tableau~\ref{tab:meteo_data}, la covariance entre la
-  température minimale et la température maximale vaut $7,69 \si{\celsius^2}$ ;
-  leur corrélation de Pearson vaut 0,91. La corrélation de Pearson entre vent
-  et température minimale vaut 0,28. La figure~\ref{fig:pearson} illustre le
-  rapport entre corrélation de Pearson et nuage de points.
+  Pour les donnÃ©es du tableau~\ref{tab:meteo_data}, la covariance entre la
+  tempÃ©rature minimale et la tempÃ©rature maximale vaut $7,69 \si{\celsius^2}$ ;
+  leur corrÃ©lation de Pearson vaut 0,91. La corrÃ©lation de Pearson entre vent
+  et tempÃ©rature minimale vaut 0,28. La figure~\ref{fig:pearson} illustre le
+  rapport entre corrÃ©lation de Pearson et nuage de points.
 \end{exemple}
 \begin{figure}[h]
   \centering
@@ -382,79 +382,79 @@ liaisons \textit{non-linéaires}.
       \includegraphics[width=\textwidth]{figures/stats/pearson_1}
       \caption{r(x, y) = 1,00.}
     \end{subfigure} \hfill
-  \caption{Nuages de points entre deux variables simulées et leur corrélation de Pearson.}
+  \caption{Nuages de points entre deux variables simulÃ©es et leur corrÃ©lation de Pearson.}
   \label{fig:pearson}
 \end{figure}
 
 \paragraph{Indicateurs de liaison entre une variable qualitative et une variable quantitative}
-Pour étudier la liaison entre une variable qualitative $x$, ayant $K$ modes (ou
-valeurs différentes) dans la série statistique $(x_1, x_2, \dots, x_n),$ et une
-variable quantitative $y,$ on considère que la variable $x$ permet de définir
-$p$ sous-populations. Il s'agit alors d'évaluer s'il existe des différences,
+Pour Ã©tudier la liaison entre une variable qualitative $x$, ayant $K$ modes (ou
+valeurs diffÃ©rentes) dans la sÃ©rie statistique $(x_1, x_2, \dots, x_n),$ et une
+variable quantitative $y,$ on considÃ¨re que la variable $x$ permet de dÃ©finir
+$p$ sous-populations. Il s'agit alors d'Ã©valuer s'il existe des diffÃ©rences,
 pour la variable $y$, entre ces sous-populations.
 
-Visuellement, on utilisera une série de boîtes à moustaches, comme illustré sur
+Visuellement, on utilisera une sÃ©rie de boÃ®tes Ã  moustaches, comme illustrÃ© sur
 la figure~\ref{fig:remboursement_rembourses_age}.
 
 % \begin{figure}[h]
 %   \centering
 %   \includegraphics[width=.5\textwidth]{figures/stats/remboursement_rembourses_age}
-%   \caption{Montants remboursés par acte, par tranche d'âge, pour les données du
+%   \caption{Montants remboursÃ©s par acte, par tranche d'Ã¢ge, pour les donnÃ©es du
 %     tableau~\ref{tab:remboursement_data}.}
 %   \label{fig:remboursement_rembourses_age}
 % \end{figure}
 \begin{figure}[h]
   \centering
   \includegraphics[width=.5\textwidth]{figures/stats/remboursement_rembourses_age}
-  \caption{Montants remboursés par acte, par tranche d'âge, pour les données de
+  \caption{Montants remboursÃ©s par acte, par tranche d'Ã¢ge, pour les donnÃ©es de
     remboursement.}
   \label{fig:remboursement_rembourses_age}
 \end{figure}
 
-La \textbf{variance expliquée} par $x$ de $y$ est la moyenne des carrés des écarts
+La \textbf{variance expliquÃ©e} par $x$ de $y$ est la moyenne des carrÃ©s des Ã©carts
 entre la moyenne de $y$ dans chaque sous-population et la moyenne de $y$ dans
-toute la population, pondérée par la taille des sous-populations :
+toute la population, pondÃ©rÃ©e par la taille des sous-populations :
 \[
   \sigma_E^2 = \frac1n \sum_{k=1}^K n_k (\bar{y}_k - \bar{y})^2,
 \]
-où $\bar{y}_k$ est la moyenne de $y$ dans la sous-population $k$ et $\bar{y}$
+oÃ¹ $\bar{y}_k$ est la moyenne de $y$ dans la sous-population $k$ et $\bar{y}$
 la moyenne de $y$ dans la population totale.
 
-La \textbf{variance résiduelle} est la moyenne des variances des
-sous-populations, pondérées par leur taille :
+La \textbf{variance rÃ©siduelle} est la moyenne des variances des
+sous-populations, pondÃ©rÃ©es par leur taille :
 \[
   \sigma_R^2 = \frac1n \sum_{k=1}^K n_k \sigma_k^2, 
 \]
-où $n_k$ est le nombre d'individus dans la sous-population $k$ et $\sigma_k^2$
+oÃ¹ $n_k$ est le nombre d'individus dans la sous-population $k$ et $\sigma_k^2$
 est la variance de $y$ dans cette sous-population.
 
 
 On peut montrer que $\sigma_y^2 = \sigma_R^2 + \sigma_E^2.$
 
-Le \textbf{rapport de corrélation} est la part de variation de $y$ expliquée
-par $x$. Compris entre 0 et 1, il est d'autant plus élevé que la liaison entre
+Le \textbf{rapport de corrÃ©lation} est la part de variation de $y$ expliquÃ©e
+par $x$. Compris entre 0 et 1, il est d'autant plus Ã©levÃ© que la liaison entre
 les deux variables est forte :
 \[
 e^2  = \frac{\sigma_E^2}{\sigma_y^2}.
 \]
 \begin{exemple}
-% Pour les montants remboursés par acte du tableau~\ref{tab:remboursement_data},
-% la variance de ces montants est de 3,65, tandis que la variance expliquée par
-% l'âge est de 1,37 (en euros au carré), ce qui donne un rapport de corrélation
+% Pour les montants remboursÃ©s par acte du tableau~\ref{tab:remboursement_data},
+% la variance de ces montants est de 3,65, tandis que la variance expliquÃ©e par
+% l'Ã¢ge est de 1,37 (en euros au carrÃ©), ce qui donne un rapport de corrÃ©lation
 % de 0,38.
-  Pour les montants remboursés par acte de nos données de remboursement, la
+  Pour les montants remboursÃ©s par acte de nos donnÃ©es de remboursement, la
   variance de ces montants est de $3,30$\texteuro$^2$, tandis que la variance
-  expliquée par l'âge est de $1,09$\texteuro$^2$, ce qui donne un rapport de
-  corrélation de $0,33.$ 
+  expliquÃ©e par l'Ã¢ge est de $1,09$\texteuro$^2$, ce qui donne un rapport de
+  corrÃ©lation de $0,33.$ 
 \end{exemple}
 
 \paragraph{Indicateurs de liaison entre deux variables qualitatives}
-Pour étudier la liaison entre une variable qualitative $x$, ayant $K$ modes (ou
-valeurs différentes) dans la série statistique $(x_1, x_2, \dots, x_n),$ et une
-variable qualitative $y$, ayant $L$ modes dans la série statistique
-$(y_1, y_2, \dots, y_n),$ on utilise généralement une \textbf{table de
+Pour Ã©tudier la liaison entre une variable qualitative $x$, ayant $K$ modes (ou
+valeurs diffÃ©rentes) dans la sÃ©rie statistique $(x_1, x_2, \dots, x_n),$ et une
+variable qualitative $y$, ayant $L$ modes dans la sÃ©rie statistique
+$(y_1, y_2, \dots, y_n),$ on utilise gÃ©nÃ©ralement une \textbf{table de
   contingence} $A$ de taille $K \times L.$ Il s'agit de compter, pour chaque
-mode de $x$ et chaque mode de $y$, combien d'individus présentent ces deux
+mode de $x$ et chaque mode de $y$, combien d'individus prÃ©sentent ces deux
 modes : $A_{ij}$ est le nombre d'invididus pour lesquels $x = i$ et $y = j$.
 
 Si l'on appelle $N = \sum_{k=1}^K \sum_{l=1}^L A_{kl}$ le nombre total
@@ -466,19 +466,19 @@ alors l'absence de liaison entre $x$ et $y$ se traduit par
   \frac{N_{.j}}{N} \text{ pour tout } 
   1 \leq i \leq K, 1 \leq j \leq L.
 \]
-L'écart entre les valeurs prises de part et d'autre de cette égalité se mesure
-grâce à la \textbf{distance du chi2}, définie par 
+L'Ã©cart entre les valeurs prises de part et d'autre de cette Ã©galitÃ© se mesure
+grÃ¢ce Ã  la \textbf{distance du chi2}, dÃ©finie par 
 \[
 d_{\chi^2} = \sum_{i=1}^K \sum_{j=1}^L  \frac{\left( A_{ij} - 
     \frac{N_{i.}N_{.j}}{N} \right)^2}{\frac{N_{i.}N_{.j}}{N}}
 \]
 
 \begin{exemple}
-  La table de contingence pour les variables « âge » et « région » des données
-  de remboursement est donnée dans le
+  La table de contingence pour les variables Â« Ã¢ge Â» et Â« rÃ©gion Â» des donnÃ©es
+  de remboursement est donnÃ©e dans le
   tableau~\ref{tab:remboursement_age_region}. La distance du chi2 pour cette
-  table de contingence est de 11,21, ce qui suggère une dépendance entre les
-  variables « âge » et « région » dans les données.
+  table de contingence est de 11,21, ce qui suggÃ¨re une dÃ©pendance entre les
+  variables Â« Ã¢ge Â» et Â« rÃ©gion Â» dans les donnÃ©es.
 \end{exemple}
 
 
@@ -486,48 +486,48 @@ d_{\chi^2} = \sum_{i=1}^K \sum_{j=1}^L  \frac{\left( A_{ij} -
     \centering
     \begin{tabular}[h]{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
       \hline
-      & \multicolumn{13}{|c|}{Région} \\ \hline
-      {Âge} & 5 & 11 & 24 & 27 & 28 & 32 & 44 & 52 & 53 & 75 & 76 & 84 & 93 \\ \hline
+      & \multicolumn{13}{|c|}{RÃ©gion} \\ \hline
+      {Ã‚ge} & 5 & 11 & 24 & 27 & 28 & 32 & 44 & 52 & 53 & 75 & 76 & 84 & 93 \\ \hline
       0--19 & 3 & 5 & 3 & 3 & 3 & 3 & 4 & 3 & 2 & 3 & 3 & 4 & 4 \\ \hline
       20--39 & 8 & 18 & 4 & 7 & 4 & 9 & 11 & 6 & 4 & 7 & 8 & 10 & 11 \\ \hline
       40--59 & 11 & 26 & 11 & 13 & 13 & 16 & 15 & 10 & 8 & 12 & 17 & 15 & 19 \\ \hline
       $>$ 60 & 15 & 31 & 18 & 16 & 21 & 21 & 22 & 12 & 12 & 19 & 24 & 23 & 26 \\ \hline
     \end{tabular}
-    \caption{Table de contingence pour l'âge et la région des données 
+    \caption{Table de contingence pour l'Ã¢ge et la rÃ©gion des donnÃ©es 
       de remboursement.}
     \label{tab:remboursement_age_region}
   \end{table}
 
 Nous verrons dans la PC1 comment transformer cette distance en
-un test statistique de dépendance.
+un test statistique de dÃ©pendance.
 
 % \begin{table}[h]
 %   \centering
 %   \begin{tabular}[h]{|c|c|c|c|c|c|c|c|c|c|c|}
 %     \hline
-%     & \multicolumn{10}{|c|}{Région} \\ \hline
-%     {Âge} & 5 & 11 & 24 & 27 & 32 & 44 & 75 & 76 & 84 & 93 \\ \hline
+%     & \multicolumn{10}{|c|}{RÃ©gion} \\ \hline
+%     {Ã‚ge} & 5 & 11 & 24 & 27 & 32 & 44 & 75 & 76 & 84 & 93 \\ \hline
 %     20--39 & 1 & 1 & 0 & 0 & 2 & 0 & 0 & 0 & 0 & 0 \\ \hline
 %     40--59 & 0 & 1 & 0 & 0 & 1 & 1 & 0 & 1 & 1 & 0 \\ \hline
 %     $>$ 60 & 1 & 1 & 1 & 1 & 2 & 1 & 1 & 2 & 0 & 1 \\ \hline
 %   \end{tabular}
-%   \caption{Table de contingence pour l'âge et la région des données 
+%   \caption{Table de contingence pour l'Ã¢ge et la rÃ©gion des donnÃ©es 
 %     du tableau~\ref{tab:remboursement_data}.}
 %   \label{tab:remboursement_age_region}
 % \end{table}
 
-La table de contingence peut être visualisée grâce à deux \textbf{diagrammes en
-  barres empilées} : on peut choisir de visualiser, pour chaque mode de $x$, la
+La table de contingence peut Ãªtre visualisÃ©e grÃ¢ce Ã  deux \textbf{diagrammes en
+  barres empilÃ©es} : on peut choisir de visualiser, pour chaque mode de $x$, la
 proportion relative des modes de $y$, ou inversement, pour chaque mode de $y$,
-la proportion relative des modes de $x$. Ces deux choix sont illustrés sur les
+la proportion relative des modes de $x$. Ces deux choix sont illustrÃ©s sur les
 figures~\ref{fig:remboursement_age_region_lines}
 et~\ref{fig:remboursement_age_region_cols} respectivement.
 
 \begin{figure}[h]
   \centering
   \includegraphics[width=\textwidth]{figures/stats/remboursement_age_region_lines}
-  \caption{Diagramme en barres représentant, pour chaque tranche d'âges, la
-    proportion relative d'individus de chaque région dans la table de
+  \caption{Diagramme en barres reprÃ©sentant, pour chaque tranche d'Ã¢ges, la
+    proportion relative d'individus de chaque rÃ©gion dans la table de
     contingence du tableau~\ref{tab:remboursement_age_region}.}
   \label{fig:remboursement_age_region_lines}
 \end{figure}
@@ -535,8 +535,8 @@ et~\ref{fig:remboursement_age_region_cols} respectivement.
 \begin{figure}[h]
   \centering
   \includegraphics[width=\textwidth]{figures/stats/remboursement_age_region_cols}
-  \caption{Diagramme en barres représentant, pour chaque région, la proportion
-    relative d'individus de chaque tranche d'âge dans la table de contingence du
+  \caption{Diagramme en barres reprÃ©sentant, pour chaque rÃ©gion, la proportion
+    relative d'individus de chaque tranche d'Ã¢ge dans la table de contingence du
     tableau~\ref{tab:remboursement_age_region}.}
   \label{fig:remboursement_age_region_cols}
 \end{figure}
