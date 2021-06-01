@@ -620,7 +620,7 @@ $\Theta|X_1, X_2, \dots, X_n$ est aussi à densité et la formule de Bayes nous
 permet d'écrire sa densité comme : 
 \begin{equation}
   \label{eq:bayes_densite}
-  g_{\Theta|X_1, X_2, \dots, X_n}(\Theta=t) = \frac{g_{\Theta}(t) \prod_{i=1}^n f_t(x_i)}{
+  g_{\Theta|X_1, X_2, \dots, X_n}(t) = \frac{g_{\Theta}(t) \prod_{i=1}^n f_t(x_i)}{
     \int_{\Scal} g_{\Theta}(u) \prod_{i=1}^n f_u(x_i) du}
 \end{equation}
 Ces manipulations de Bayes sont analogues à celles effectuées dans le poly de
@@ -668,22 +668,20 @@ $\hatbys{\theta}$ est obtenue en minimisant $(\EE(W) - t)^2$ et donc $\hatbys{\t
   Reprenons notre exemple de taux de réussite au baccalauréat.  Nous supposons
   maintenant que $p$ est une réalisation d'une variable aléatoire $\Theta$ qui
   suit une loi bêta de paramètres $(\alpha, \beta)$
-  (cf. section~\ref{sec:loi_beta}).
+  (cf. section~\ref{sec:loi_beta}) et dont nous notons $g_\Theta$ la densité.
 
-  Pour calculer l'estimateur de Bayes de $p$, il nous faut connaître la loi
-  \[
-    \PP(\Theta|X_1=x_1, X_2=x_2, \dots, X_n=x_n).
-  \]
-  
-  La loi de Bayes, combinée à l'hypothèse d'indépendance et de distribution
-  identique des $X_i$, nous permet d'écrire
+  Pour calculer l'estimateur de Bayes de $p$, il nous faut connaître la loi de
+  $(\Theta|X_1=x_1, X_2=x_2, \dots, X_n=x_n)$. $\Theta$ étant à densité,
+  $(\Theta|X_1=x_1, X_2=x_2, \dots, X_n=x_n)$ aussi et la loi de Bayes,
+  combinée à l'hypothèse d'indépendance et de distribution identique des $X_i$,
+  nous permet d'écrire sa densité comme 
   \begin{flalign*}
-     & \PP(\Theta=p|X_1=x_1, \dots, X_n=x_n)  = \frac{\PP(X_1=x_1, \dots, X_n=x_n|p) \PP(p)}{\PP(X_1=x_1, \dots, X_n=x_n)} \\
+     & g_{\Theta|X_1=x_1, \dots, X_n=x_n}(t)  = \frac{\PP(X_1=x_1, \dots, X_n=x_n|\Theta=t) g_\Theta(t)}{\PP(X_1=x_1, \dots, X_n=x_n)} \\
     & = \frac{1}{\PP(X_1=x_1, \dots, X_n=x_n) B(\alpha, \beta)} 
-    \prod_{i=1}^{n} p^{x_i} (1-p)^{1-x_i}  p^{\alpha-1}
-    (1-p)^{\beta-1} \\
+    \prod_{i=1}^{n} t^{x_i} (1-t)^{1-x_i} t^{\alpha-1}
+    (1-t)^{\beta-1} \\
     & = \frac{1}{\PP(X_1=x_1, \dots, X_n=x_n) B(\alpha, \beta)} 
-    p^{b + \alpha - 1} (1-p)^{n - b + \beta - 1}. 
+    t^{b + \alpha - 1} (1-t)^{n - b + \beta - 1}. 
   \end{flalign*}
   
   On reconnaît ici la densité d'une nouvelle loi bêta.  Ainsi
