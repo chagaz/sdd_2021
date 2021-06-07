@@ -243,9 +243,9 @@ composée des $n$ observations de la $j$-ème variable. Ainsi, si les données
 sont centrées-réduites,
 \[
   \Sigma_{jk} = \frac1n \sum_{i=1}^n (x_j^i - \overline{x_j})  (x_k^i - \overline{x_k}) = \frac1n \sum_{i=1}^n x_j^i x_k^i
-   = \langle \xx_j, \xx_k \rangle
+   = \frac1n \langle \xx_j, \xx_k \rangle
  \]
- et $\Sigma = \frac1n X^\top X$ est une matrice symétrique avec des 1 sur la diagonale (car $\Sigma_{jj} = \text{var}(\xx_j) = 1$).
+ et $\Sigma = \frac1n X^\top X$ est une matrice symétrique avec $\frac1n$ sur la diagonale (car $\Sigma_{jj} = \text{var}(\xx_j) = 1$).
 
 \paragraph{Proposition} 
 Soit $X \in \RRnp$ une matrice centrée et 
