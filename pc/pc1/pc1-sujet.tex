@@ -54,7 +54,7 @@
 \begin{document}
 
 \begin{center}
-\bf\large ECUE21.2: Science des données \hfill
+\bf\large ECUE21.2: Science des donnÃ©es \hfill
 PC 1 -- Estimation et tests statistiques
 \end{center}
 
@@ -68,29 +68,29 @@ PC 1 -- Estimation et tests statistiques
 
 \paragraph{Se concentrer sur l'essentiel}
 \begin{itemize}
-\item On peut sauter le calcul du biais dans la question 3 du premier problème
-  et se concentrer sur l'interprétation quand $m = 1$ ou
+\item On peut sauter le calcul du biais dans la question 3 du premier problÃ¨me
+  et se concentrer sur l'interprÃ©tation quand $m = 1$ ou
   $m \rightarrow +\infty.$
-% \item L'exercice 2 est une variante de l'exemple d'estimation de Bayes traité
-%   dans la section 3.6 du poly. On s'exerce ici à en reproduire le raisonnement
-%   pour estimer non pas le paramètre $p$ d'une Bernouilli mais les paramètre
+% \item L'exercice 2 est une variante de l'exemple d'estimation de Bayes traitÃ©
+%   dans la section 3.6 du poly. On s'exerce ici Ã  en reproduire le raisonnement
+%   pour estimer non pas le paramÃ¨tre $p$ d'une Bernoulli mais les paramÃ¨tre
 %   $\mu$ et $\sigma$ d'une gaussienne.
 \item Pour la question 2 de l'exercice 2, on pourra admettre que
-  $\PP(M=\mu | X_1, X_2, \dots, X_n)$ est proportionnelle à
+  $\PP(M=\mu | X_1, X_2, \dots, X_n)$ est proportionnelle Ã 
 \[
   \exp \left( -\frac12 \left( \frac{n}{\sigma^2} + \frac1{\tau^2}\right) \mu^2 - 
     2 \left(\frac{\sum_{i=1}^n X_i}{\sigma^2} + \frac{m}{\tau^2} \right) \mu +  
     \frac{\sum_{i=1}^n X_i^2}{\sigma^2} + \frac{m^2}{\tau^2} \right).
 \]
-\item On peut sauter le calcul de la question 2.c du troisième problème (la
-  réponse est 2) et se concentrer sur l'interprétation du résultat.
-\item On peut sauter la question 3 du troisième problème.
+\item On peut sauter le calcul de la question 2.c du troisiÃ¨me problÃ¨me (la
+  rÃ©ponse est 2) et se concentrer sur l'interprÃ©tation du rÃ©sultat.
+\item On peut sauter la question 3 du troisiÃ¨me problÃ¨me.
 \end{itemize}
 
 \section{Estimateur du nombre de boules dans une urne}
 
-On considère une urne contenant $n$ boules, numérotées de $1$ à $n$. On ne
-connaît pas $n$ et on souhaite l'estimer. Pour cela, on procède à $m$ tirages
+On considÃ¨re une urne contenant $n$ boules, numÃ©rotÃ©es de $1$ Ã  $n$. On ne
+connaÃ®t pas $n$ et on souhaite l'estimer. Pour cela, on procÃ¨de Ã  $m$ tirages
 avec remise.
 \begin{enumerate}
 \item Donner un estimateur simple de $n.$
@@ -102,68 +102,68 @@ avec remise.
   Que vaut-il quand $m=1$ ? Quand $m  \rightarrow +\infty$ ? 
 \end{enumerate}
 
-\section{Estimation de densité}
-Considérons une variable aléatoire $X$ suivant une loi normale de paramètres
+\section{Estimation de densitÃ©}
+ConsidÃ©rons une variable alÃ©atoire $X$ suivant une loi normale de paramÃ¨tres
 $\mu$ et $\sigma^2$.
 \begin{enumerate}
-\item Étant donné un échantillon de $n \in \NN^*$ observations de $X$, calculer
+\item Ã‰tant donnÃ© un Ã©chantillon de $n \in \NN^*$ observations de $X$, calculer
   l'estimateur par maximum de vraisemblance de $\mu$ et $\sigma$.
-\item Supposons maintenant que $\mu$ est la réalisation d'une variable
-  aléatoire réelle $M$ qui suit une loi normale de moyenne $m$ et de variance
+\item Supposons maintenant que $\mu$ est la rÃ©alisation d'une variable
+  alÃ©atoire rÃ©elle $M$ qui suit une loi normale de moyenne $m$ et de variance
   $\tau^2$. Calculer l'estimateur de Bayes de $\mu$.
-\item Décomposer l'estimateur de Bayes de $\mu$ en la somme d'un terme fonction
-  de la moyenne empirique de l'échantillon et un terme dépendant de la moyenne
+\item DÃ©composer l'estimateur de Bayes de $\mu$ en la somme d'un terme fonction
+  de la moyenne empirique de l'Ã©chantillon et un terme dÃ©pendant de la moyenne
   a priori. Que se passe-t-il quand $n$ augmente ?
 \end{enumerate}
 
 \section{Test du Chi2}
-Un essai clinique sur 200 personnes, dont 92 ont été soumises au traitement
-évalué, a mis en évidence que 84 d'entre elles n'ont plus de symptômes après
-une semaine de traitement. 90 des personnes non traitées n'ont plus de
-symptômes après une semaine non plus.
+Un essai clinique sur 200 personnes, dont 92 ont Ã©tÃ© soumises au traitement
+Ã©valuÃ©, a mis en Ã©vidence que 84 d'entre elles n'ont plus de symptÃ´mes aprÃ¨s
+une semaine de traitement. 90 des personnes non traitÃ©es n'ont plus de
+symptÃ´mes aprÃ¨s une semaine non plus.
 
-On cherche à déterminer si le traitement est efficace.
+On cherche Ã  dÃ©terminer si le traitement est efficace.
 
 \begin{enumerate}
 \item \textbf{Tables de contingence}
   \begin{enumerate}
-  \item Établir la table de contingence observée correspondant à ces
-    données. Quelle proportion de personnes traitées guérissent ? Quelle
-    proportion de personnes non traitées guérissent ? Notre but sera de
-    déterminer si cette différence est significative.
-  \item Estimer la probabilité $p$ qu'une personne soit traitée. Estimer la
-    probabilité $q$ qu'une personne guérisse (indépendamment du traitement).
+  \item Ã‰tablir la table de contingence observÃ©e correspondant Ã  ces
+    donnÃ©es. Quelle proportion de personnes traitÃ©es guÃ©rissent ? Quelle
+    proportion de personnes non traitÃ©es guÃ©rissent ? Notre but sera de
+    dÃ©terminer si cette diffÃ©rence est significative.
+  \item Estimer la probabilitÃ© $p$ qu'une personne soit traitÃ©e. Estimer la
+    probabilitÃ© $q$ qu'une personne guÃ©risse (indÃ©pendamment du traitement).
   \item Supposer que le traitement n'a aucun effet. Quelle serait alors la
     table de contingence ?
-  \item Interpréter la distance du chi2 de la table de contingence observée (cf
+  \item InterprÃ©ter la distance du chi2 de la table de contingence observÃ©e (cf
     section 2.2.1 du poly) comme une distance entre la table de contingence
-    observée (a) et la table de contingence théorique (c).
+    observÃ©e (a) et la table de contingence thÃ©orique (c).
   \end{enumerate}
 \end{enumerate}
 
-Soient $Y_1, Y_2, \dots, Y_k$ $k$ variables aléatoires réelles iid, suivant une
+Soient $Y_1, Y_2, \dots, Y_k$ $k$ variables alÃ©atoires rÃ©elles iid, suivant une
 gaussienne standard. On pose
 \[
   Z_k = \sum_{i=1}^k Y_i^2.
 \]
-On dit que $Z_k$ suit une loi du chi2 à $k$ degrés de liberté. On note
-$Z_k \sim \chi_k^2$. (Cette loi vous a déjà été présentée dans les exercices de Probabilités II.)
+On dit que $Z_k$ suit une loi du chi2 Ã  $k$ degrÃ©s de libertÃ©. On note
+$Z_k \sim \chi_k^2$. (Cette loi vous a dÃ©jÃ  Ã©tÃ© prÃ©sentÃ©e dans les exercices de ProbabilitÃ©s II.)
 Le tableau~\ref{tab:chi2} donne la valeur de $\PP(Z_k > z)$ pour quelques
 valeurs de $k$ et de $z$.
 
 
-On admettra\footnote{La question 3 de ce problème permet de démontrer
-cette propriété dans le cas où on compare les proportions observées d'une
-variable à deux modes aux proportions attendues.
+On admettra\footnote{La question 3 de ce problÃ¨me permet de dÃ©montrer
+cette propriÃ©tÃ© dans le cas oÃ¹ on compare les proportions observÃ©es d'une
+variable Ã  deux modes aux proportions attendues.
 
-Pour une preuve, on pourra se reporter à l'article \textit{Seven proofs of the
+Pour une preuve, on pourra se reporter Ã  l'article \textit{Seven proofs of the
   Pearson Chi-squared independence test and its graphical interpretation} par
-É. Benhamou et V. Melot (2018),
+Ã‰. Benhamou et V. Melot (2018),
 \href{https://arxiv.org/abs/1808.09171}{https://arxiv.org/abs/1808.09171}.  }
-la proposition suivante : Soient deux variables aléatoires réelles $X$ et $Y$
-indépendantes, ayant respectivement chacune $K$ et $L$ modes. Soit $n$ la
-taille d'un échantillon aléatoire de $(X, Y)$ et $d_{\chi^2}$ la distance du
-chi2 de la table de contingence de cet échantillon. Alors quand
+la proposition suivante : Soient deux variables alÃ©atoires rÃ©elles $X$ et $Y$
+indÃ©pendantes, ayant respectivement chacune $K$ et $L$ modes. Soit $n$ la
+taille d'un Ã©chantillon alÃ©atoire de $(X, Y)$ et $d_{\chi^2}$ la distance du
+chi2 de la table de contingence de cet Ã©chantillon. Alors quand
 $n \rightarrow +\infty,$
 \[
   d_{\chi^2} \cvloi Z_{(K-1)(L-1)}.
@@ -173,18 +173,18 @@ $n \rightarrow +\infty,$
 \begin{enumerate}[resume]
 \item \textbf{Test du chi2}
   \begin{enumerate}
-  \item Proposer un test statistique (hypothèses, statistique de test, région
-    critique) permettant de tester l'hypothèse selon laquelle le traitement est
+  \item Proposer un test statistique (hypothÃ¨ses, statistique de test, rÃ©gion
+    critique) permettant de tester l'hypothÃ¨se selon laquelle le traitement est
     efficace.
   \item Que peut-on dire de notre traitement sous $\alpha = 10\%$ ? $\alpha = 1\%$ ?
-  \item \textbf{Fraude scientifique.} À un niveau de
-    signification de $5\%$, à combien de personnes traitées faudrait-il trouver
-    une bonne raison pour les exclure de l'étude afin de pouvoir rejeter l'hypothèse
-    nulle et affirmer le succès du test ?
+  \item \textbf{Fraude scientifique.} Ã€ un niveau de
+    signification de $5\%$, Ã  combien de personnes traitÃ©es faudrait-il trouver
+    une bonne raison pour les exclure de l'Ã©tude afin de pouvoir rejeter l'hypothÃ¨se
+    nulle et affirmer le succÃ¨s du test ?
   \end{enumerate}
 \end{enumerate}
 
-Ce test s'appelle le test d'indépendance du chi2, et est implémenté dans \texttt{scipy.stats} :
+Ce test s'appelle le test d'indÃ©pendance du chi2, et est implÃ©mentÃ© dans \texttt{scipy.stats} :
 
   \begin{lstlisting}[language=Python]
     import scipy.stats as st
@@ -194,12 +194,12 @@ Ce test s'appelle le test d'indépendance du chi2, et est implémenté dans \texttt
 \begin{enumerate}[resume]
 \item \textbf{Loi du chi2} \\
   \begin{enumerate}
-  \item Quelle sont l'espérance et la variance de $Z_k$ ? 
-  \item Soit $n \in \NN^*$, $0 < 1 < p_0$, et $N_0$ une variable aléatoire qui
-    suit une loi binômiale de paramètres $n$ et $p_0$ : $N$ est la somme de $n$
-    variables aléatoires réelles iid dont la loi est une loi de Bernouilli de
-    paramètre $p_0$, et modélise le nombre de succès parmi $n$ tirages d'une
-    telle variable de Bernouilli. Posons $N_1 = n - N_0$ et $p_1 = 1 -
+  \item Quelle sont l'espÃ©rance et la variance de $Z_k$ ? 
+  \item Soit $n \in \NN^*$, $0 < 1 < p_0$, et $N_0$ une variable alÃ©atoire qui
+    suit une loi binÃ´miale de paramÃ¨tres $n$ et $p_0$ : $N$ est la somme de $n$
+    variables alÃ©atoires rÃ©elles iid dont la loi est une loi de Bernoulli de
+    paramÃ¨tre $p_0$, et modÃ©lise le nombre de succÃ¨s parmi $n$ tirages d'une
+    telle variable de Bernoulli. Posons $N_1 = n - N_0$ et $p_1 = 1 -
     p_0$. Montrer que quand $n \rightarrow +\infty,$ 
     \[
       \frac{(N_0 - n p_0)^2}{n p_0}  + \frac{(N_1 - n p_1)^2}{n p_1} \cvloi Z_1.
