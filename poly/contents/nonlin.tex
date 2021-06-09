@@ -104,8 +104,8 @@ Dans le cas d'un problème de régression, on utilisera tout simplement l'identité
 Le cas de la classification binaire, utilisant un seuil comme fonction
 d'activation, est historiquement le premier à avoir été traité.  On utilisera
 plutôt, comme dans le cas de la régression logistique (voir PC~5), une fonction
-logistique pour modéliser la probabilité d'appartenir à la classe positive. Le
-modèle appris est donc
+logistique (voir équation~\eqref{eq:sigmoide}) pour modéliser la probabilité
+d'appartenir à la classe positive. Le modèle appris est donc
 \begin{equation}
   \xx \mapsto \frac1{1 + e^{- o(\xx)}} = 
   \frac1{1 + \exp \left( - \innerproduct{\ww,~\xx} \right)}.

@@ -186,7 +186,7 @@ difficile et intensif en temps de calcul d'y trouver un bon modèle.
 \end{figure}
 
 La tâche d'apprentissage supervisé consiste à déterminer une hypothèse
-$f \in \FF$ qui approche au mieux la fonction cible $\phi$ (voir
+$f \in \FF$ qui approche au mieux la fonction cible $\Phi$ (voir
 équation~\eqref{eq:probabilistic_ml}). Pour réaliser une telle tâche, nous
 allons développer dans les sections suivantes deux outils supplémentaires :
 \begin{enumerate}
@@ -333,8 +333,10 @@ fonction suivante :
 \end{equation}
 
 Si $f$ est à valeurs dans $]0, 1[$, en particulier si $f(\xx)$ est la
-probabilité que $\xx$ appartienne à la classe positive, cette fonction de coût
-est équivalente à l'\textbf{entropie croisée}, définie pour $\YY = \zo$.
+probabilité que $\xx$ appartienne à la classe positive, % cette fonction de coût
+% est équivalente à
+on utilise plutôt
+l'\textbf{entropie croisée}, définie pour $\YY = \zo$.
 
 \label{sec:cross_entropy}
 On appelle \textbf{entropie croisée}, ou {\it cross-entropy},
@@ -347,9 +349,23 @@ la fonction suivante :
   \label{eq:cross_entropy}
 \end{equation}
 
+\paragraph{Remarque} On peut transformer une fonction $f$ à valeurs dans $\RR$
+en une fonction $h$ à valeurs dans $]0, 1[$ en la composant par la
+\textbf{fonction sigmoïde,} aussi appelée \textbf{fonction logistique,} définie
+par
+\begin{equation}
+  \label{eq:sigmoide}
+  \begin{split}
+    \sigma \colon \RR & \to ]0, 1[ \\
+    u & \mapsto \frac1{1 + e^{-u}}.
+  \end{split}
+\end{equation}
+Dans ce cas, la fonction de coût logistique appliquée à $f$ est équivalente à
+l'entropie croisée appliquée à $h = \sigma \circ g$.
+
 La figure~\ref{fig:logistic_loss} illustre la valeur de la fonction de coût
 logistique en fonction de l'étiquette $y$ de l'individu $\xx$ et de la valeur
-de la fonction de décision $f(\xx).$
+de la fonction de décision $f(\xx).$ 
 
 \begin{figure}[h]
   \centering
