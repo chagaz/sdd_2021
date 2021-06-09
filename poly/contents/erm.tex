@@ -225,13 +225,13 @@ Dans le cadre d'un problème d'apprentissage supervisé, on appelle
 \textbf{risque} d'un modèle $h$ l'espérance de son coût :
 \begin{equation}
   \label{eq:risque}
-  \Rcal(h) = \EE(L(h(X), Y)).
+  \Rcal(h) = \EE(L(Y, f(X))).
 \end{equation}
 
 Nous cherchons donc un modèle $f$ tel que 
 \begin{equation}
   \label{eq:risk_minimization}
-  f \in \argmin_{h \in \FF} \EE(L(h(X), Y)).
+  f \in \argmin_{h \in \FF} \EE(L(Y, h(X))).
 \end{equation}
 Ce problème est généralement insoluble sans plus d'hypothèses : nous ne
 connaissons que $n$ réalisations du couple $(X, Y)$.  On approchera donc le
@@ -240,14 +240,14 @@ risque par son estimation sur ces réalisations.
 On appelle \textbf{risque empirique} de $h$ l'estimée du risque de $h$ défini par
 \begin{equation}
   \label{eq:empirical_risk}
-  R_n(h) = \frac{1}{n} \sum_{i=1}^n L(h(\xx^i), y^i).
+  R_n(h) = \frac{1}{n} \sum_{i=1}^n L(y^i, h(\xx^i)).
 \end{equation}
 
 On appelle donc modèle obtenu par \textbf{minimisation du risque empirique} une
 fonction
 \begin{equation}
   \label{eq:erm}
-  f \in \argmin_{h \in \FF} \frac{1}{n} \sum_{i=1}^n L(h(\xx^i), y^i).
+  f \in \argmin_{h \in \FF} \frac{1}{n} \sum_{i=1}^n L(y^i, h(\xx^i)).
 \end{equation}
 
 Selon le choix de $\FF$ et $L$, l'équation~\ref{eq:erm} peut avoir une solution
@@ -304,9 +304,9 @@ pratiques : peut-on ensuite résoudre le problème d'optimisation qui résulte de
 ce choix de façon suffisamment exacte et rapide~?
 Cette section présente quelques-unes des fonctions de coût les plus utilisées.
 
-\subsection{Coût 0/1 pour la classification binaire}
-Dans le cas d'une fonction $f$ à valeurs binaires, on appelle \textbf{fonction de
-  coût 0/1}, ou {\it 0/1 loss}, la fonction suivante :
+\subsection{Coût 0/1 (classification)}
+Dans le cas d'une fonction $f$ à valeurs discrètes, on appelle \textbf{fonction
+  de coût 0/1}, ou {\it 0/1 loss}, la fonction suivante :
 \begin{align*}
   L_{0/1} : \YY \times \YY & \rightarrow \RR \\
   y, f(\xx) & \mapsto
@@ -315,11 +315,10 @@ Dans le cas d'une fonction $f$ à valeurs binaires, on appelle \textbf{fonction d
                 0 & \mbox{ sinon.}
               \end{cases}
 \end{align*}
-
 Le risque empirique d'un modèle $h$ sur un jeu de données est alors le nombre
 d'erreurs de prédiction sur ce jeu de données.
 
-\subsection{Coût logistique et entropie croisée}
+\subsection{Coût logistique et entropie croisée (classification binaire)}
 Considérons maintenant que $f$ est une fonction de décision à valeurs réelles.
 \label{sec:logistic_loss}
 On appelle \textbf{fonction de coût logistique}, ou {\it logistic loss}, la
@@ -405,10 +404,10 @@ Comme $Q(Y=c|X)$ vaut soit $0$ ($c$ n'est pas la classe de $X$) soit
 $1$ (dans le cas contraire), le deuxième terme de cette expression est nul
 et on retrouve ainsi la définition ci-dessus de l'entropie croisée.
 
-\subsection{Coût quadratique pour la régression}
+\subsection{Coût quadratique (régression)}
 \label{sec:quadratic_loss}
 On appelle \textbf{fonction de coût quadratique}, ou {\it quadratic loss}, ou
-encore {\it squared error}, la fonction suivante :
+{\it squared error}, la fonction suivante :
 \begin{equation}
   \begin{split}
     L_{\text{SE}} : \RR \times \RR & \to \RR \\ 
@@ -419,7 +418,7 @@ encore {\it squared error}, la fonction suivante :
 Le coefficient $\frac{1}{2}$ permet d'éviter d'avoir des coefficients
 multiplicateurs quand on dérive le risque empirique pour le minimiser.
 
-\section{Apprentissage supervisé d'un modèle paramétrique}
+\section{Apprentissage supervisé d'un modèle de régression paramétrique}
 \label{sec:parametric}
 \subsection{Modèles paramétriques}
 On parle de \textbf{modèle paramétrique} quand l'espace des hypothèses $\FF$
@@ -429,31 +428,28 @@ paramétrisée par un nombre fini de paramètres.
 C'est le cas de l'espace des hypothèses défini plus haut par
 l'équation~\eqref{eq:hypothesis_space_ellipsis} : les paramètres sont au nombre
 de $4$ et il s'agit de $\alpha$, $\beta$, $a$, et $b$. Le but de
-l'apprentissage sera de déterminer les valeurs de ces paramètres.
-
-À l'inverse, la méthode du plus proche voisin, qui associe à $\xx$ l'étiquette
-du point du jeu d'entraînement dont il est le plus proche en distance
-euclidienne, apprend un modèle non paramétrique : il ne s'agit pas d'écrire la
-fonction de décision comme une expression explicite des variables prédictives
-et d'apprendre les paramètres de cette expression.
-
-Nous verrons au chapitre~\ref{chap:nonlin} des exemples de modèles non
-paramétriques, et nous concentrons maintenant sur les modèles de régression
-paramétriques. 
-
+l'apprentissage sera de déterminer les valeurs de ces paramètres.  À l'inverse,
+la méthode du plus proche voisin, qui associe à $\xx$ l'étiquette du point du
+jeu d'entraînement dont il est le plus proche en distance euclidienne, apprend
+un modèle non paramétrique : il ne s'agit pas d'écrire la fonction de décision
+comme une expression explicite des variables prédictives et d'apprendre les
+paramètres de cette expression. Nous verrons au chapitre~\ref{chap:nonlin}
+d'autres exemples de modèles non paramétriques.
+% , et nous concentrons maintenant sur les modèles de régression
+% paramétriques. 
 Nous considérons pour la suite de ce chapitre disposer d'un jeu
 $\DD = \{\xx^i, y^i\}_{i=1, \dots, n}$ de $n$ observations en $p$ dimensions et
 leurs étiquettes réelles. Nous considérons comme espace des hypothèses un
 ensemble de modèles paramétrisés par un vecteur $\bbeta \in \mathbb{R}^{m}$.
 
 
-\subsection{Minimisation du risque empirique}
+\subsection{Minimisation du risque empirique d'une régression paramétrique}
 Si nous utilisons comme fonction de coût le coût quadratique défini par
 l'équation~\eqref{eq:quadratic_loss}, la minimisation du risque empirique comme
 définie par l'équation~\eqref{eq:erm} consiste à trouver
 \begin{equation}
   \label{eq:erm_parametric}
-  \bbeta^* \in \argmin_{\bbeta \in \RR^m} \frac{1}{n} \sum_{i=1}^n (f_{\bbeta}(\xx^i) - y^i)^2.
+  \bbeta^* \in \argmin_{\bbeta \in \RR^m} \frac{1}{2n} \sum_{i=1}^n (f_{\bbeta}(\xx^i) - y^i)^2.
 \end{equation}
 
 C'est ce que l'on appelle la \textbf{minimisation des moindres carrés}, une
@@ -613,8 +609,9 @@ linéaire admet plusieurs solutions. Intuitivement, on peut passer de l'une à
 l'autre de ces solutions car une perturbation d'un des poids $\beta_j$ peut
 être compensée en modifiant les poids des variables corrélées à $x_j$.
 
-\paragraph{Remarque} Nous avons traité ici de problèmes de \textit{régression}
-uniquement. Nous traiterons de classification paramétrique dans la PC~5.
+\paragraph{Remarque} % Nous avons traité ici de problèmes de \textit{régression}
+% uniquement.
+Nous traiterons de classification paramétrique dans la PC~5.
 
 
 \input{contents/qcm/qcm6}
