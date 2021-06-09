@@ -1,0 +1,89 @@
+%-*- coding: iso-latin-1 -*-
+\documentclass[french,11pt]{article}
+\usepackage{babel}
+\DecimalMathComma
+% Emacs: to save in encoding iso-latin-1:
+% C-x C-m f
+% iso-latin-1
+
+% aspell --lang=fr --encoding='iso-8859-1' -t check selection-modele.tex
+
+\usepackage{graphicx}
+\usepackage[hidelinks]{hyperref}
+
+
+% Fonts
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{gentium}
+
+% SI units
+\usepackage{siunitx}
+
+% Table becomes Tableau
+\usepackage{caption}
+\captionsetup{labelfont=sc}
+\def\frenchtablename{Tableau}
+
+% % List management
+\usepackage{enumitem}
+
+\usepackage[dvipsnames]{xcolor}
+\usepackage{listings}
+\lstset{%
+  frame=single,                    % adds a frame around the code
+  tabsize=2,                       % sets default tabsize to 2 spaces
+  columns=flexible,                % doesn't add spaces to make the line fit the whole column
+  basicstyle=\ttfamily,             % use monospace
+  keywordstyle=\color{MidnightBlue},
+  commentstyle=\color{Gray},
+  stringstyle=\color{BurntOrange},
+  showstringspaces=false,
+}
+
+
+%%%% GEOMETRY AND SPACING %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{etex}
+\usepackage[tmargin=2cm,bmargin=2cm,lmargin=2cm,footnotesep=1cm]{geometry}
+
+\parskip=1ex\relax % space between paragraphs (incl. blank lines)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{contents/notations}
+
+\begin{document}
+
+\begin{center}
+\bf\large ECUE21.2: Science des données \hfill
+Erratum
+\end{center}
+\noindent
+\rule{\textwidth}{.4pt}
+
+\medskip
+
+\section{Fonction de coût logistique et entropie croisée (Section 7.4.2, p. 75)}
+
+À propos de la phrase « Si $f$ est à valeurs dans $]0, 1[$, en particulier si $f(\xx)$ est la
+probabilité que $\xx$ appartienne à la classe positive, cette fonction de coût est équivalente à
+l'\textbf{entropie croisée}, définie pour $\YY = \zo$ » : cette équivalence est vraie si 
+l'on transforme $f,$ à valeurs dans $\RR,$ en une fonction $h$ à valeurs dans $]0, 1[$ en la composant par la
+\textbf{fonction sigmoïde,} aussi appelée \textbf{fonction logistique,} définie
+par
+\begin{equation}
+  \label{eq:sigmoide}
+  \begin{split}
+    \sigma \colon \RR & \to ]0, 1[ \\
+    u & \mapsto \frac1{1 + e^{-u}}.
+  \end{split}
+\end{equation}
+Dans ce cas, la fonction de coût logistique appliquée à $f$ est équivalente à
+l'entropie croisée appliquée à $h = \sigma \circ g$.
+
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
