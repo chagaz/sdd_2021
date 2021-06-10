@@ -53,7 +53,7 @@ __Emploi du temps__
 
 __Modalités d'évaluation__
 * mini-projet numérique à réaliser en binôme. Deux séances de PC y sont dévouées (le 14/06 et le 24/06). À rendre le 1er juillet (30%).
-* examen sur table avec documents autorisés à réaliser le 1er juillet (70%).
+* examen sur table avec documents autorisés le 1er juillet (70%).
 
 __Pour contribuer à ce repo__
 Ce repo contient un script `pre-commit.sh` qui permet de le nettoyer (supprimer les fichiers auxiliaires de latex, nettoyer les notebooks avec [`nbstripout`](https://pypi.org/project/nbstripout/)).
