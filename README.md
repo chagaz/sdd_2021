@@ -34,7 +34,7 @@ __Emploi du temps__
   * __15h30-17h00 :__ cours 6 — Introduction à l'apprentissage supervisé (Chapitre 7)
 
 * __lundi 14/06 :__
-  * __13h45-15h15 :__ PC 3 — Pré-traitement & introduction au mini-projet numérique
+  * __13h45-15h15 :__ PC 3 — Pré-traitement & introduction à scikit-learn pour l'apprentissage supervisé
   * __15h30-17h00 :__ Mini-projet numérique (1)
 
 * __jeudi 17/06 :__
