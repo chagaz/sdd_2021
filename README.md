@@ -34,7 +34,7 @@ __Emploi du temps__
   * __15h30-17h00 :__ cours 6 — Introduction à l'apprentissage supervisé (Chapitre 7)
 
 * __lundi 14/06 :__
-  * __13h45-15h15 :__ PC 3 — Pré-traitement & introduction au mini-projet numérique
+  * __13h45-15h15 :__ PC 3 — Pré-traitement & introduction à scikit-learn pour l'apprentissage supervisé
   * __15h30-17h00 :__ Mini-projet numérique (1)
 
 * __jeudi 17/06 :__
@@ -53,7 +53,7 @@ __Emploi du temps__
 
 __Modalités d'évaluation__
 * mini-projet numérique à réaliser en binôme. Deux séances de PC y sont dévouées (le 14/06 et le 24/06). À rendre le 1er juillet (30%).
-* examen sur table avec documents autorisés à réaliser le 1er juillet (70%).
+* examen sur table avec documents autorisés le 1er juillet (70%).
 
 __Pour contribuer à ce repo__
 Ce repo contient un script `pre-commit.sh` qui permet de le nettoyer (supprimer les fichiers auxiliaires de latex, nettoyer les notebooks avec [`nbstripout`](https://pypi.org/project/nbstripout/)).
