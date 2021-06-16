@@ -452,10 +452,10 @@ En appelant $\Omega$ le régulariseur, la régularisation consiste donc à
 remplacer la minimisation du risque empirique (eq.~\eqref{eq:erm}) par :
 \begin{equation}
   \label{eq:regularisation}
-  f \in \argmin_{h \in \FF} \frac{1}{n} \sum_{i=1}^n L(h(\xx^i), y^i) + 
+  f \in \argmin_{h \in \FF} \frac{1}{n} \sum_{i=1}^n L(y^i, h(\xx^i)) + 
   \lambda \Omega(h),
 \end{equation}
-où le coefficient de régularisation $\lambda \in \RR_+$ contrôle
+où le \textbf{coefficient de régularisation} $\lambda \in \RR_+$ contrôle
 l'importance relative de chacun des termes.
 
 
