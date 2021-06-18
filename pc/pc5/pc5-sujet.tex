@@ -129,8 +129,8 @@ logistique :
 \item 
   Comment peut-on alors interpréter $f(\xx)$ ? Prêtez attention à l'espace
   d'arrivée de $\sigma$.
-\item Utiliser cet espace des hypothèses et la fonction de coût logistique
-  (définie à la section 7.4.2 du poly) pour poser l'apprentissage d'un
+\item Utiliser cet espace des hypothèses et l'entropie croisée
+  (définie à la section 7.4.2 du poly) comme fonction de coût pour poser l'apprentissage d'un
   classifieur binaire sous la forme de la minimisation d'un risque empirique.
 \item Montrer ou admettre que le risque empirique est convexe. Admet-il un minimum global ? 
 \item Comment minimiser le risque empirique ? On pourra montrer ou admettre que le gradient du risque empirique en $\bbeta$ vaut 
@@ -153,20 +153,33 @@ $\RR^{p+1}$ et $Y$ une variable aléatoire discrète à valeurs dans $\{0,
 1\}$. $\bbeta \in \RR^{p+1}$ est maintenant un paramètre à
 estimer.
 
-\paragraph{Vraisemblance} Nous avons jusqu'à présent défini la vraisemblance uniquement pour une variable
-aléatoire à densité ou pour une variable aléatoire discrète (voir
-\texttt{erratum\_estimation.pdf}). Cette définition peut être étendue à un
-vecteur aléatoire réel $Z$ dont certaines composantes, notées $U$, sont à
-densité et les autres, notées $V$, sont discrètes, de la façon suivante. On
-note $g$ la densité du vecteur aléatoire à densité $U$. Une réalisation $\zz$
-de $Z$ peut être décomposée comme $(\uu,~\vv)$, avec $\uu$ la composante à densité et $\vv$ la composante discrète. Alors la vraisemblance d'un
-échantillon $((\uu^1, \vv^1), (\uu^1, \vv^2), \dots, (\uu^n, \vv^n))$ de $Z$
-est définie par
-  \begin{equation}
-    \label{eq:likelihood}
-    L(\zz^1, \zz^2, \dots, \zz^n; \theta) = \prod_{i=1}^n \PP(V = \vv^i|U=\uu^i) g(\uu^i),
-  \end{equation}
-  où $g$ et $\PP_{V|U=\uu}$ peuvent toutes deux être paramétrées par $\theta$. 
+% \paragraph{Vraisemblance} Nous avons jusqu'à présent défini la vraisemblance uniquement pour une variable
+% aléatoire à densité ou pour une variable aléatoire discrète (voir
+% \texttt{erratum\_estimation.pdf}). Cette définition peut être étendue à un
+% vecteur aléatoire réel $Z$ dont certaines composantes, notées $U$, sont à
+% densité et les autres, notées $V$, sont discrètes, de la façon suivante. On
+% note $g$ la densité du vecteur aléatoire à densité $U$. Une réalisation $\zz$
+% de $Z$ peut être décomposée comme $(\uu,~\vv)$, avec $\uu$ la composante à densité et $\vv$ la composante discrète. Alors la vraisemblance d'un
+% échantillon $((\uu^1, \vv^1), (\uu^1, \vv^2), \dots, (\uu^n, \vv^n))$ de $Z$
+% est définie par
+%   \begin{equation}
+%     \label{eq:likelihood}
+%     L(\zz^1, \zz^2, \dots, \zz^n; \theta) = \prod_{i=1}^n \PP(V = \vv^i|U=\uu^i) g(\uu^i),
+%   \end{equation}
+%   où $g$ et $\PP_{V|U=\uu}$ peuvent toutes deux être paramétrées par $\theta$. 
+
+\paragraph{Vraisemblance} Nous avons défini (Section 3.6 du poly) la
+vraisemblance dans le cadre de l'estimation ponctuelle. Ici, nous allons nous
+intéresser, comme dans le contexte des régressions paramétriques (sections
+7.5.3 et 7.5.4), à l'estimation du \textit{vecteur} $\bbeta \in \RR^{p+1}$, à
+partir d'un échantillon d'un \textit{vecteur aléatoire} $Z$ dont certaines
+composantes, notées $U$, sont à densité et les autres, notées $V$, sont
+discrètes. Pour calculer la vraisemblance d'un échantillon de $Z$ paramétré par
+$\bbeta$, il faut pouvoir exprimer la loi de $Z$ sous la forme
+$\PP_Z = f_{\bbeta} \mu,$ avec $\mu$ une mesure et $f_{\bbeta}$
+$\mu$-mesurable. On y arrive en exprimant $\PP_{Z;\bbeta} = \PP_{V|U} \PP_U$ et
+en exprimant $\PP_{V|U}$ grâce à la fonction de masse de $V|U$ et $\PP_U$ grâce
+à la densité de $U$.
 
 
 \begin{enumerate}
@@ -236,7 +249,7 @@ classe négative (étiquetés $-1$) de l'autre. Un tel exemple est illustré sur la 
   l'équation de la fonction de décision du modèle ? Quel est le modèle de classification
   binaire correspondant ?
 \item Nous allons maintenant définir la \textbf{marge} d'un tel classifieur :
-  c'est la distance entre l'hyperplan $\innerproduct{\ww,~\xx} + b = 0$ et le
+  c'est la distance entre l'hyperplan  $H$ d'équation $\innerproduct{\ww,~\xx} + b = 0$ et le
   point de $\DD$ qui en est le plus proche. Comparez les 3 hyperplans de la
   figure~\ref{fig:linearly_separable} : lequel a la plus petite marge ? La plus
   grande marge ?
@@ -326,17 +339,20 @@ De manière plus compacte, la perte hinge peut aussi s'écrire
   L_{\text{hinge}}(f(\xx), y) = \max\left(0, 1 - y f(\xx) \right) = \left[ 1 - y f(\xx)\right]_+. 
 \end{equation*}
 
-La perte hinge est positive quand un point est situé du mauvais côté non pas de l'hyperplan séparateur $H$, mais de $H_+$ pour un point d'étiquette positive (respectivement, de $H_-$ pour un point d'étiquette négative).
+La perte hinge est positive quand un point est situé du mauvais côté non pas de
+l'hyperplan séparateur $H$, mais de $H_+$ pour un point d'étiquette positive
+(respectivement, de $H_-$ pour un point d'étiquette négative).
 
 La SVM à marge souple est la solution du problème d'optimisation
 \begin{equation}
   \argmin_{\ww \in \RR^p, b \in \RR} \frac{1}{2} \ltwonorm{\ww}^2 + 
-  C \sum_{i=1}^n \left[ 1 - y^i f(\xx^i)\right]_+.
+  C \sum_{i=1}^n \left[ 1 - y^i  \left(\innerproduct{\ww,~\xx^i} + b\right) \right]_+.
   \label{eq:soft-margin-svm}
 \end{equation}
 
 \begin{enumerate}
-\item Identifier la formulation~\eqref{eq:soft-margin-svm} avec la minimisation d'un risque empirique régularisé.
+\item Identifier la formulation~\eqref{eq:soft-margin-svm} avec la minimisation
+  d'un risque empirique régularisé.
 \item En introduisant une variable d'ajustement (ou variable d'écart ; on
   parle de {\it slack variable} en anglais) 
   $\xi_i = \left[ 1 - y^i f(\xx^i)\right]_+$ pour chaque observation du jeu
@@ -369,7 +385,8 @@ La SVM à marge souple est la solution du problème d'optimisation
   \begin{equation*}
     \begin{cases}
       \ww^* = \sum_{i=1}^n \alpha_i^* y^i \xx^i & \\
-      \alpha^*_i \left(\innerproduct{\ww^*,~\xx^i} + b^*\right) = 0 & \\
+      \alpha_i^* \left(y^i \left(\innerproduct{\ww^*,~\xx^i} + b^*\right) - 1 \right) = 0 & \\
+      % \alpha^*_i \left(\innerproduct{\ww^*,~\xx^i} + b^*\right) = 0 & \\
       (C-\alpha^*_i) \left[ 1 - y^i \left( \langle \ww, \xx^i \rangle + b
       \right)\right]_+ = 0 & \text{ pour tout } i=1, \dots, n.
     \end{cases}
@@ -377,7 +394,8 @@ La SVM à marge souple est la solution du problème d'optimisation
 \item Que dire maintenant de la valeur de $\alpha_i^*$ pour un vecteur de support, par opposition à un autre point du jeu d'entraînement ? On partira de 
   \begin{equation*}
     \begin{cases}
-      \alpha^*_i \left(\innerproduct{\ww^*,~\xx^i} + b^*\right) = 0 & \\
+      \alpha_i^* \left(y^i \left(\innerproduct{\ww^*,~\xx^i} + b^*\right) - 1 \right) = 0 & \\
+      % \alpha^*_i \left(\innerproduct{\ww^*,~\xx^i} + b^*\right) = 0 & \\
       (C-\alpha^*_i) \left[ 1 - y^i \left( \langle \ww, \xx^i \rangle + b
       \right)\right]_+ = 0 & \text{ pour tout } i=1, \dots, n.
     \end{cases}
