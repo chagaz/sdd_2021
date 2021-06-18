@@ -1,0 +1,95 @@
+%-*- coding: iso-latin-1 -*-
+\documentclass[french,11pt]{article}
+\usepackage{babel}
+\DecimalMathComma
+% Emacs: to save in encoding iso-latin-1:
+% C-x C-m f
+% iso-latin-1
+
+% aspell --lang=fr --encoding='iso-8859-1' -t check selection-modele.tex
+
+\usepackage{graphicx}
+\usepackage[hidelinks]{hyperref}
+
+% Fonts
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{gentium}
+
+% SI units
+\usepackage{siunitx}
+
+% Table becomes Tableau
+\usepackage{caption}
+\captionsetup{labelfont=sc}
+\def\frenchtablename{Tableau}
+
+%%%% GEOMETRY AND SPACING %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{subcaption}
+
+% % List management
+\usepackage{enumitem}
+
+\usepackage{etex}
+\usepackage[tmargin=2cm,bmargin=2cm,lmargin=2cm,footnotesep=1cm]{geometry}
+
+\parskip=1ex\relax % space between paragraphs (incl. blank lines)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[dvipsnames]{xcolor}
+\usepackage{listings}
+\lstset{%
+  frame=single,                    % adds a frame around the code
+  tabsize=2,                       % sets default tabsize to 2 spaces
+  columns=flexible,                % doesn't add spaces to make the line fit the whole column
+  basicstyle=\ttfamily,             % use monospace
+  keywordstyle=\color{MidnightBlue},
+  commentstyle=\color{Gray},
+  stringstyle=\color{BurntOrange},
+  showstringspaces=false,
+}
+
+\input{../../poly/contents/notations}
+
+\begin{document}
+
+\begin{center}
+\bf\large ECUE21.2: Science des données \hfill
+PC 5 -- Modèles linéaires pour la classification \\
+\vspace{1em}
+\Large{ERRATA}
+\end{center}
+
+\noindent
+\hfill 21 juin 2021.
+
+\noindent
+\rule{\textwidth}{.4pt}
+
+\medskip
+
+\begin{itemize}
+\item Exercice 1.1, question 3 : Utiliser \textbf{l'entropie croisée} et non
+  pas \textbf{la fonction de coût logistique} comme fonction de coût ;
+\item Exercice 1.2 : Le paragraphe sur la vraisemblance date de l'édition 2020
+  du poly ; la référence à un fichier \texttt{erratum\_estimation.pdf} est
+  obsolète. 
+\item Exercice 2.2 : Remplacer l'équation (5) par
+  \begin{equation}
+  \argmin_{\ww \in \RR^p, b \in \RR} \frac{1}{2} \ltwonorm{\ww}^2 + 
+  C \sum_{i=1}^n \left[ 1 - y^i  \left(\innerproduct{\ww,~\xx^i} + b\right) \right]_+.
+  \label{eq:soft-margin-svm}
+\end{equation}
+\item Exercice 2.2 toujours : Remplacer
+  $\alpha^*_i \left(\innerproduct{\ww^*,~\xx^i} + b^*\right) = 0$ par
+  $\alpha_i^* \left(y^i \left(\innerproduct{\ww^*,~\xx^i} + b^*\right) - 1
+  \right) = 0$ dans les deux derniers systèmes de la page.
+\end{itemize}
+
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
