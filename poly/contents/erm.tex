@@ -360,11 +360,14 @@ par
   \end{split}
 \end{equation}
 Dans ce cas, la fonction de coût logistique appliquée à $f$ est équivalente à
-l'entropie croisée appliquée à $h = \sigma \circ g$.
+l'entropie croisée appliquée à $h = \sigma \circ f$ :
+\[
+  L_H(y, h(\xx)) = L_{\log} (2y-1, f(\xx))
+\]
 
 La figure~\ref{fig:logistic_loss} illustre la valeur de la fonction de coût
 logistique en fonction de l'étiquette $y$ de l'individu $\xx$ et de la valeur
-de la fonction de décision $f(\xx).$ 
+de la fonction de décision $f(\xx) \in ]0, 1[.$ 
 
 \begin{figure}[h]
   \centering
