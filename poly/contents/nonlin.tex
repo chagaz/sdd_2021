@@ -141,7 +141,7 @@ on tire une nouvelle observation $(\xx^i, y^i)$ et on actualise, pour tout $j$,
 les poids de connexion de la façon suivante :
 \begin{equation}
   \label{eq:update_rule}
-  w_j \leftarrow w_j - \eta \frac{\partial L(f(\xx^i), y^i)}{\partial w_j}.
+  w_j \leftarrow w_j - \eta \frac{\partial L(y^i, f(\xx^i))}{\partial w_j}.
 \end{equation}
 
 Il est possible (et même recommandé dans le cas où les données ne sont pas
@@ -168,10 +168,10 @@ Dans le cas de la classification probabiliste, visant à prédire la probabilité
 d'appartenir à la classe positive plutôt qu'une étiquette binaire, on utilise
 l'entropie croisée comme fonction de coût (cf section~\ref{sec:cross_entropy}) :
 \begin{equation*}
-  L(f(\xx^i), y^i) = 
+  L(y^i, f(\xx^i)) = 
 - y^i \ln \left( \innerproduct{\ww,~\xx} \right) - (1-y^i) \ln \left( 1 - \innerproduct{\ww,~\xx}\right) 
 \end{equation*}
-Quelques lignes de calcul montrent que la régle d'actualisation~\eqref{eq:update_rule} devient :
+Quelques lignes de calcul montrent que la règle d'actualisation~\eqref{eq:update_rule} devient :
 \begin{equation}
   \label{eq:update_rule_class_prob}
   w_j \leftarrow w_j - \eta (f(\xx^i) - y^i) x_j^i.
@@ -181,7 +181,7 @@ Quelques lignes de calcul montrent que la régle d'actualisation~\eqref{eq:update
 Dans le cas de la régression, on utilise comme fonction de coût le
 coût quadratique :
 \begin{equation}
-  L(f(\xx^i), y^i) = 
+  L(y^i, f(\xx^i)) = 
   \frac12 \left(y^i - \innerproduct{\ww,~\xx}\right)^2.
 \end{equation}
 La règle d'actualisation~\eqref{eq:update_rule} devient :
@@ -289,7 +289,7 @@ l'apprentissage d'un perceptron multi-couche, connu sous le nom de
   backprop}), est connu depuis des décennies. Il repose, comme pour le
 perceptron, sur l'utilisation de l'algorithme du
 gradient pour minimiser, à chaque nouvelle observation, le risque
-$L(f(\xx^i), y^i)$. Pour plus de détails, reportez-vous à la
+$L(y^i, f(\xx^i))$. Pour plus de détails, reportez-vous à la
 section~\ref{sec:backprop}.
   
 \subsection{Deep learning}
@@ -600,8 +600,8 @@ le jeu d'entraînement est minimale.
 \paragraph{Formalisation $\bullet$} On peut formellement noter :
 \begin{equation}
   \argmin_{j \in \{1, \dots, p\}} \left( 
-    \frac1{\abs{R_l(j)}} \sum_{i: \xx^i \in R_l(j)} L(y_l(j), y^i)  + 
-     \frac1{\abs{R_r(j)}} \sum_{i: \xx^i \in R_r(j)} L(y_r(j), y^i)
+    \frac1{\abs{R_l(j)}} \sum_{i: \xx^i \in R_l(j)} L(y^i, y_l(j))  + 
+     \frac1{\abs{R_r(j)}} \sum_{i: \xx^i \in R_r(j)} L(y^i, y_r(j))
    \right)
    \label{eq:erm_binary_tree}
 \end{equation}
@@ -742,7 +742,7 @@ directement une fonction de seuil :
 le nom de \textbf{critère du perceptron} :
 \begin{equation}
   \label{eq:perceptron}
-  L(f(\xx^i), y^i) = \max(0, - y^i o(\xx^i)) = 
+  L(y^i, f(\xx^i)) = \max(0, - y^i o(\xx^i)) = 
   \max(0, - y^i \innerproduct{\ww,~\xx})
 \end{equation}
 Ce critère est proche de la fonction d'erreur hinge (voir section 2.2 de la
@@ -798,35 +798,35 @@ résultats en pratique avec plus de couches.
 \label{sec:backprop}
 Pour actualiser le poids de connexion $w^h_{jq}$ du neurone $j$ de la couche
 $(h-1)$ vers le neurone $q$ de la couche $h$, nous devons calculer
-$\frac{\partial L(f(\xx^i, y^i))}{\partial w^h_{jq}}.$ Pour ce faire, nous
+$\frac{\partial L(y^i, f(\xx^i))}{\partial w^h_{jq}}.$ Pour ce faire, nous
 pouvons appliquer le théorème de dérivation des fonctions composées ({\it chain
   rule} en anglais). Nous notons $o^h_j$ la combinaison linéaire des entrées du
 $j$-ème neurone de la couche $h$ ; en d'autres termes, $z^h_j =
 a_h(o^h_j)$. Par convention, nous considérerons que $z^0_j = x_j$. Ainsi,
 \begin{equation}
   \label{eq:mlp_gradient}
-  \frac{\partial L(f(\xx^i), y^i)}{\partial o^h_q} 
+  \frac{\partial L(y^i, f(\xx^i))}{\partial o^h_q} 
   \frac{\partial o^h_q}{\partial w^h_{jq}} 
-  = \frac{\partial L(f(\xx^i), y^i)}{\partial z^h_q} 
+  = \frac{\partial L((y^i, f(\xx^i))}{\partial z^h_q} 
   \frac{\partial z^h_q}{\partial o^h_q} 
   \frac{\partial o^h_q}{\partial w^h_{jq}}   
 \end{equation}
 et donc   
 \begin{equation}
   \begin{split}
-    \frac{\partial L(f(\xx^i), y^i)}{\partial w^h_{jq}} & =
-    \left(\sum_{r=1}^{p_{h+1}}  \frac{\partial L(f(\xx^i), y^i)}{\partial o^{h+1}_r}  
+    \frac{\partial L(y^i, f(\xx^i))}{\partial w^h_{jq}} & =
+    \left(\sum_{r=1}^{p_{h+1}}  \frac{\partial L(y^i, f(\xx^i))}{\partial o^{h+1}_r}  
       \frac{\partial o^{h+1}_r}{\partial z^h_q} \right)
     \frac{\partial z^h_q}{\partial o^h_q} 
     \frac{\partial o^h_q}{\partial w^h_{jq}} \\
-    & = \left(\sum_{r=1}^{p_{h+1}}  \frac{\partial L(f(\xx^i), y^i)}{\partial o^{h+1}_r}  
+    & = \left(\sum_{r=1}^{p_{h+1}}  \frac{\partial L(y^i, f(\xx^i))}{\partial o^{h+1}_r}  
       w^{h+1}_{qr} \right) a_h'(o^h_q) \; z^{h-1}_j.    
   \end{split}
 \end{equation}
 
 Le gradient nécessaire à l'actualisation des poids de la couche $h$ se
 calcule donc en fonction des gradients
-$\frac{\partial L(f(\xx^i, y^i))}{\partial o^{h+1}_r}$ nécessaires pour
+$\frac{\partial L(y^i, f(\xx^i))}{\partial o^{h+1}_r}$ nécessaires pour
 actualiser les poids de la couche $(h+1)$.
 
 Cela va nous permettre de simplifier nos calculs en utilisant une technique de
@@ -859,7 +859,7 @@ la première couche intermédiaire.
   
   Lors de la rétropropagation, nous calculons tout d'abord 
   \begin{equation*}
-    \frac{\partial L(f(\xx^i), y^i)}{\partial w^3_j} =      
+    \frac{\partial L(y^i, f(\xx^i))}{\partial w^3_j} =      
     \left(f(\xx^i) - y^i \right) \frac{\partial f(\xx^i)}{\partial w^3_j} =
     \left(f(\xx^i) - y^i \right) z^2_j
   \end{equation*}
@@ -871,15 +871,15 @@ la première couche intermédiaire.
   
   Nous pouvons ensuite appliquer~\ref{eq:mlp_gradient} et calculer 
   \begin{equation*}
-    \frac{\partial L(f(\xx^i), y^i)}{\partial w^2_{jq}}  =      
-    \frac{\partial L(f(\xx^i), y^i)}{\partial o^2_q} 
+    \frac{\partial L(y^i, f(\xx^i))}{\partial w^2_{jq}}  =      
+    \frac{\partial L(y^i, f(\xx^i))}{\partial o^2_q} 
     \frac{\partial o^2_q}{\partial w^2_{jq}} 
   \end{equation*}
   où 
   \begin{equation}
     \label{eq:backprop_layer2}
-    \frac{\partial L(f(\xx^i), y^i)}{\partial o^2_q} =      
-    \frac{\partial L(f(\xx^i), y^i)}{\partial f(\xx^i)} w^3_q \sigma'(o^2_q) = 
+    \frac{\partial L(y^i, f(\xx^i))}{\partial o^2_q} =      
+    \frac{\partial L(y^i, f(\xx^i))}{\partial f(\xx^i)} w^3_q \sigma'(o^2_q) = 
     \left(f(\xx^i) - y^i \right) w^3_q z^2_q (1-z^2_q)
   \end{equation}
   et 
@@ -896,21 +896,21 @@ la première couche intermédiaire.
   
   Enfin, nous pouvons de nouveau appliquer~\ref{eq:mlp_gradient} et calculer 
   \begin{equation*}
-    \frac{\partial L(f(\xx^i), y^i)}{\partial w^1_{jq}} =  
-    % \left(\sum_{r=1}^{p_2}  \frac{\partial L(f(\xx^i), y^i)}{\partial o^2_r}  
+    \frac{\partial L(y^i, f(\xx^i))}{\partial w^1_{jq}} =  
+    % \left(\sum_{r=1}^{p_2}  \frac{\partial L(y^i, f(\xx^i))}{\partial o^2_r}  
     %   w^2_{qr} \right) \sigma'(o^1_q) \; x_j = 
-    \left(\sum_{r=1}^{p_2}  \frac{\partial L(f(\xx^i), y^i)}{\partial o^2_r}  
+    \left(\sum_{r=1}^{p_2}  \frac{\partial L(y^i, f(\xx^i))}{\partial o^2_r}  
       w^2_{qr} \right) z^1_q (1 - z^1_q) \; x_j.
   \end{equation*}
   Encore une fois, nous disposons de tous les éléments nécessaires : $z_q^1$
   a été calculé lors de la propagation avant, les poids $w^2_{qr}$ ont été
   actualisés à l'étape précédente, et les dérivées partielles $\frac{\partial
-    L(f(\xx^i), y^i)}{\partial o^2_q}$ ont elles aussi été calculées à
+    L(y^i, f(\xx^i))}{\partial o^2_q}$ ont elles aussi été calculées à
   l'étape précédente (\ref{eq:backprop_layer2}). Nous pouvons donc effectuer
   aisément notre dernière étape de rétropropagation :
   \begin{equation*}
     w^1_{jq} \leftarrow w^1_{jq} - \eta \left(\sum_{r=1}^{p_2}  
-      \frac{\partial L(f(\xx^i), y^i)}{\partial o^2_r}  
+      \frac{\partial L(y^i, f(\xx^i))}{\partial o^2_r}  
       w^2_{qr} \right) z^1_q (1 - z^1_q) \; x_j.
   \end{equation*}
 \end{exemple}
@@ -1120,8 +1120,8 @@ Notons maintenant
 on généralise alors l'équation~\eqref{eq:erm_binary_tree} en :
 \begin{equation}
   \argmin_{\zeta \in \Ical} \left( 
-    \frac1{\abs{R_l(\zeta)}} \sum_{i: \xx^i \in R_l(\zeta)} L(y_l(\zeta), y^i)  + 
-     \frac1{\abs{R_r(\zeta)}} \sum_{i: \xx^i \in R_r(\zeta)} L(y_r(\zeta), y^i)
+    \frac1{\abs{R_l(\zeta)}} \sum_{i: \xx^i \in R_l(\zeta)} L(y^i, y_l(\zeta))  + 
+     \frac1{\abs{R_r(\zeta)}} \sum_{i: \xx^i \in R_r(\zeta)} L(y^i, y_r(\zeta))
   \right)
 \end{equation}
 
