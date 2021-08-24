@@ -117,7 +117,7 @@ chapitre, nous considèrerons des variables aléatoires réelles ($E = \RR$ ou une
 partie de $\RR$ telle que $\RR_+$ ou $\NN$), mais les idées qui y sont
 présentées peuvent être étendues à $\RR^d$ ou à des espaces plus sophistiqués.
 
-Soit $(X_1, X_2, \dots, X_n)$ un échantillon aléatoire. Les $X_i$ sont
+Soit $(X_1, X_2, \dots, X_n)$ un échantillon aléatoire de $X$. Les $X_i$ sont
 indépendantes et identiquement distribuées, de même loi $\PP_X$ que $X.$ Soit
 $(x_1, x_2, \dots, x_n)$ un échantillon, autrement dit une réalisation de cet
 échantillon aléatoire. Soit enfin $\theta \in \RR$ une quantité déterministe
@@ -177,7 +177,7 @@ $M_n$ est un estimateur de $m$ : étant donné un échantillon
 $(x_1, x_2, \dots, x_n),$ la valeur $\hat{m}_n = \frac1n \sum_{i=1}^n x_i$ est
 une estimation de $m$.
 
-À ce stade, rien ne nous permet de dire que $M_n$ est un \textit{bon}
+À ce stade, rien ne nous permet d'affirmer que $M_n$ est un \textit{bon}
 estimateur de $m$ ; en effet, rien ne nous empêche de définir
 $\frac2n \sum_{i=1}^n X_i$ ou $\frac1n \sum_{i=1}^n X_i^2$ comme estimateur de l'espérance.
 
@@ -258,7 +258,7 @@ On propose donc la \textbf{variance empirique corrigée,} définie par
   S^*_n = \frac1{n-1} \sum_{i=1}^n (X_i - M_n)^2,
   \label{eq:variance_empirique_corrigee}
 \end{equation}
-et qui est non-biaisé.
+et qui est non-biaisée.
 
 Néanmoins, le biais de la variance empirique tend vers 0 lorsque $n$ tend vers
 $+\infty$. On parle alors d'un estimateur \textbf{asymptotiquement non-biaisé.}
@@ -269,24 +269,24 @@ $+\infty$. On parle alors d'un estimateur \textbf{asymptotiquement non-biaisé.}
 Reprenons la figure~\ref{fig:biais_variance}. Les deux estimateurs $\Theta$ et
 $\Theta^{\prime\prime}$ sont non-biaisés. Cependant, $\Theta^{\prime\prime}$ a
 une plus grande variance ; une de ses réalisation a une probabilité plus grande
-que pour $\Theta$ d'être éloignée de $\theta$. 
+que pour $\Theta$ d'être éloignée de $\theta$. Ainsi, $\Theta^{\prime\prime}$
+est \textit{moins précis} que $\Theta.$
+  
+Un estimateur non-biaisé sera considéré d'autant plus précis que sa variance
+est faible.  Dans le cas général d'un estimateur biaisé, il faut aussi prendre
+en compte le biais dans la définition de la précision. Un estimateur biaisé
+mais de variance faible pourra donner de meilleures estimations (c'est-à-dire
+plus proches de la vraie valeur) qu'un estimateur moins biaisé mais avec une
+plus grande variance.
 
-C'est cette notion que l'on utilise pour mesurer la précision d'un
-estimateur. Dans le cas d'un estimateur non-biaisé, sa précision est définie
-comme sa variance.
-
-Dans le cas général d'un estimateur biaisé, il faut aussi prendre en compte le
-biais. Un estimateur biaisé mais avec une faible variance pourra donner de
-meilleures estimations (c'est-à-dire plus proches de la vraie valeur) qu'un
-estimateur moins biaisé mais avec une plus grande variance.
-
-C'est pourquoi on utilise pour quantifier la précision d'un estimateur ponctuel générique son
-\textbf{erreur quadratique moyenne,} définie comme
+C'est pourquoi on utilise pour quantifier la précision d'un estimateur ponctuel
+générique son \textit{erreur quadratique moyenne,} définie comme
 \begin{equation}
   \text{EQM}(\Theta_n) = \EE((\Theta_n - \theta)^2) = \VV(\Theta_n - \theta) + \EE((\Theta_n - \theta))^2
   = \VV(\Theta_n) + \text{B}(\Theta_n)^2.
-\label{eq:eqm}
+  \label{eq:eqm}
 \end{equation}
+Un estimateur sera ainsi d'autant plus précis que son erreur quadratique moyenne est faible.
 
 \paragraph{Compromis biais-variance} Il est tout à fait possible qu'un
 estimateur biaisé ait une meilleure précision qu'un estimateur non-biaisé, si
@@ -545,10 +545,17 @@ directement la vraisemblance mais son logarithme :
                         & = \argmax_{t \in [0, 1]} \sum_{i=1}^n x_i \ln t + 
                           \left( n - \sum_{i=1}^n x_i \right) \ln (1-t).
   \end{align*}
-  La fonction
+  La fonction que nous cherchons à minimiser est
   $\ell: t \mapsto \sum_{i=1}^n x_i \ln t + \left( n - \sum_{i=1}^n x_i \right)
-  \ln (1-t)$
-  est concave, nous pouvons donc la maximiser en annulant sa dérivée :
+  \ln (1-t).$
+
+  Rappelons que l'on note $b = \sum_{i=1}^n x_i.$ Si $b=n$, alors
+  $\ell(t) = n \ln t$ et $\ell$ est maximale quand $t=1.$
+
+  Si $b=0$, alors $\ell(t) = n \ln (1-t)$ et $\ell$ est maximale quand $t=0.$
+
+  Enfin, si $0 < b < n,$ la fonction que nous cherchons à minimiser est
+  concave, nous pouvons donc la maximiser en annulant sa dérivée :
   \begin{equation*}
     \frac{d \ell}{d t} = \sum_{i=1}^n x_i \frac1t - 
     \left( n - \sum_{i=1}^n x_i \right) \frac1{1-t},
@@ -558,7 +565,7 @@ directement la vraisemblance mais son logarithme :
     (1 - \hatmle{p}) \left( \sum_{i=1}^n x_i \right) - \hatmle{p} \left( n - 
       \sum_{i=1}^n x_i \right) = 0
   \end{equation*}
-  et donc
+  et donc, pour toutes les valeurs possibles de $b,$
   \begin{equation}
     \label{eq:mle_bernoulli}
     \hatmle{p} = \frac{1}{n} \sum_{i=1}^n x_i = \frac{b}{n}.
@@ -566,8 +573,6 @@ directement la vraisemblance mais son logarithme :
   
   L'estimateur par maximum de vraisemblance de $p$ est ainsi tout simplement la
   moyenne empirique de l'échantillon. Dans notre exemple, $p=450/500=90\%.$
-
-  Remarque : en toute rigueur, on traitera séparément les cas particuliers où $\sum_{i=1}^n x_i=n$ ou $\sum_{i=1}^n x_i=0$.
 \end{exemple}
 
 
